@@ -1,0 +1,16 @@
+.home-overlay {
+  position: absolute;
+  color: #fff;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s ease-in-out;
+  z-index: 2;
+  & > h3 {
+    z-index: 2;
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+  }
+}

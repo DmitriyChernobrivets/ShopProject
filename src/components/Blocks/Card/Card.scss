@@ -1,0 +1,99 @@
+.product-card {
+  //   border: 1px solid black;
+  padding: 10px;
+  position: relative;
+  transition: 0.2s ease-in;
+  &:hover {
+    box-shadow: 2px 2px 25px 3px #c9c7c7;
+    transition: 0.1s ease-out;
+  }
+  .product-card-title {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .prdouct-image {
+    cursor: pointer;
+    border: 1px solid rgb(212, 211, 211);
+    min-height: 250px;
+    margin-bottom: 10px;
+  }
+  &_review {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    .review {
+      color: rgb(45, 146, 212);
+    }
+  }
+
+  .product-card-button {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    color: red;
+    border: 1px solid red;
+    margin-bottom: 10px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      background-image: url(../../../images/trash.svg);
+      top: -1px;
+      right: -1px;
+      border-left: 1px solid #fff;
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: block;
+      border-radius: 0 5px 5px 0;
+      width: 41px;
+      height: 38px;
+      background-color: red;
+    }
+    &:hover {
+      background-color: red;
+      color: #fff;
+    }
+  }
+  &:hover .product-description {
+    opacity: 1;
+    z-index: 1;
+  }
+  .product-description {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 2px 22px 15px 3px #c9c7c7;
+    font-size: 12px;
+    z-index: -1;
+    margin-left: -10px;
+    margin-right: -10px;
+    opacity: 0;
+  }
+
+  .hot-price {
+    border-radius: 5px;
+    padding: 5px 14px;
+    background-color: rgb(248, 4, 4);
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+}
+@keyframes cardShow {
+  0% {
+    background-color: red;
+  }
+  25% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: blue;
+  }
+  100% {
+    background-color: green;
+  }
+}

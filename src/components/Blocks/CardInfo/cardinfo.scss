@@ -1,0 +1,82 @@
+.card-info {
+  padding: 20px;
+  max-height: 260px;
+  background-color: rgb(243, 241, 241);
+  &_image {
+    min-height: 400px;
+  }
+
+  &_title {
+    width: 100%;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(211, 209, 209);
+    margin-bottom: 20px;
+  }
+  &_garantee {
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  &_buy-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &_buy-label {
+    font-size: 18px;
+    margin-bottom: 0;
+    color: rgb(133, 132, 132);
+  }
+  &_buy-current {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    font-size: 26px;
+  }
+  &_buy-btn {
+    position: relative;
+    width: 100%;
+    padding: 15px 0;
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+    border: rgb(230, 8, 8);
+    margin-bottom: 10px;
+    transition: 0.2s linear;
+    cursor: pointer;
+    & i {
+      margin-right: 20px;
+      font-size: 26px;
+    }
+    & span {
+      font-weight: bold;
+      font-size: 22px;
+    }
+    &:hover {
+      box-shadow: 2px 0 22px -5px rgb(255, 0, 0);
+      transition: 0.2s linear;
+    }
+  }
+  &_row {
+    margin-bottom: 50px;
+  }
+}
+.hot-price {
+  border-radius: 5px;
+  padding: 5px 14px;
+  background-color: rgb(248, 4, 4);
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  top: 50px;
+  left: 18px;
+}
+.product-description {
+  & span {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(211, 209, 209);
+  }
+}

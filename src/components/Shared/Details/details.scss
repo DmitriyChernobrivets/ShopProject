@@ -1,0 +1,60 @@
+.product-description {
+  font-size: 12px;
+  position: relative;
+  width: 100%;
+
+  padding: 20px 10px 0;
+
+  & p {
+    position: relative;
+    padding-left: 15px;
+    font-size: 15px;
+
+    transition: 0.2s ease-in-out;
+  }
+  & p::before {
+    content: "";
+    border: 1px solid red;
+    border-radius: 50%;
+
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: 7px;
+    width: 7px;
+  }
+  & p span {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  & .see-more {
+    position: absolute;
+    bottom: 15px;
+    padding-left: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 2;
+    color: rgb(45, 146, 212);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.js-box {
+  margin-bottom: 13px;
+  & p {
+    margin-bottom: 0;
+  }
+}
+.open-content {
+  height: 0;
+
+  transition: height 0.4s ease-in-out, opacity 0.2s ease-in;
+  opacity: 0;
+}
+.hide-content {
+  height: 30px;
+  opacity: 1;
+
+  transition: height 0.1s ease-in-out, opacity 0.4s ease-in;
+}

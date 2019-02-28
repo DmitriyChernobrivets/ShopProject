@@ -1,0 +1,53 @@
+.header {
+  // text-align: center;
+  .menu {
+    display: flex;
+    .menu-item {
+      padding: 0 20px;
+      font-size: 0.9em;
+
+      & > a:hover {
+        color: red;
+        transition: 0.2s ease;
+      }
+      & > a {
+        transition: 0.2s ease-in-out;
+      }
+    }
+  }
+  background: rgba(236, 234, 234, 0.5);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+
+  .header-right {
+    text-align: right;
+    width: 40%;
+  }
+  .header-left {
+    width: 40%;
+  }
+  .user-bucket {
+    margin-left: 30px;
+  }
+  .left-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: red;
+    width: 60px;
+    z-index: 20;
+    & > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-90deg) translate(-20px, -60px);
+
+      width: 170px;
+      color: #fff;
+    }
+  }
+}
