@@ -49,11 +49,11 @@
   &_form {
     padding: 30px 10px 10px 20px;
     background-color: #f8f8f8;
-    & p {
+    & label {
       position: relative;
       display: inline-block;
     }
-    & p::after {
+    & label::after {
       content: "*";
       height: 5px;
       right: -10px;

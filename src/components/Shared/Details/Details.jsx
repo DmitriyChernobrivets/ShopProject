@@ -26,8 +26,8 @@ class Details extends Component {
             );
           } else
             return (
-              <div className={!seeMore ? "js-box open-content" : "js-box hide-content"}>
-                <p className="product-description_text" key={idx}>
+              <div key={idx} className={!seeMore ? "js-box open-content" : "js-box hide-content"}>
+                <p className="product-description_text">
                   <span>{name} : </span>
                   {description[name]}
                 </p>

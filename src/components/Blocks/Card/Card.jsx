@@ -5,13 +5,13 @@ import { Button } from "react-bootstrap";
 import ForSale from "../../Shared/forSale/forSale";
 import RatingStars from "../../Shared/Stars/RatingStars";
 import Details from "../../Shared/Details/Details";
+import { Col } from "react-bootstrap";
 
 const Card = ({ product, match }) => {
   const { _id, description, title, forSale, images, price, hot, rating } = product;
   const { categories } = match.params;
-  console.log(match.params);
   return (
-    <div className="product-card">
+    <Col className="product-card" xs={12} sm={6} lg={4}>
       {hot && (
         <div className="hot-price">
           <span>HOT</span>
@@ -39,10 +39,10 @@ const Card = ({ product, match }) => {
       <Button className="btn product-card-button">
         <span>{price} UAH</span>
       </Button>
-      <div className="product-description">
-        <Details description={description} />>
-      </div>
-    </div>
+      <Fragment>
+        <Details description={description} />
+      </Fragment>
+    </Col>
   );
 };
 

@@ -40,7 +40,7 @@ class CardInfo extends Component {
                     <img src={product.images[0]} alt="img" />
                   </div>
                 </Col>
-                <Col col={12} lg={6} className="card-info_content">
+                <Col lg={6} className="card-info_content">
                   <h3 className="card-info_about">Detail</h3>
                   <Fragment>
                     <Details description={product.description} />

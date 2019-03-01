@@ -4,28 +4,39 @@ import axios from "axios";
 import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
 
+function formValidation(val) {}
 class FeedbackForm extends Component {
+  constructor(props) {
+    super(props);
+    this.textInput = [];
+  }
   state = {
     feedbacks: [],
+    name: "",
+    comments: "",
+    advantages: "",
+    disadvantags: "",
     error: null
   };
   componentDidMount() {
     const { id } = this.props;
+
     axios
       .get(`/feedback?id=${id}`)
       .then(this.onSuccess)
       .catch(this.onError);
   }
-  sendFeedback = evt => {
-    evt.preventDefault();
+  sendFeedback = e => {
+    e.preventDefault();
     const { id } = this.props;
-
     const { name, comments, advantages, disadvantages } = this.state;
+
     axios
       .post("/feedback", { name, comments, advantages, disadvantages, product_ID: id })
       .then(el => console.log(el))
       .catch(err => console.log(err));
   };
+
   onSuccess = feedbacks => {
     this.setState({
       feedbacks: feedbacks.data.feedback,
@@ -44,9 +55,14 @@ class FeedbackForm extends Component {
       [e.target.name]: e.target.value
     });
   };
+  focus = e => {
+    e.preventDefault();
+    // Установка фокуса на поле текстового ввода (input) с явным использованием исходного API DOM
+    this.textInput.style.border = "1px solid red";
+  };
   render() {
     const { feedbacks } = this.state;
-
+    console.log(this.textInput);
     return (
       <Row className="feedback">
         <h2 className="feedback-head">
@@ -56,10 +72,10 @@ class FeedbackForm extends Component {
 
         <form className="feedback_form">
           <Col md={6} lg={5}>
-            <p className="feedback_name">
+            <label className="feedback_name">
               <i className="fas fa-user-astronaut" />
               Enter your name:
-            </p>
+            </label>
             <input
               className="feedback_name-input"
               name="name"
@@ -69,10 +85,10 @@ class FeedbackForm extends Component {
             />
           </Col>
           <Col lg={12}>
-            <p>
+            <label>
               <i className="far fa-thumbs-up" />
               Advantages:
-            </p>
+            </label>
             <textarea
               className="feedback_comments"
               rows="3"
@@ -80,10 +96,10 @@ class FeedbackForm extends Component {
               placeholder="Enter your feedback here"
               onChange={this.inputHandle}
             />
-            <p>
+            <label>
               <i className="far fa-thumbs-down" />
               Disadvanteges:
-            </p>
+            </label>
             <textarea
               className="feedback_comments"
               rows="3"
@@ -91,10 +107,11 @@ class FeedbackForm extends Component {
               placeholder="Enter your feedback here"
               onChange={this.inputHandle}
             />
-            <p>
+            <label>
               <i className="far fa-comments" />
               Comments:
-            </p>
+            </label>
+
             <textarea
               className="feedback_comments"
               rows="3"
