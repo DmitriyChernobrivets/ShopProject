@@ -1,22 +1,21 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./feedback.scss";
 import axios from "axios";
 import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
 
-function formValidation(val) {}
+import { NotificationContainer, NotificationManager } from "react-notifications";
+import "react-notifications/lib/notifications.css";
+
 class FeedbackForm extends Component {
-  constructor(props) {
-    super(props);
-    this.textInput = [];
-  }
   state = {
     feedbacks: [],
     name: "",
     comments: "",
     advantages: "",
-    disadvantags: "",
-    error: null
+    disadvantages: "",
+    error: null,
+    isInputsValid: true
   };
   componentDidMount() {
     const { id } = this.props;
@@ -29,12 +28,7 @@ class FeedbackForm extends Component {
   sendFeedback = e => {
     e.preventDefault();
     const { id } = this.props;
-    const { name, comments, advantages, disadvantages } = this.state;
-
-    axios
-      .post("/feedback", { name, comments, advantages, disadvantages, product_ID: id })
-      .then(el => console.log(el))
-      .catch(err => console.log(err));
+    this.isInputValid() && this.sendPost(id);
   };
 
   onSuccess = feedbacks => {
@@ -49,25 +43,50 @@ class FeedbackForm extends Component {
       error: error
     });
   };
-
+  isInputValid = () => {
+    const { name, comments, advantages, disadvantages } = this.state;
+    if (!name || !comments || !advantages || !disadvantages) {
+      this.setState(
+        {
+          isInputsValid: false,
+          name: "",
+          comments: "",
+          advantages: "",
+          disadvantages: ""
+        },
+        () => NotificationManager.error("Sorry :(", "Invalid inputs")
+      );
+      return false;
+    } else return true;
+  };
+  sendPost = id => {
+    const { name, comments, advantages, disadvantages } = this.state;
+    this.setState(
+      { isInputsValid: true, name: "", comments: "", advantages: "", disadvantages: "" },
+      () => {
+        axios
+          .post("/feedback", { name, comments, advantages, disadvantages, product_ID: id })
+          .then(() => NotificationManager.success("Thanck You", "Comment sended"))
+          .catch(() => NotificationManager.error("Error", "Server error"));
+      }
+    );
+  };
   inputHandle = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-  focus = e => {
-    e.preventDefault();
-    // Установка фокуса на поле текстового ввода (input) с явным использованием исходного API DOM
-    this.textInput.style.border = "1px solid red";
-  };
+
   render() {
     const { feedbacks } = this.state;
-    console.log(this.textInput);
+    const { name, comments, advantages, disadvantages, isInputsValid } = this.state;
+
     return (
       <Row className="feedback">
         <h2 className="feedback-head">
           Feedback <span>{feedbacks.length}</span>
         </h2>
+
         {feedbacks && <FeedbackItems feedbacks={feedbacks} />}
 
         <form className="feedback_form">
@@ -77,11 +96,12 @@ class FeedbackForm extends Component {
               Enter your name:
             </label>
             <input
-              className="feedback_name-input"
+              className={!isInputsValid ? "feedback_name-input error" : "feedback_name-input"}
               name="name"
               type="text"
               placeholder="Enter your name"
               onChange={this.inputHandle}
+              value={name}
             />
           </Col>
           <Col lg={12}>
@@ -90,22 +110,24 @@ class FeedbackForm extends Component {
               Advantages:
             </label>
             <textarea
-              className="feedback_comments"
+              className={!isInputsValid ? "feedback_comments error" : "feedback_comments"}
               rows="3"
               name="advantages"
               placeholder="Enter your feedback here"
               onChange={this.inputHandle}
+              value={advantages}
             />
             <label>
               <i className="far fa-thumbs-down" />
               Disadvanteges:
             </label>
             <textarea
-              className="feedback_comments"
+              className={!isInputsValid ? "feedback_comments error" : "feedback_comments"}
               rows="3"
               name="disadvantages"
               placeholder="Enter your feedback here"
               onChange={this.inputHandle}
+              value={disadvantages}
             />
             <label>
               <i className="far fa-comments" />
@@ -113,17 +135,19 @@ class FeedbackForm extends Component {
             </label>
 
             <textarea
-              className="feedback_comments"
+              className={!isInputsValid ? "feedback_comments error" : "feedback_comments"}
               rows="3"
               name="comments"
               placeholder="Enter your feedback here"
               onChange={this.inputHandle}
+              value={comments}
             />
             <button className="feedback_send-btn" onClick={this.sendFeedback}>
               Send Feedback
             </button>
           </Col>
         </form>
+        <NotificationContainer />
       </Row>
     );
   }

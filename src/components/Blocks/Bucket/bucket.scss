@@ -1,0 +1,92 @@
+@import "../../../scss/variables.scss";
+
+.bucket {
+  & .row > div {
+    margin-bottom: 30px;
+  }
+
+  &_image-container {
+    max-height: 140px;
+    width: 100px;
+  }
+
+  &_product-info {
+    display: flex;
+    align-items: center;
+  }
+
+  &_product-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #b1b1b1;
+    padding: 20px;
+  }
+  &_product-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    flex-wrap: wrap;
+  }
+  &_increments {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: 1px solid grey;
+      transition: 0.2s ease-out;
+      &:hover {
+        border-color: red;
+        transition: 0.2s ease-in;
+      }
+    }
+    & div {
+      border: 1px solid grey;
+      width: 40px;
+      height: 40px;
+      font-size: 22px;
+      line-height: 40px;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+  &_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    &:hover svg {
+      fill: red;
+    }
+  }
+  &_price {
+    font-size: 24px;
+    color: red;
+  }
+  &_buy-btn {
+    background-color: $bgc-r;
+    border: none;
+    cursor: pointer;
+    padding: 10px 40px;
+    color: white;
+    margin-bottom: 20px;
+  }
+  &_return-link {
+    display: block;
+  }
+}
+.total_price {
+  font-size: 24px;
+  margin-bottom: 30px;
+  & span {
+    font-weight: bold;
+  }
+}

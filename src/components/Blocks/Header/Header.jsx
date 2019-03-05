@@ -22,8 +22,8 @@ const HeaderComponents = props => (
         <Link to="/login" className="user-office">
           SignIn
         </Link>
-        <Link to="/" className="user-bucket">
-          Backet
+        <Link to="/bucket" className="user-bucket">
+          Bucket
         </Link>
       </div>
     </div>

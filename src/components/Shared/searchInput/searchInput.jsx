@@ -10,7 +10,7 @@ class SearchInput extends Component {
       <div className="search">
         <input type="text" className="search-input" placeholder="Search" />
         <button className="search-btn">
-          <Svg path={path} />
+          <Svg path={path} viewbox="0 0 17 17"/>
         </button>
       </div>
     );

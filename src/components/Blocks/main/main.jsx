@@ -17,9 +17,16 @@ class Main extends Component {
       <main>
         <Container className="wrapper">
           <Row>
-            {products.map(prod => (
-              <Card product={prod} match={match} key={prod._id} />
-            ))}
+            <Col lg={3}>
+              <div className="filter">hellow</div>
+            </Col>
+            <Col lg={9}>
+              <Row>
+                {products.map(prod => (
+                  <Card product={prod} match={match} key={prod._id} />
+                ))}
+              </Row>
+            </Col>
           </Row>
         </Container>
       </main>
