@@ -1,11 +1,19 @@
 .hi {
   text-align: center;
+  & label {
+    cursor: pointer;
+  }
+  a {
+  }
 }
 #check {
   height: 20px;
   width: 20px;
   position: relative;
   background: none;
+  margin-right: 15px;
+  vertical-align: top;
+  cursor: pointer;
   &:hover:before {
     border-color: red;
   }

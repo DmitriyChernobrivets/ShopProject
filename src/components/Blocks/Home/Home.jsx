@@ -3,14 +3,11 @@ import { Row, Container } from "react-bootstrap";
 
 import SearchInput from "../../Shared/searchInput/searchInput";
 import { options } from "../../Shared/Svg/options";
-import HomeCard from "../../Shared/HomeCard/HomeCard";
+import HomeCard from "./HomeCard";
 import { connect } from "react-redux";
 import "./home.scss";
 
 class Home extends Component {
-  // state = {
-  //   category: ["notebook", "telephone", "PC"]
-  // };
   render() {
     const { categories } = this.props;
 

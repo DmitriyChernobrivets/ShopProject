@@ -102,6 +102,7 @@ class FeedbackForm extends Component {
               placeholder="Enter your name"
               onChange={this.inputHandle}
               value={name}
+              aria-required="true"
             />
           </Col>
           <Col lg={12}>

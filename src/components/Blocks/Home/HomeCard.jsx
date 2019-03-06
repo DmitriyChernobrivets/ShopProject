@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Overlay from "../overlay/Overlay";
+import Overlay from "../../Shared/overlay/Overlay";
 
 const randomColor = () => {
   const random = () => parseInt(Math.random() * 255);

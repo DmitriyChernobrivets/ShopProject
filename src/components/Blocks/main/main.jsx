@@ -4,6 +4,7 @@ import { getProducts } from "../../../store/Actions/getProducts";
 import Card from "../Card/Card";
 import "./main.scss";
 import { Col, Row, Container } from "react-bootstrap";
+import Filter from "../Filter/Filter";
 
 class Main extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class Main extends Component {
         <Container className="wrapper">
           <Row>
             <Col lg={3}>
-              <div className="filter">hellow</div>
+              <Filter />
             </Col>
             <Col lg={9}>
               <Row>
