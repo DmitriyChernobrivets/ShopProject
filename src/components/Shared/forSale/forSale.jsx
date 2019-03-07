@@ -2,7 +2,6 @@ import React from "react";
 import "./forSale.scss";
 
 const ForSale = prop => {
-  console.log(prop.forSale);
   return (
     <div className="forsale">
       {prop.forSale ? (

@@ -1,35 +1,61 @@
 import React, { Component } from "react";
 import "./filter.scss";
 import Checkbox from "../../Shared/checkbox/Checkbox";
+import { connect } from "react-redux";
+import { getFilteredProducts } from "../../../store/Actions/getProducts";
+import RangeInput from "../../Shared/Range/RangeInput";
+
 class Filter extends Component {
   state = {
-    data: [
-      { checked: false, name: "LG" },
-      { checked: false, name: "Lenovo" },
-      { checked: false, name: "Sony" },
-      { checked: false, name: "LG" }
+    title: [{ checked: false, name: "ThinkPad" }, { checked: false, name: "Lenovo" }],
+    memory: [
+      { checked: false, name: "32" },
+      { checked: false, name: "16" },
+      { checked: false, name: "8" }
     ]
   };
-  onChangeAction(idx) {
-    this.setState(prevState => {
-      const newData = prevState.data.map((el, index) =>
-        index === idx ? { ...el, checked: !el.checked } : el
-      );
-      return {
-        data: [...newData]
-      };
-    });
+
+  onChangeAction(idx, key) {
+    this.setState(
+      prevState => {
+        const newData = prevState[key].map((el, index) =>
+          index === idx ? { ...el, checked: !el.checked } : el
+        );
+        return {
+          [key]: [...newData]
+        };
+      },
+      () => this.props.getFilteredProducts(this.state)
+    );
   }
+
   render() {
-    const { data } = this.state;
     return (
       <div>
-        {data.map((item, idx) => (
-          <Checkbox item={item} key={idx} onChangeAction={this.onChangeAction.bind(this, idx)} />
+        {Object.keys(this.state).map(el => (
+          <div className="filter_box">
+            <h5>By {el === "memory" ? el + ", Gb" : el}</h5>
+            {this.state[el].map((item, idx) => (
+              <Checkbox
+                item={item}
+                key={idx}
+                onChangeAction={this.onChangeAction.bind(this, idx, el)}
+              />
+            ))}
+          </div>
         ))}
+        <RangeInput />
       </div>
     );
   }
 }
 
-export default Filter;
+const getDisptatchToProps = dispatch => {
+  return {
+    getFilteredProducts: val => dispatch(getFilteredProducts(val))
+  };
+};
+export default connect(
+  null,
+  getDisptatchToProps
+)(Filter);

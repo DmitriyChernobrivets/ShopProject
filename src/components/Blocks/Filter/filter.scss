@@ -1,0 +1,10 @@
+.filter_box {
+  display: flex;
+  flex-wrap: wrap;
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+  & h5 {
+    width: 100%;
+  }
+}
