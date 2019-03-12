@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Noteboks = require("../../../mongoDB/models/Notebooks");
+
 const MODELS = require("../../../mongoDB/models/Model");
 const getProducts = (req, res) => {
   const { category } = req.params;
