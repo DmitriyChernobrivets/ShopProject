@@ -1,13 +1,14 @@
-export const generateQuery = data => {
-  const url = Object.keys(data).reduce((acc, el) => {
-    const asd = data[el]
-      .filter(el => el.checked)
-      .reduce((acc, el) => acc.concat(el.name), [])
-      .join();
+export const transformState = state => {
+  return Object.keys(state).reduce((acc, el) => {
+    const filters = Array.isArray(state[el])
+      ? state[el].filter(el => el.checked).reduce((acc, el) => acc.concat(el.name), [])
+      : state[el];
 
-    if (!asd) return acc;
-
-    return acc + el + "=" + asd + "&";
-  }, "?");
-  return url;
+    if (!acc[el]) {
+      acc[el] = Array.isArray(filters) ? [...filters] : filters;
+    } else {
+      acc[el] = [...filters];
+    }
+    return acc;
+  }, {});
 };

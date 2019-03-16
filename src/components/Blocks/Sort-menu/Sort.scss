@@ -1,0 +1,14 @@
+.sort-menu {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid grey;
+  .price-select {
+    width: 200px;
+  }
+  h5 {
+    margin-bottom: 0;
+    padding-right: 15px;
+  }
+}

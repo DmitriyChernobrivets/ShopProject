@@ -5,6 +5,8 @@ import Card from "../Card/Card";
 import "./main.scss";
 import { Col, Row, Container } from "react-bootstrap";
 import Filter from "../Filter/Filter";
+import SortMenu from "../Sort-menu/SortMenu";
+import ReactPaginate from "react-paginate";
 
 class Main extends Component {
   componentDidMount() {
@@ -22,11 +24,19 @@ class Main extends Component {
               <Filter />
             </Col>
             <Col lg={9}>
+              <SortMenu />
               <Row>
                 {products.map(prod => (
                   <Card product={prod} match={match} key={prod._id} />
                 ))}
               </Row>
+              <ReactPaginate
+                containerClassName="pagination"
+                activeClassName="pagination_active"
+                activeLinkClassName="pagination_active-link"
+                pageCount={15}
+                onPageChange={val => console.log(val)}
+              />
             </Col>
           </Row>
         </Container>

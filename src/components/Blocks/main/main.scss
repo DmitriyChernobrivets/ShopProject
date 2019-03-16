@@ -3,3 +3,22 @@
   padding: 20px 0;
   // margin: 0 auto;
 }
+.pagination {
+  display: flex;
+  z-index: 111111111;
+  width: 500px;
+  margin: 0 auto;
+  li {
+    cursor: pointer;
+    padding: 20px;
+    a {
+      color: rgb(74, 146, 240);
+    }
+  }
+  &_active {
+    background: rgb(74, 146, 240);
+  }
+  &_active-link {
+    color: #fff !important;
+  }
+}
