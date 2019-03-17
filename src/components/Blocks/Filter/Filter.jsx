@@ -9,7 +9,7 @@ import "react-input-range/lib/css/index.css";
 
 class Filter extends Component {
   state = {
-    title: [{ checked: true, name: "ThinkPad" }, { checked: false, name: "Lenovo" }],
+    title: [{ checked: false, name: "ThinkPad" }, { checked: false, name: "Lenovo" }],
     memory: [
       { checked: false, name: "32" },
       { checked: false, name: "16" },

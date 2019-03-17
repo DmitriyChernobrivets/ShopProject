@@ -2,8 +2,9 @@ import React from "react";
 
 const Svg = prop => {
   return (
-    <svg viewBox={prop.viewbox} height="17" width="17">
-      <path d={prop.path} />
+    <svg viewBox={prop.viewbox} height={prop.height || "17"} width={prop.width || "17"}>
+      {prop.path.map(el => <path d={el} />)}
+      
     </svg>
   );
 };

@@ -9,14 +9,17 @@ const sortvalue = query => {
 };
 
 const api = {
-  getProducts: collection => Model[collection].find(),
   getProductByID: (collection, id) => Model[collection].findById(id),
-  getfilteredProducts: (collection, queryObj, sort, page = 0, limit = 6) =>
-    Model[collection]
+
+  getProducts: async (collection, queryObj, sort, page = 0, limit = 6) => {
+    const items = await Model[collection]
       .find(queryObj)
       .skip(page * limit)
       .limit(limit)
-      .sort(sortvalue(sort)),
+      .sort(sortvalue(sort));
+    const count = await Model[collection].find(queryObj).count();
+    return { product: items, totalCount: count };
+  },
 
   getFeedacks: (collection, id) => Model[collection].find({ product_ID: id }),
   postFeedback: (collection, obj) => Model[collection].create(obj)

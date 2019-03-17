@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getProducts } from "../../../store/Actions/getProducts";
+import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import Card from "../Card/Card";
 import "./main.scss";
 import { Col, Row, Container } from "react-bootstrap";
@@ -10,12 +10,15 @@ import ReactPaginate from "react-paginate";
 
 class Main extends Component {
   componentDidMount() {
-    const { categories } = this.props.match.params;
-    this.props.getAllProducts(categories);
+    const { currentFilters } = this.props;
+
+    // console.log(currentFilters);
+    this.props.getfilteredProducts(currentFilters);
   }
   render() {
-    const { products, match } = this.props;
-
+    const { products, match, totalPageCount, currentFilters, getfilteredProducts } = this.props;
+    const paginationCount = Math.ceil(totalPageCount / 6);
+    console.log(paginationCount);
     return (
       <main>
         <Container className="wrapper">
@@ -34,8 +37,12 @@ class Main extends Component {
                 containerClassName="pagination"
                 activeClassName="pagination_active"
                 activeLinkClassName="pagination_active-link"
-                pageCount={15}
-                onPageChange={val => console.log(val)}
+                pageCount={paginationCount}
+                onPageChange={({ selected }) => {
+                  const obj = { ...currentFilters, currentPage: selected };
+
+                  getfilteredProducts(obj);
+                }}
               />
             </Col>
           </Row>
@@ -47,13 +54,15 @@ class Main extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.allProducts.products
+    totalPageCount: state.currentFilters.totalPageCount,
+    products: state.allProducts.products,
+    currentFilters: state.currentFilters
   };
 };
 
 const mapDeispathToProps = dispatch => {
   return {
-    getAllProducts: category => dispatch(getProducts(category))
+    getfilteredProducts: val => dispatch(getFilteredProducts(val))
   };
 };
 

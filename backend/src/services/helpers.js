@@ -1,6 +1,6 @@
 const transformQuery = body =>
   Object.keys(body).reduce((acc, querykey) => {
-    const query = querykey === "price" ? body[querykey] : body[querykey].map(el => RegExp(el));
+    const query = querykey === "price" ? body[querykey] : body[querykey].map(el => RegExp(el.name));
 
     if (querykey === "memory" && query.length > 0) {
       acc["description.memory"] = query;

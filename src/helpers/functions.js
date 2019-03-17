@@ -1,9 +1,8 @@
 export const transformState = state => {
-  return Object.keys(state).reduce((acc, el) => {
-    const filters = Array.isArray(state[el])
-      ? state[el].filter(el => el.checked).reduce((acc, el) => acc.concat(el.name), [])
-      : state[el];
-
+  console.log(state);
+  const a = Object.keys(state).reduce((acc, el) => {
+    const filters = Array.isArray(state[el]) ? state[el].filter(el => el.checked) : state[el];
+    // console.log("result", filters);
     if (!acc[el]) {
       acc[el] = Array.isArray(filters) ? [...filters] : filters;
     } else {
@@ -11,4 +10,6 @@ export const transformState = state => {
     }
     return acc;
   }, {});
+
+  return a;
 };

@@ -2,6 +2,9 @@ import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { options } from "../../Shared/Svg/options";
+import SVG from "../../Shared/Svg/svg";
+const { CABINET, BUCKET } = options;
 
 const HeaderComponents = props => (
   <header className="header">
@@ -20,10 +23,10 @@ const HeaderComponents = props => (
     <div className="header-right">
       <div className="header-auth">
         <Link to="/login" className="user-office">
-          SignIn
+          <SVG path={CABINET} viewbox="0 0 36 32" height="23" width="23"/>
         </Link>
         <Link to="/bucket" className="user-bucket">
-          Bucket
+        <SVG path={BUCKET} viewbox="0 0 32 32" height="23" width="23"/>
         </Link>
       </div>
     </div>
