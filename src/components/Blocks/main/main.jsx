@@ -17,8 +17,9 @@ class Main extends Component {
   }
   render() {
     const { products, match, totalPageCount, currentFilters, getfilteredProducts } = this.props;
+
     const paginationCount = Math.ceil(totalPageCount / 6);
-    console.log(paginationCount);
+
     return (
       <main>
         <Container className="wrapper">

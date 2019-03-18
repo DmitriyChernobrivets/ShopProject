@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { options } from "../../Shared/Svg/options";
 import SVG from "../../Shared/Svg/svg";
+
 const { CABINET, BUCKET } = options;
 
 const HeaderComponents = props => (
@@ -22,11 +23,11 @@ const HeaderComponents = props => (
     </div>
     <div className="header-right">
       <div className="header-auth">
-        <Link to="/login" className="user-office">
-          <SVG path={CABINET} viewbox="0 0 36 32" height="23" width="23"/>
+        <Link to="/signin" className="user-office">
+          <SVG path={CABINET} viewbox="0 0 36 32" height="23" width="23" />
         </Link>
         <Link to="/bucket" className="user-bucket">
-        <SVG path={BUCKET} viewbox="0 0 32 32" height="23" width="23"/>
+          <SVG path={BUCKET} viewbox="0 0 32 32" height="23" width="23" />
         </Link>
       </div>
     </div>
