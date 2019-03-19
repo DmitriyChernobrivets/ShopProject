@@ -31,14 +31,6 @@ class Login extends Component {
           type="password"
           onChange={this.handleInput}
         />
-        {/* <input
-          placeholder="LOGIN"
-          type="text"
-          value={username}
-          name="username"
-          onChange={this.handleInput}
-        />
-        <input type="password" name="password" value={password} onChange={this.handleInput} /> */}
       </form>
     );
   }
