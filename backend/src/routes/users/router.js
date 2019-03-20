@@ -7,7 +7,7 @@ const validateUser = require("../../middleware/validateUser");
 const auth = require("./usersRoutes/auth");
 
 userRouter
-  .post("/", auth)
+  .post("/auth", auth)
   .post("/", validateUser, createUser)
   .get("/:id", getUserById)
   .put("/:id", updateUser);

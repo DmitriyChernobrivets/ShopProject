@@ -14,20 +14,21 @@ const checktoken = require("../services/checktoken");
 const server = port => {
   mongoose
     .connect(mongoURI, { useNewUrlParser: true })
-    .then(db => console.log("Mongo connected"))
-    .catch(err => console.log("Error with Mongo", err));
+    .then(db => console.log("Mongo connected!"))
+    .catch(err => console.log("Error in Mongo Server!", err.message));
 
   app
     .set("superSecret", SECRET)
     .use(urlencodedParser)
     .use(bodyParser.json())
     .use(morgan("dev"))
-    .use(express.static("./src/public"));
+    .use(express.static("./src/public"))
+    .use("/users", userRouter);
 
   app
     .use(checktoken)
     .use("/category", notebookRouter)
-    .use("/users", userRouter)
+
     .use("/feedback", feedbackRouter)
 
     .use(errorHandler)

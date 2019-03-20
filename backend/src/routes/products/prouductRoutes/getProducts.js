@@ -3,8 +3,8 @@ const api = require("../../../services/api");
 
 const getProducts = (req, res) => {
   const { category } = req.params;
-  const { sort, currentPage, totalPageCount, ...searchQuery } = req.body;
 
+  const { sort, currentPage, totalPageCount, ...searchQuery } = req.body;
   const searchObj = transformQuery(searchQuery);
 
   api

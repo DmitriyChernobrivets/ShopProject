@@ -7,9 +7,14 @@ import CardInfo from "../Blocks/CardInfo/CardInfo";
 import Home from "../Blocks/Home/Home";
 import Bucket from "../Blocks/Bucket/Bucket";
 import SignIn from "../Blocks/auth/SignIn";
+import { connect } from "react-redux";
+import { defaultAuthorization } from "../../store/Actions/getUser";
 // import "./App.scss";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getDefaultRights();
+  }
   render() {
     return (
       <BrowserRouter>
@@ -29,4 +34,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const getDispatcher = dispatch => {
+  return {
+    getDefaultRights: () => dispatch(defaultAuthorization())
+  };
+};
+
+export default connect(
+  null,
+  getDispatcher
+)(App);

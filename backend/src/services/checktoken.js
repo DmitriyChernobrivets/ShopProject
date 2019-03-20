@@ -5,9 +5,8 @@ const gettoken = req => req.body.token || req.query.token || req.headers["x-acce
 
 const checktoken = (req, res, next) => {
   const token = gettoken(req);
-
   const secretKey = app.get("superSecret");
-
+  console.log(token);
   if (!token) {
     return res.status(403).send({
       status: "Failed",
@@ -22,7 +21,6 @@ const checktoken = (req, res, next) => {
         Error: "failed to verify token"
       });
     }
-
     req.decoded = decoded;
     next();
   });

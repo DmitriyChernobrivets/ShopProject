@@ -16,7 +16,7 @@ const setCurrentFilters = payload => {
 const onError = payload => {
   return {
     type: "GET_PRODUCTS_FAILURE",
-    error: payload
+    payload
   };
 };
 
@@ -27,7 +27,7 @@ export const getFilteredProducts = data => {
 
   return dispatch => {
     api
-      .get_filtered_products(url, currentfilters)
+      .getProducts(url, currentfilters)
       .then(({ data }) => {
         const { product, totalCount } = data;
 
@@ -38,6 +38,6 @@ export const getFilteredProducts = data => {
           dispatch(setProducts(product));
         }
       })
-      .catch(err => dispatch(onError(err.message)));
+      .catch(err => dispatch(onError(data.Error)));
   };
 };

@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 const createUser = (req, res) => {
   const user = req.body;
-  if (!user.password || !user.username || !user.email) {
+  if (!user.password || !user.username) {
     res.send({ status: "Failed", error: "Bad Request" });
   }
   const hashedPassword = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8), null);

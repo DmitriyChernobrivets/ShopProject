@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+
 const { Schema } = mongoose;
 
 const usersSchema = new Schema({
@@ -20,7 +20,7 @@ const usersSchema = new Schema({
   },
   gender: {
     type: String,
-    // required: true,
+
     lowercase: true,
     validate: {
       validator: value => /male|female|transe/.exec(value),
@@ -35,32 +35,7 @@ const usersSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
-  },
-  updated: {
-    type: Date,
-    default: Date.now
-  },
-  favoriteCategories: [
-    {
-      type: mongoose.Schema.Types.ObjectId
-    }
-  ],
-  products: [
-    {
-      type: mongoose.Schema.Types.ObjectId
-    }
-  ],
-  viewedProducts: [
-    {
-      type: mongoose.Schema.Types.ObjectId
-    }
-  ]
+  }
 });
-
-// usersSchema.methods.hashingPassword = password =>
-//   bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-
-// usersSchema.methods.validatePassword = password =>
-//   bcrypt.compareSync(password, this.local.password);
 
 module.exports = mongoose.model("User", usersSchema);

@@ -13,26 +13,40 @@ const generateToken = payload => {
 };
 
 const auth = (req, res) => {
-  const { id, password } = req.body;
-  User.findById(id)
-    .then(onSuccess)
-    .catch(err => res.send({ status: "Failed", Error: err.message }));
+  const { email, password, role } = req.body;
 
-  function onSuccess(user) {
-    if (!comparePaswords(password, user.password)) {
-      return res.send({ status: "Failed", Error: "password doesn't match" });
-    }
+  switch (role) {
+    case "guest":
+      const payload = { nrole: "guest" };
+      const token = generateToken(payload);
+      res.json({
+        status: "Guest",
+        token: token
+      });
+      break;
+    default:
+      User.findOne({ email })
+        .then(onSuccess)
+        .catch(err => res.send({ status: "Failed", Error: err.message }));
 
-    const payload = {
-      userPassword: password
-    };
+      function onSuccess(user) {
+        if (!comparePaswords(password, user.password)) {
+          return res.send({ status: "Failed", Error: "password doesn't match" });
+        }
 
-    const token = generateToken(payload);
+        const payload = {
+          email: user.email,
+          role: "user"
+        };
 
-    res.json({
-      status: "Success",
-      token: token
-    });
+        const token = generateToken(payload);
+
+        res.json({
+          status: "User",
+          user,
+          token: token
+        });
+      }
   }
 };
 

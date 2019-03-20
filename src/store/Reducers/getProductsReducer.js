@@ -11,7 +11,7 @@ const getProductsReducer = (state = initialState, { type, payload }) => {
         products: [...payload],
         error: null
       };
-    case "ERROR":
+    case "GET_PRODUCTS_FAILURE":
       return {
         ...state,
         error: payload
