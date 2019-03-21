@@ -1,18 +1,45 @@
 .signin {
-  &-form {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 5px;
-  }
   &-container {
+    padding: 20px;
+    border: 1px solid rgb(221, 219, 219);
+    border-radius: 5px;
+    width: 300px;
+    box-shadow: 0 2px 22px -2px grey;
+    margin: 0 auto;
+  }
+  &_tabs {
+    margin-bottom: 20px;
+    border-bottom: 1px solid grey;
+    & > span {
+      cursor: pointer;
+      &:first-child {
+        margin-right: 30px;
+      }
+    }
+    .active {
+      color: blue;
+    }
+  }
+  &-form {
+    display: flex;
+    flex-direction: column;
+
+    &_btn {
+      background: red !important;
+      width: 140px;
+      padding: 12px 30px !important;
+      color: #fff !important;
+      margin-top: 40px !important;
+    }
+    & > div:not(:last-child) {
+      margin-bottom: 20px;
+      width: 100%;
+    }
   }
 }
 .name {
   margin-left: 5px;
   margin-right: 5px;
-  // marginLeft: theme.spacing.unit,
-  // marginRight: theme.spacing.unit,
+
   width: 200px;
 }

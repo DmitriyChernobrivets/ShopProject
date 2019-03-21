@@ -1,4 +1,8 @@
-const initialState = {};
+const initialState = {
+  payload: {
+    status: "Guest"
+  }
+};
 
 const userReducer = (state = initialState, { payload, type }) => {
   switch (type) {

@@ -10,7 +10,7 @@ const setDefaultAuth = payload => {
 const defaultAuthorization = () => {
   return dispatch =>
     api
-      .auth({ email: "aasdas", password: "12345" })
+      .defaultAuth()
       .then(el => {
         dispatch(setDefaultAuth(el.data));
         localStorage.setItem("token", el.data.token);
@@ -18,4 +18,14 @@ const defaultAuthorization = () => {
       .catch(err => console.log(err.message));
 };
 
-export { defaultAuthorization };
+const login = userData => {
+  return dispatch =>
+    api
+      .auth(userData)
+      .then(el => {
+        dispatch(setDefaultAuth(el.data));
+        localStorage.setItem("token", el.data.token);
+      })
+      .catch(err => console.log(err.message));
+};
+export { defaultAuthorization, login };

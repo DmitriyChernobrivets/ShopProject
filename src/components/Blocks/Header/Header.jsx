@@ -23,9 +23,14 @@ const HeaderComponents = props => (
     </div>
     <div className="header-right">
       <div className="header-auth">
-        <Link to="/signin" className="user-office">
-          <SVG path={CABINET} viewbox="0 0 36 32" height="23" width="23" />
-        </Link>
+        {props.user.status !== "Guest" ? (
+          <span>Cabinet</span>
+        ) : (
+          <Link to="/signin" className="user-office">
+            <SVG path={CABINET} viewbox="0 0 36 32" height="23" width="23" />
+          </Link>
+        )}
+
         <Link to="/bucket" className="user-bucket">
           <SVG path={BUCKET} viewbox="0 0 32 32" height="23" width="23" />
         </Link>
@@ -36,7 +41,8 @@ const HeaderComponents = props => (
 
 const getState = state => {
   return {
-    categories: state.categories
+    categories: state.categories,
+    user: state.auth.payload
   };
 };
 

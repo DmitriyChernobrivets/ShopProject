@@ -1,9 +1,10 @@
 import axios from "axios";
 
-axios.defaults.headers["x-access-token"] = localStorage.getItem("token") || "QUEST TOKEN";
+axios.defaults.headers["x-access-token"] = localStorage.getItem("token") || "GUEST";
 
 const api = {
-  auth: payload => axios.post("/users/auth", payload),
+  defaultAuth: () => axios.get("/users/auth"),
+  auth: payload => axios.post("/users/auth/login", payload),
   getProducts: (url, payload) => axios.post(url, payload)
 };
 

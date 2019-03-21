@@ -9,6 +9,8 @@ import Bucket from "../Blocks/Bucket/Bucket";
 import SignIn from "../Blocks/auth/SignIn";
 import { connect } from "react-redux";
 import { defaultAuthorization } from "../../store/Actions/getUser";
+import Login from "../Blocks/auth/Login";
+import Registration from "../Blocks/auth/Registration";
 // import "./App.scss";
 
 class App extends Component {
@@ -20,13 +22,12 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <HeaderComponents />
-
+          <Route exact path="/" component={Home} />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signin" component={SignIn} />
-            <Route exact path="/category/:categories" component={Main} />
-            <Route exact path="/category/:categories/:id" component={CardInfo} />
-            <Route exact path="/bucket" component={Bucket} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/category/:categories" component={Main} />
+            <Route path="/category/:categories/:id" component={CardInfo} />
+            <Route path="/bucket" component={Bucket} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -36,7 +37,7 @@ class App extends Component {
 
 const getDispatcher = dispatch => {
   return {
-    getDefaultRights: () => dispatch(defaultAuthorization())
+    getDefaultRights: val => dispatch(defaultAuthorization(val))
   };
 };
 

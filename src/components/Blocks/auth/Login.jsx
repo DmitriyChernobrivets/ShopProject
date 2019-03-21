@@ -1,23 +1,43 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
+import { login } from "../../../store/Actions/getUser";
 class Login extends Component {
   state = {
-    username: "",
+    email: "",
     password: ""
   };
+
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
+  onsubmit = e => {
+    const { login } = this.props;
+    e.preventDefault();
+    login(this.state);
+  };
   render() {
     const { username, password } = this.state;
+    const { user } = this.props;
+    console.log("HAAA");
+    if (user) {
+      if (user.status === "User") {
+        this.props.history.push("/");
+      }
+    }
+    // if (this.props.user) {
+    //   this.props.history.push("/");
+    // }
     return (
       <form className="signin-form">
         <TextField
           required
-          name="username"
-          label="Username"
+          name="email"
+          label="Email"
           defaultValue={username}
           className="name"
           onChange={this.handleInput}
@@ -31,8 +51,24 @@ class Login extends Component {
           type="password"
           onChange={this.handleInput}
         />
+        <Button variant="contained" className="signin-form_btn" onClick={this.onsubmit}>
+          Login
+        </Button>
       </form>
     );
   }
 }
-export default Login;
+const getState = state => {
+  return {
+    user: state.auth.payload
+  };
+};
+const getDispatcher = dispatch => {
+  return {
+    login: val => dispatch(login(val))
+  };
+};
+export default connect(
+  getState,
+  getDispatcher
+)(Login);
