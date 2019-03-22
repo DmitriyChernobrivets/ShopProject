@@ -1,4 +1,4 @@
-import api from "../../module/api";
+import api from "../../service/api";
 import { transformState } from "../../helpers/functions";
 
 const setProducts = payload => {

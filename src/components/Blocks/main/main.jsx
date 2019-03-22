@@ -12,7 +12,6 @@ class Main extends Component {
   componentDidMount() {
     const { currentFilters } = this.props;
 
-    // console.log(currentFilters);
     this.props.getfilteredProducts(currentFilters);
   }
   render() {

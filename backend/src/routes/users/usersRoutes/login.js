@@ -1,8 +1,7 @@
-const User = require("../../../mongoDB/models/Users");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const app = require("../../../module/bootstrap-express");
-
+const api = require("../../../services/api");
 const comparePaswords = (checkingPW, hash) => bcrypt.compareSync(checkingPW, hash);
 const generateToken = payload => {
   const secretKey = app.get("superSecret");
@@ -13,20 +12,9 @@ const generateToken = payload => {
 };
 
 const auth = (req, res) => {
-  // const token = req.headers["x-access-token"];
-  // if (!token) {
-  //   const payload = { guest: "guest" };
-  //   const token = generateToken(payload);
-  //   res.send({
-  //     status: "Guest",
-  //     token: token
-  //   });
-  // } else {
-  // const tokendata = jwt.decode(token);
-
   const { email, password } = req.body;
-
-  User.findOne({ email })
+  api
+    .findLogedUser({ email })
     .then(onSuccess)
     .catch(err => res.send({ status: "Failed", Error: err.message }));
 
@@ -41,7 +29,7 @@ const auth = (req, res) => {
     };
 
     const token = generateToken(payload);
-
+    console.log(token);
     res.json({
       status: "User",
       user,

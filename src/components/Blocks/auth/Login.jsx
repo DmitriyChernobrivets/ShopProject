@@ -23,15 +23,7 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     const { user } = this.props;
-    console.log("HAAA");
-    if (user) {
-      if (user.status === "User") {
-        this.props.history.push("/");
-      }
-    }
-    // if (this.props.user) {
-    //   this.props.history.push("/");
-    // }
+
     return (
       <form className="signin-form">
         <TextField
@@ -60,7 +52,7 @@ class Login extends Component {
 }
 const getState = state => {
   return {
-    user: state.auth.payload
+    user: state.auth.currentUser
   };
 };
 const getDispatcher = dispatch => {

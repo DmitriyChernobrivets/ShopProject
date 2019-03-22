@@ -1,6 +1,5 @@
-const User = require("../../../mongoDB/models/Users");
 const jwt = require("jsonwebtoken");
-
+const api = require("../../../services/api");
 const app = require("../../../module/bootstrap-express");
 
 const generateToken = payload => {
@@ -14,7 +13,7 @@ const generateToken = payload => {
 const auth = (req, res) => {
   const token = req.headers["x-access-token"];
   const tokendata = jwt.decode(token);
-
+  console.log(tokendata);
   if (token === "GUEST" || jwt.decode(token).guest) {
     const payload = { guest: "guest" };
     const token = generateToken(payload);
@@ -24,8 +23,9 @@ const auth = (req, res) => {
     });
   } else {
     const { id } = tokendata;
-    console.log(tokendata);
-    User.findById(id)
+
+    api
+      .findUserID(id)
       .then(onSuccess)
       .catch(err => res.send({ status: "Failed", Error: err.message }));
 

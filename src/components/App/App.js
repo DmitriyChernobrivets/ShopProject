@@ -22,12 +22,14 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <HeaderComponents />
-          <Route exact path="/" component={Home} />
+
           <Switch>
-            <Route path="/signin" component={SignIn} />
-            <Route path="/category/:categories" component={Main} />
-            <Route path="/category/:categories/:id" component={CardInfo} />
-            <Route path="/bucket" component={Bucket} />
+            <Route exact path="/" component={Home} />
+            {/* <Route exact path="/signin" component={SignIn} /> */}
+
+            <Route exact path="/category/:categories" component={Main} />
+            <Route exact path="/category/:categories/:id" component={CardInfo} />
+            <Route exact path="/bucket" component={Bucket} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -5,6 +5,8 @@ axios.defaults.headers["x-access-token"] = localStorage.getItem("token") || "GUE
 const api = {
   defaultAuth: () => axios.get("/users/auth"),
   auth: payload => axios.post("/users/auth/login", payload),
+  createUser: payload => axios.post("/users/create", payload),
+
   getProducts: (url, payload) => axios.post(url, payload)
 };
 

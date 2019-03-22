@@ -21,6 +21,7 @@ const checktoken = (req, res, next) => {
         Error: "failed to verify token"
       });
     }
+
     req.decoded = decoded;
     next();
   });

@@ -5,7 +5,7 @@ import { Container, Col, Row } from "react-bootstrap";
 
 const FeedbackItems = ({ feedbacks }) => {
   return feedbacks.map(post => (
-    <div className="feedback_item">
+    <div className="feedback_item" key={post._id}>
       <h5 className="feedback_item-name">{post.name}</h5>
       <p className="feedback_item-date">{moment(post.created).format("MMM Do YY")}</p>
       <p className="feedback_item-comments">{post.comments}</p>

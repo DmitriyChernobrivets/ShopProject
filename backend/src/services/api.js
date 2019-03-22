@@ -21,6 +21,13 @@ const api = {
     return { product: items, totalCount: count };
   },
 
+  findUserID: id => Model["User"].findById(id),
+  findLogedUser: query => Model["User"].findOne(query),
+  createUser: (user, hashedPassword) => {
+    const newUser = new Model["User"]({ ...user, password: hashedPassword });
+    return newUser.save();
+  },
+
   getFeedacks: (collection, id) => Model[collection].find({ product_ID: id }),
   postFeedback: (collection, obj) => Model[collection].create(obj)
 };

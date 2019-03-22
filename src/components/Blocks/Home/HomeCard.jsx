@@ -6,7 +6,6 @@ import Overlay from "../../Shared/overlay/Overlay";
 const randomColor = () => {
   const random = () => parseInt(Math.random() * 255);
   const regba = `rgba(${random()},${random()},${random()}, 0.3 )`;
-  console.log(regba);
   return regba;
 };
 

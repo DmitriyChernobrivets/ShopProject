@@ -1,8 +1,32 @@
-import api from "../../module/api";
+import api from "../../service/api";
 
-const setDefaultAuth = payload => {
+const Login = payload => {
   return {
-    type: "GET_DEFAULT_RIGHTS",
+    type: "LOGIN",
+    payload
+  };
+};
+const LoginFailure = payload => {
+  return {
+    type: "LOGIN_FAILURE",
+    payload
+  };
+};
+const createUsererror = payload => {
+  return {
+    type: "CREATE_USER_ERROR",
+    payload
+  };
+};
+
+const userCreateSuccess = () => {
+  return {
+    type: "CREATE_USER_SUCCESS"
+  };
+};
+const changeSignTab = payload => {
+  return {
+    type: "CHANGE_SIGN_TAB",
     payload
   };
 };
@@ -12,20 +36,35 @@ const defaultAuthorization = () => {
     api
       .defaultAuth()
       .then(el => {
-        dispatch(setDefaultAuth(el.data));
+        dispatch(Login(el.data));
         localStorage.setItem("token", el.data.token);
       })
       .catch(err => console.log(err.message));
+};
+
+const createUser = userData => {
+  return dispatch =>
+    api
+      .createUser(userData)
+      .then(({ data }) =>
+        data.error ? dispatch(createUsererror(data)) : dispatch(userCreateSuccess())
+      )
+      .catch(err => dispatch(createUsererror(err.message)));
 };
 
 const login = userData => {
   return dispatch =>
     api
       .auth(userData)
-      .then(el => {
-        dispatch(setDefaultAuth(el.data));
-        localStorage.setItem("token", el.data.token);
+      .then(({ data }) => {
+        if (data.Error) {
+          dispatch(LoginFailure(data));
+        } else {
+          dispatch(Login(data));
+          localStorage.setItem("token", data.token);
+        }
       })
-      .catch(err => console.log(err.message));
+      .catch(err => dispatch(LoginFailure(err.message)));
 };
-export { defaultAuthorization, login };
+
+export { defaultAuthorization, login, createUser, changeSignTab };
