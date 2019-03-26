@@ -1,21 +1,22 @@
 .product-card {
-  //   border: 1px solid black;
   padding: 10px;
   position: relative;
   transition: 0.2s ease-in;
+
   &:hover {
-    box-shadow: 2px 2px 25px 3px #c9c7c7;
+    box-shadow: 0 0 9px 5px #c9c7c7;
     transition: 0.1s ease-out;
   }
   .product-card-title {
     display: block;
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 14px;
+    height: 40px;
   }
   .prdouct-image {
     cursor: pointer;
     border: 1px solid rgb(212, 211, 211);
-    min-height: 250px;
+    min-height: 270px;
     margin-bottom: 10px;
   }
   &_review {
@@ -58,18 +59,8 @@
     }
   }
   &:hover .product-description {
-    opacity: 1;
+    display: block;
     z-index: 1;
-  }
-  .product-description {
-    position: absolute;
-    background-color: #fff;
-    box-shadow: 2px 22px 15px 3px #c9c7c7;
-    font-size: 12px;
-    z-index: -1;
-    margin-left: -10px;
-    margin-right: -10px;
-    opacity: 0;
   }
 
   .hot-price {

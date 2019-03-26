@@ -33,10 +33,11 @@ class Filter extends Component {
       () => this.props.getFilteredProducts({ ...this.state, sort })
     );
   }
-
+  onRangeChange = price =>
+    this.setState({ ...this.state, price }, () => this.props.getFilteredProducts(this.state));
   render() {
     return (
-      <div>
+      <div className="filter_container">
         {Object.keys(this.state).map((el, idx) => (
           <div className="filter_box" key={idx}>
             <h5>By {el === "memory" ? el + ", Gb" : el}</h5>
@@ -45,11 +46,7 @@ class Filter extends Component {
                 maxValue={150000}
                 minValue={0}
                 value={this.state.price}
-                onChange={price =>
-                  this.setState({ ...this.state, price }, () =>
-                    this.props.getFilteredProducts(this.state)
-                  )
-                }
+                onChange={this.onRangeChange}
               />
             ) : (
               this.state[el].map((item, idx) => (

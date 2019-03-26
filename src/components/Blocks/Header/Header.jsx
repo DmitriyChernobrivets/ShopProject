@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { options } from "../../Shared/Svg/options";
 import SVG from "../../Shared/Svg/svg";
-
+import UserPanel from "../auth/UserPanel";
+import { defaultAuthorization } from "../../../store/Actions/getUser";
 import SignIn from "../auth/SignIn";
 
 const { CABINET, BUCKET } = options;
@@ -25,8 +26,11 @@ class HeaderComponents extends Component {
       });
     }
   };
+
   render() {
     const { modalIsOpen } = this.state;
+    const { user } = this.props.user;
+    const { defaultAutorization } = this.props;
     return (
       <header className="header">
         {modalIsOpen && <SignIn closeModal={this.closeModal} />}
@@ -35,29 +39,31 @@ class HeaderComponents extends Component {
         </div>
         <div className="header-left">
           <ul className="menu">
-            {this.props.categories.map((category, idx) => (
-              <li className="menu-item" key={idx}>
+            {this.props.categories.map(category => (
+              <li className="menu-item" key={category}>
                 <Link to={"/category/" + category}>{category}</Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="header-right">
-          <div className="header-auth">
+          <div className="user-auth">
             {this.props.user.status !== "Guest" ? (
-              <span>Cabinet</span>
+              <UserPanel logout={defaultAutorization} user={user} />
             ) : (
-              <span className="user-office" onClick={this.openModal}>
+              <div className="user-controls" onClick={this.openModal}>
                 <SVG path={CABINET} viewbox="0 0 36 32" height="23" width="23" />
-              </span>
+              </div>
             )}
+          </div>
 
-            <Link to="/bucket" className="user-bucket">
+          <div className="user-bucket">
+            <Link to="/bucket">
               <SVG path={BUCKET} viewbox="0 0 32 32" height="23" width="23" />
             </Link>
-
-            {/* <SignIn /> */}
           </div>
+
+          {/* <SignIn /> */}
         </div>
       </header>
     );
@@ -71,4 +77,12 @@ const getState = state => {
   };
 };
 
-export default connect(getState)(HeaderComponents);
+const getDispatcher = dispatch => {
+  return {
+    defaultAutorization: () => dispatch(defaultAuthorization())
+  };
+};
+export default connect(
+  getState,
+  getDispatcher
+)(HeaderComponents);

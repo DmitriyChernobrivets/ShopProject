@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import "./Card.scss";
 import { Link } from "react-router-dom";
-import { Button, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import ForSale from "../../Shared/forSale/forSale";
 import RatingStars from "../../Shared/Stars/RatingStars";
 import Details from "../../Shared/Details/Details";
@@ -34,21 +34,15 @@ const Card = ({ product, match, addToBucket }) => {
       </Link>
       <div className="product-card_review">
         <RatingStars rating={rating} />
-
-        <Link to={categories + "/" + _id} className="review">
-          <span>Add review</span>
-        </Link>
       </div>
 
-      <Fragment>
-        <ForSale forSale={forSale} />
-      </Fragment>
+      <ForSale forSale={forSale} />
+
       <Button className="btn product-card-button" onClick={handleAdd}>
         <span>{price} UAH</span>
       </Button>
-      <Fragment>
-        <Details description={description} />
-      </Fragment>
+
+      <Details description={description} />
     </Col>
   );
 };

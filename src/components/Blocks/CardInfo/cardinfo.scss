@@ -32,6 +32,13 @@
     font-weight: bold;
     font-size: 26px;
   }
+  &_content {
+    .product-description {
+      display: block;
+      box-shadow: none;
+      position: static;
+    }
+  }
   &_buy-btn {
     position: relative;
     width: 100%;
@@ -51,7 +58,6 @@
       font-size: 22px;
     }
     &:hover {
-      box-shadow: 2px 0 22px -5px rgb(255, 0, 0);
       transition: 0.2s linear;
     }
   }
@@ -68,15 +74,4 @@
   position: absolute;
   top: 50px;
   left: 18px;
-}
-.product-description {
-  & span {
-    font-size: 14px;
-    font-weight: bold;
-  }
-  &:last-child {
-    margin-bottom: 0;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgb(211, 209, 209);
-  }
 }

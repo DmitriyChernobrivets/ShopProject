@@ -46,9 +46,14 @@ const createUser = userData => {
   return dispatch =>
     api
       .createUser(userData)
-      .then(({ data }) =>
-        data.error ? dispatch(createUsererror(data)) : dispatch(userCreateSuccess())
-      )
+      .then(({ data }) => {
+        if (data.error) {
+          dispatch(createUsererror(data));
+        } else {
+          dispatch(userCreateSuccess());
+          dispatch(changeSignTab("Login"));
+        }
+      })
       .catch(err => dispatch(createUsererror(err.message)));
 };
 

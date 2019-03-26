@@ -11,18 +11,21 @@ const decrementtotalprice = payload => {
     payload
   };
 };
+
 const addToBucket = payload => {
   const bucketItem = JSON.parse(localStorage.getItem("bucket")) || [];
   const isDuplicate = bucketItem.find(el => el._id === payload._id);
   if (!isDuplicate) {
     bucketItem.push(payload);
+    localStorage.setItem("bucket", JSON.stringify(bucketItem));
   }
 
-  localStorage.setItem("bucket", JSON.stringify(bucketItem));
   return {
-    type: "ADD_TO_BUCKET"
+    type: "ADD_TO_BUCKET",
+    payload: { bucketItem, price: !isDuplicate ? payload.price : 0 }
   };
 };
+
 const deleteItem = payload => {
   const items = JSON.parse(localStorage.getItem("bucket"));
   const filteredItems = items.filter(el => el._id !== payload.id);

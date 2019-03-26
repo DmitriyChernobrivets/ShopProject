@@ -42,9 +42,8 @@ class CardInfo extends Component {
                 </Col>
                 <Col lg={6} className="card-info_content">
                   <h3 className="card-info_about">Detail</h3>
-                  <Fragment>
-                    <Details description={product.description} />
-                  </Fragment>
+
+                  <Details disabled description={product.description} />
                 </Col>
               </Row>
             </Col>

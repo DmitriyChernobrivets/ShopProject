@@ -24,7 +24,7 @@ class HomeCard extends Component {
     });
   };
   render() {
-    const { colors, title } = this.state;
+    const { colors } = this.state;
     const { category } = this.props;
     return (
       <Col

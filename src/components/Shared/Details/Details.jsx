@@ -4,39 +4,37 @@ import React, { Component } from "react";
 
 class Details extends Component {
   state = {
-    seeMore: false
+    seeMore: false,
+    disabled: false
   };
+  componentDidMount() {
+    if (this.props.disabled) {
+      this.setState({ seeMore: true, disabled: true });
+    }
+  }
   seeMore = () => {
     this.setState(prevState => ({
       seeMore: !prevState.seeMore
     }));
   };
   render() {
-    const { seeMore } = this.state;
+    const { seeMore, disabled } = this.state;
     const { description } = this.props;
     return (
       <div className="product-description">
-        {Object.keys(description).map((name, idx) => {
-          if (idx < 3) {
-            return (
-              <p className="product-description_text" key={idx}>
+        {seeMore
+          ? Object.keys(description).map(name => (
+              <p className="product-description_text" key={name}>
                 <span>{name} : </span>
                 {description[name]}
               </p>
-            );
-          } else
-            return (
-              <div key={idx} className={!seeMore ? "js-box open-content" : "js-box hide-content"}>
-                <p className="product-description_text">
-                  <span>{name} : </span>
-                  {description[name]}
-                </p>
-              </div>
-            );
-        })}
-        <span className="see-more" href="#" onClick={this.seeMore}>
-          See more
-        </span>
+            ))
+          : null}
+        {!disabled && (
+          <span className="see-more" href="#" onClick={this.seeMore}>
+            See Details
+          </span>
+        )}
       </div>
     );
   }

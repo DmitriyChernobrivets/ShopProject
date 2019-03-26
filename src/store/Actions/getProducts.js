@@ -7,6 +7,11 @@ const setProducts = payload => {
     payload
   };
 };
+const preLoader = () => {
+  return {
+    type: "TURN_ON_PRELOADER"
+  };
+};
 const setCurrentFilters = payload => {
   return {
     type: "SET_FILTERS",
@@ -26,6 +31,7 @@ export const getFilteredProducts = data => {
   const url = window.location.pathname;
 
   return dispatch => {
+    dispatch(preLoader());
     api
       .getProducts(url, currentfilters)
       .then(({ data }) => {

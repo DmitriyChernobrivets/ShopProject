@@ -9,10 +9,14 @@ const bucketReducer = (state = initialState, { type, payload }) => {
       return { ...state, total: state.total + payload };
     case "DECREMENT_TOTAL":
       return { ...state, total: state.total - payload };
-    case "GET_ITEMS":
-      return { ...state, total: 0, items: payload };
+    // case "GET_ITEMS":
+    //   return { ...state, total: 0, items: payload };
     case "ADD_TO_BUCKET":
-      return { ...state };
+      return {
+        ...state,
+        items: payload.bucketItem,
+        total: state.total + payload.price
+      };
     case "DELETE_ITEM":
       return { ...state, total: state.total - payload.price, items: payload.newItems };
     default:

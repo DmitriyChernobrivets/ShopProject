@@ -6,11 +6,11 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import CardInfo from "../Blocks/CardInfo/CardInfo";
 import Home from "../Blocks/Home/Home";
 import Bucket from "../Blocks/Bucket/Bucket";
-import SignIn from "../Blocks/auth/SignIn";
+
 import { connect } from "react-redux";
 import { defaultAuthorization } from "../../store/Actions/getUser";
-import Login from "../Blocks/auth/Login";
-import Registration from "../Blocks/auth/Registration";
+
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 // import "./App.scss";
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <HeaderComponents />
-
+          <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
           <Switch>
             <Route exact path="/" component={Home} />
             {/* <Route exact path="/signin" component={SignIn} /> */}

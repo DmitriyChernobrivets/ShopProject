@@ -1,5 +1,72 @@
 .header {
-  // text-align: center;
+  .user-garage {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    position: relative;
+
+    .dp-menu {
+      position: absolute;
+      opacity: 0;
+      display: none;
+      overflow: hidden;
+      width: 100px;
+      right: 0;
+      bottom: -5px;
+      transform: translateY(100%);
+
+      box-shadow: 0 5px 25px -7px grey;
+
+      & > li {
+        text-align: center;
+        font-size: 14px;
+        display: block;
+        padding: 7px 0;
+        background-color: rgb(240, 240, 240);
+        transition: 0.1s linear;
+        cursor: pointer;
+
+        &:hover {
+          color: red;
+          background-color: rgb(228, 225, 225);
+          transition: 0.1s linear;
+        }
+        & span i {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .welcome {
+    padding-top: 12px;
+    font-size: 15px;
+    text-decoration: underline;
+  }
+  .user-img {
+    background-color: Red;
+
+    padding: 10px 0;
+    position: relative;
+    color: #fff;
+
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    transition: 0.1s ease-out;
+    &:hover {
+      transform: scale(1.2);
+      transition: 0.1s ease-in;
+    }
+    border-radius: 50%;
+    span {
+      position: absolute;
+      font-weight: bold;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
   .menu {
     display: flex;
     .menu-item {
@@ -15,7 +82,7 @@
       }
     }
   }
-  .user-office {
+  .user-controls {
     cursor: pointer;
   }
   background: rgba(236, 234, 234, 0.5);
@@ -26,7 +93,9 @@
   width: 100%;
 
   .header-right {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     width: 40%;
   }
   .header-left {
@@ -34,6 +103,11 @@
   }
   .user-bucket {
     margin-left: 30px;
+    transition: 0.2s linear;
+    &:hover {
+      transition: 0.2s linear;
+      fill: red;
+    }
   }
   .left-panel {
     position: fixed;
@@ -52,5 +126,31 @@
       width: 170px;
       color: #fff;
     }
+  }
+}
+.nav-active {
+  color: red;
+}
+.dp-open {
+  opacity: 1 !important;
+  display: block !important;
+  animation: dropdown 0.1s linear !important;
+}
+@keyframes dropdown {
+  0% {
+    height: 0;
+    opacity: 0;
+    display: none;
+  }
+  1% {
+    height: 0;
+    opacity: 0;
+  }
+  99% {
+    height: 80px;
+    opacity: 1;
+  }
+  100% {
+    display: block;
   }
 }

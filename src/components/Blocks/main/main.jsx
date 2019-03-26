@@ -7,7 +7,7 @@ import { Col, Row, Container } from "react-bootstrap";
 import Filter from "../Filter/Filter";
 import SortMenu from "../Sort-menu/SortMenu";
 import ReactPaginate from "react-paginate";
-
+import { Circle2 } from "react-preloaders";
 class Main extends Component {
   componentDidMount() {
     const { currentFilters } = this.props;
@@ -15,8 +15,8 @@ class Main extends Component {
     this.props.getfilteredProducts(currentFilters);
   }
   render() {
-    const { products, match, totalPageCount, currentFilters, getfilteredProducts } = this.props;
-
+    const { allproducts, match, totalPageCount, currentFilters, getfilteredProducts } = this.props;
+    const { products, preloader } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
 
     return (
@@ -29,6 +29,7 @@ class Main extends Component {
             <Col lg={9}>
               <SortMenu />
               <Row>
+                {preloader && <Circle2 color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />}
                 {products.map(prod => (
                   <Card product={prod} match={match} key={prod._id} />
                 ))}
@@ -55,7 +56,7 @@ class Main extends Component {
 const mapStateToProps = state => {
   return {
     totalPageCount: state.currentFilters.totalPageCount,
-    products: state.allProducts.products,
+    allproducts: state.allProducts,
     currentFilters: state.currentFilters
   };
 };

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
 import { connect } from "react-redux";
 import { login } from "../../../store/Actions/getUser";
 class Login extends Component {
@@ -20,6 +21,7 @@ class Login extends Component {
     e.preventDefault();
     login(this.state);
   };
+
   render() {
     const { username, password } = this.state;
     const { user } = this.props;

@@ -1,5 +1,6 @@
+import { NotificationManager } from "react-notifications";
+
 export const transformState = state => {
-  console.log(state);
   const a = Object.keys(state).reduce((acc, el) => {
     const filters = Array.isArray(state[el]) ? state[el].filter(el => el.checked) : state[el];
     // console.log("result", filters);
@@ -12,4 +13,23 @@ export const transformState = state => {
   }, {});
 
   return a;
+};
+
+export const Notificationhandler = notification => {
+  switch (notification.status) {
+    case "Exists":
+      NotificationManager.error("User already exists");
+      break;
+    case "Success":
+      NotificationManager.success("User Created");
+      break;
+    // case "LOGIN":
+    //   NotificationManager.success("WELCOME");
+    //   break;
+    case "Failed":
+      NotificationManager.error("Wrong User");
+      break;
+    default:
+      return;
+  }
 };

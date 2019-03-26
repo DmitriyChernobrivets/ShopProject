@@ -8,7 +8,7 @@ const initialState = {
     status: "",
     error: null
   },
-  currentTab: true
+  currentTab: "Login"
 };
 
 const userReducer = (state = initialState, { payload, type }) => {
@@ -16,7 +16,11 @@ const userReducer = (state = initialState, { payload, type }) => {
     case "LOGIN":
       return {
         ...state,
-        currentUser: { ...payload, error: null }
+        currentUser: { ...payload, error: null },
+        Signnup: {
+          status: "Success",
+          error: null
+        }
       };
     case "CREATE_USER_ERROR":
       return { ...state, Signnup: { ...payload } };
@@ -32,7 +36,7 @@ const userReducer = (state = initialState, { payload, type }) => {
         }
       };
     case "CHANGE_SIGN_TAB":
-      return { ...state, currentTab: !state.currentTab };
+      return { ...state, currentTab: payload };
     default:
       return state;
   }

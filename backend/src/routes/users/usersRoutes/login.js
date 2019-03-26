@@ -13,10 +13,11 @@ const generateToken = payload => {
 
 const auth = (req, res) => {
   const { email, password } = req.body;
+
   api
     .findLogedUser({ email })
     .then(onSuccess)
-    .catch(err => res.send({ status: "Failed", Error: err.message }));
+    .catch(err => console.log(err.message) || res.send({ status: "Failed", Error: err.message }));
 
   function onSuccess(user) {
     if (!comparePaswords(password, user.password)) {

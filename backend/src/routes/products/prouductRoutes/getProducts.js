@@ -10,7 +10,9 @@ const getProducts = (req, res) => {
   api
     .getProducts(category, searchObj, sort, currentPage)
 
-    .then(el => res.send({ status: "OK", totalCount: el.totalCount, product: el.product }))
+    .then(({ totalCount, product }) =>
+      res.send({ status: "OK", totalCount: totalCount, product: product })
+    )
     .catch(err => res.send({ status: "Error", Error: err.message }));
 };
 

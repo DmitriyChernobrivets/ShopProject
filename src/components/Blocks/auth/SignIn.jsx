@@ -1,62 +1,46 @@
 import React, { Component } from "react";
-// import { Col, Row, Container } from "react-bootstrap";
+import ReactDom from "react-dom";
 import Registration from "./Registration";
 import Login from "./Login";
+
 import { connect } from "react-redux";
 import { changeSignTab } from "../../../store/Actions/getUser";
 import "./signin.scss";
-import { NotificationContainer, NotificationManager } from "react-notifications";
+import { NotificationContainer } from "react-notifications";
+import { Notificationhandler } from "../../../helpers/functions";
 import "react-notifications/lib/notifications.css";
 
-function Notificationhandler(notification) {
-  switch (notification.status) {
-    case "Exists":
-      NotificationManager.error("User already exists");
-      break;
-    case "Success":
-      NotificationManager.success("User Created");
-      break;
-    case "LOGIN":
-      NotificationManager.success("WELCOME");
-      break;
-    case "Failed":
-      NotificationManager.error("Wrong User");
-      break;
-    default:
-      return;
-  }
-}
 class SignIn extends Component {
-  // state = {
-  //   currentTab: ""
-  // };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.currentTab !== this.state.currentTab;
-  }
   componentWillReceiveProps(nextProps) {
-    Notificationhandler(nextProps.signUp);
+    if (this.props.currentTab === nextProps.currentTab) {
+      Notificationhandler(nextProps.signUp);
+    }
+
+    if (nextProps.user.status === "User") {
+      this.el.click();
+    }
   }
-  change = () => {
+  changeTab = val => () => {
     const { changeTab } = this.props;
-    changeTab();
+    changeTab(val);
   };
   render() {
     const { closeModal, currentTab } = this.props;
-    // const { currentTab } = this.state;
 
-    // className={currentTab === "Login" ? "active" : null}
     return (
-      <div className="signin-modal" onClick={closeModal}>
+      <div
+        className="signin-modal"
+        onClick={closeModal}
+        ref={val => {
+          this.el = val;
+        }}
+      >
         <div className="signin-container">
           <div className="signin_tabs">
-            <span onClick={this.change}>Login</span>
-            <span onClick={this.change}>
-              {/* className={currentTab === "Registration" ? "active" : null} */}
-              Reg
-            </span>
+            <span onClick={this.changeTab("Login")}>Login</span>
+            <span onClick={this.changeTab("Registration")}>Reg</span>
           </div>
-          {currentTab ? <Login /> : <Registration />}
+          {currentTab === "Login" ? <Login /> : <Registration />}
         </div>
 
         <NotificationContainer />
@@ -65,7 +49,6 @@ class SignIn extends Component {
   }
 }
 const getState = state => {
-  console.log(state);
   return {
     user: state.auth.currentUser,
     signUp: state.auth.Signnup,
