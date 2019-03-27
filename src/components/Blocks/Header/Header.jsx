@@ -7,7 +7,7 @@ import SVG from "../../Shared/Svg/svg";
 import UserPanel from "../auth/UserPanel";
 import { defaultAuthorization } from "../../../store/Actions/getUser";
 import SignIn from "../auth/SignIn";
-
+import { CSSTransition } from "react-transition-group";
 const { CABINET, BUCKET } = options;
 
 class HeaderComponents extends Component {
@@ -30,7 +30,7 @@ class HeaderComponents extends Component {
   render() {
     const { modalIsOpen } = this.state;
     const { user } = this.props.user;
-    const { defaultAutorization } = this.props;
+    const { defaultAutorization, bucketitems } = this.props;
     return (
       <header className="header">
         {modalIsOpen && <SignIn closeModal={this.closeModal} />}
@@ -61,9 +61,10 @@ class HeaderComponents extends Component {
             <Link to="/bucket">
               <SVG path={BUCKET} viewbox="0 0 32 32" height="23" width="23" />
             </Link>
+            {bucketitems.length !== 0 ? (
+              <div className="bucket-count">{bucketitems.length}</div>
+            ) : null}
           </div>
-
-          {/* <SignIn /> */}
         </div>
       </header>
     );
@@ -73,7 +74,8 @@ class HeaderComponents extends Component {
 const getState = state => {
   return {
     categories: state.categories,
-    user: state.auth.currentUser
+    user: state.auth.currentUser,
+    bucketitems: state.bucket.items
   };
 };
 

@@ -1,62 +1,56 @@
 import React, { Component } from "react";
 import "./bucket.scss";
 import { connect } from "react-redux";
-import {
-  incrementtotalprice,
-  decrementtotalprice,
-  deleteItem
-} from "../../../store/Actions/bucket";
+import { increment, decrement, deleteItem } from "../../../store/Actions/bucket";
 import Svg from "../../Shared/Svg/svg";
 import { options } from "../../Shared/Svg/options";
 
 class BuketItems extends Component {
   state = {
-    value: 1
+    count: 1
   };
   componentDidMount() {
-    const { incrementtotalprice } = this.props;
-    this.setState(
-      {
-        price: +this.props.item.price
-      },
-      () => incrementtotalprice(this.state.price)
-    );
+    this.setState({
+      price: +this.props.item.price
+    });
   }
 
   increment = () => {
-    const { incrementtotalprice } = this.props;
+    const { increment } = this.props;
+    const { price } = this.props.item;
     this.setState(
       prevState => ({
-        value: prevState.value + 1
+        count: prevState.count + 1
       }),
-      () => incrementtotalprice(this.state.price)
+      () => increment(price)
     );
   };
   decrement = () => {
-    const { decrementtotalprice } = this.props;
-    const { value } = this.state;
+    const { decrement } = this.props;
+    const { count } = this.state;
+    const { price } = this.props.item;
     this.setState(
       prevState => ({
-        value: prevState.value === 1 ? prevState.value : prevState.value - 1
+        count: prevState.count === 1 ? prevState.count : prevState.count - 1
       }),
-      () => (value !== 1 ? decrementtotalprice(this.state.price) : null)
+      () => (count !== 1 ? decrement(price) : null)
     );
   };
   deleteCard = () => {
     const { _id } = this.props.item;
-    const { price, value } = this.state;
-    this.props.deleteItem({ id: _id, price: price * value });
+    const { price, count } = this.state;
+    this.props.deleteItem({ id: _id, price: price * count });
   };
   render() {
     const { item } = this.props;
-    const { value, price } = this.state;
-    const total = price * value;
+    const { count, price } = this.state;
+    const total = price * count;
 
     return (
       <div className="bucket_product-container">
         <div className="bucket_product-info">
           <div className="bucket_image-container">
-            <img src={item.images[0]} alt="image" />
+            <img src={item.images[0]} alt={item.title} />
           </div>
           <div className="bucket_content">
             <p>{item.title}</p>
@@ -65,7 +59,7 @@ class BuketItems extends Component {
         <div className="bucket_product-price">
           <div className="bucket_increments">
             <button onClick={this.decrement}>-</button>
-            <div>{value}</div>
+            <div>{count}</div>
             <button onClick={this.increment}>+</button>
           </div>
           <div className="bucket_price">{total} UAH</div>
@@ -80,8 +74,8 @@ class BuketItems extends Component {
 
 const setDispatchToProps = dispatch => {
   return {
-    incrementtotalprice: value => dispatch(incrementtotalprice(value)),
-    decrementtotalprice: value => dispatch(decrementtotalprice(value)),
+    increment: value => dispatch(increment(value)),
+    decrement: value => dispatch(decrement(value)),
     deleteItem: value => dispatch(deleteItem(value))
   };
 };

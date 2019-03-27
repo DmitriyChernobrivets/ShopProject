@@ -1,0 +1,11 @@
+body .signin-modal {
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(182, 181, 181, 0.3);
+  animation: anima 0.2s linear;
+  z-index: 22;
+}

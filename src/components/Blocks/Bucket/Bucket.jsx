@@ -3,31 +3,41 @@ import "./bucket.scss";
 import { Col, Row, Container } from "react-bootstrap";
 import BucketItems from "./Buket-items";
 import { connect } from "react-redux";
-import { getitems } from "../../../store/Actions/bucket";
+import { updateBucket } from "../../../store/Actions/bucket";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class Bucket extends Component {
-  componentDidMount() {
-    this.props.getitems();
+  componentWillUnmount() {
+    this.props.updateBucket();
   }
+  goBack = () => {
+    const { history } = this.props;
+    history.goBack();
+  };
   render() {
     const { total, items } = this.props;
+
     return (
       <Container className="bucket">
         <h1>Bucket</h1>
         <Row>
-          {items.map(item => (
-            <Col lg={12} key={item._id}>
-              <BucketItems item={item} />
-            </Col>
-          ))}
+          <Col lg={12}>
+            <TransitionGroup>
+              {items.map(item => (
+                <CSSTransition key={item._id} timeout={500} classNames="item">
+                  <BucketItems item={item} />
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+          </Col>
           <Col>
             <div className="total_price">
               Total price: <span>{total} UAH</span>
             </div>
             <button className="bucket_buy-btn">BUY</button>
-            <a href="/" className="bucket_return-link">
-              Return
-            </a>
+            <button className="bucket_return-link" onClick={this.goBack}>
+              Go back
+            </button>
           </Col>
         </Row>
       </Container>
@@ -42,7 +52,7 @@ const stateToProps = state => {
 };
 const dispatchToProps = dispatch => {
   return {
-    getitems: value => dispatch(getitems(value))
+    updateBucket: () => dispatch(updateBucket())
   };
 };
 export default connect(

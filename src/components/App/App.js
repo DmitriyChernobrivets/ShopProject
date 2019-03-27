@@ -6,12 +6,11 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import CardInfo from "../Blocks/CardInfo/CardInfo";
 import Home from "../Blocks/Home/Home";
 import Bucket from "../Blocks/Bucket/Bucket";
-
+import Errorpage from "../Blocks/Errorpage/Errorpage";
 import { connect } from "react-redux";
 import { defaultAuthorization } from "../../store/Actions/getUser";
 
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
-// import "./App.scss";
 
 class App extends Component {
   componentDidMount() {
@@ -25,11 +24,10 @@ class App extends Component {
           <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
           <Switch>
             <Route exact path="/" component={Home} />
-            {/* <Route exact path="/signin" component={SignIn} /> */}
-
             <Route exact path="/category/:categories" component={Main} />
             <Route exact path="/category/:categories/:id" component={CardInfo} />
-            <Route exact path="/bucket" component={Bucket} />
+            <Route path="/bucket" component={Bucket} />
+            <Route exact path="*" component={Errorpage} />
           </Switch>
         </div>
       </BrowserRouter>

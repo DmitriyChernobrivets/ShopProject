@@ -19,15 +19,6 @@
     min-height: 270px;
     margin-bottom: 10px;
   }
-  &_review {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    .review {
-      color: rgb(45, 146, 212);
-    }
-  }
 
   .product-card-button {
     position: relative;
@@ -72,19 +63,5 @@
     position: absolute;
     left: 10px;
     top: 10px;
-  }
-}
-@keyframes cardShow {
-  0% {
-    background-color: red;
-  }
-  25% {
-    background-color: yellow;
-  }
-  50% {
-    background-color: blue;
-  }
-  100% {
-    background-color: green;
   }
 }

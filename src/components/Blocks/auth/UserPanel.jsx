@@ -55,7 +55,6 @@ class UserPanel extends Component {
             </span>
           </li>
         </ul>
-        {/* )} */}
       </div>
     );
   }

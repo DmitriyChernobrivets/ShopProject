@@ -1,21 +1,26 @@
+import { totalPrice } from "../../helpers/functions";
+
+const items = JSON.parse(localStorage.getItem("bucket")) || [];
+const total = totalPrice(items);
+
 const initialState = {
-  total: 0,
-  items: []
+  total: total,
+  items: items
 };
 
 const bucketReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case "INCREMENT_TOTAL":
+    case "INCREMENT":
       return { ...state, total: state.total + payload };
-    case "DECREMENT_TOTAL":
+    case "DECREMENT":
       return { ...state, total: state.total - payload };
-    // case "GET_ITEMS":
-    //   return { ...state, total: 0, items: payload };
+    case "UPDATE_BUCKET":
+      return { ...state, ...payload };
     case "ADD_TO_BUCKET":
       return {
         ...state,
         items: payload.bucketItem,
-        total: state.total + payload.price
+        total: payload.total
       };
     case "DELETE_ITEM":
       return { ...state, total: state.total - payload.price, items: payload.newItems };

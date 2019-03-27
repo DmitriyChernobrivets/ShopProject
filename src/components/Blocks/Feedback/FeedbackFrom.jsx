@@ -3,7 +3,7 @@ import "./feedback.scss";
 import axios from "axios";
 import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
-
+import FeedbackInput from "../../Shared/feedbackinput/FeedBackInput";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 
@@ -91,57 +91,45 @@ class FeedbackForm extends Component {
 
         <form className="feedback_form">
           <Col md={6} lg={5}>
-            <label className="feedback_name">
-              <i className="fas fa-user-astronaut" />
-              Enter your name:
-            </label>
-            <input
-              className={!isInputsValid ? "feedback_name-input error" : "feedback_name-input"}
+            <FeedbackInput
+              title="Enter your name"
+              icon="fas fa-user-astronaut"
+              inputValue={name}
+              onchange={this.inputHandle}
               name="name"
-              type="text"
               placeholder="Enter your name"
-              onChange={this.inputHandle}
-              value={name}
-              aria-required="true"
+              isInputsValid={isInputsValid}
             />
           </Col>
           <Col lg={12}>
-            <label>
-              <i className="far fa-thumbs-up" />
-              Advantages:
-            </label>
-            <textarea
-              className={!isInputsValid ? "feedback_comments error" : "feedback_comments"}
-              rows="3"
+            <FeedbackInput
+              title="Advantages"
+              icon="far fa-thumbs-up"
+              inputValue={advantages}
+              onchange={this.inputHandle}
               name="advantages"
               placeholder="Enter your feedback here"
-              onChange={this.inputHandle}
-              value={advantages}
+              isInputsValid={isInputsValid}
             />
-            <label>
-              <i className="far fa-thumbs-down" />
-              Disadvanteges:
-            </label>
-            <textarea
-              className={!isInputsValid ? "feedback_comments error" : "feedback_comments"}
-              rows="3"
+            <FeedbackInput
+              title="Disadvanteges"
+              icon="far fa-thumbs-down"
+              inputValue={disadvantages}
+              onchange={this.inputHandle}
               name="disadvantages"
               placeholder="Enter your feedback here"
-              onChange={this.inputHandle}
-              value={disadvantages}
+              isInputsValid={isInputsValid}
+              textarea
             />
-            <label>
-              <i className="far fa-comments" />
-              Comments:
-            </label>
-
-            <textarea
-              className={!isInputsValid ? "feedback_comments error" : "feedback_comments"}
-              rows="3"
+            <FeedbackInput
+              title="Comments"
+              icon="far fa-comments"
+              inputValue={comments}
+              onchange={this.inputHandle}
               name="comments"
               placeholder="Enter your feedback here"
-              onChange={this.inputHandle}
-              value={comments}
+              isInputsValid={isInputsValid}
+              textarea
             />
             <button className="feedback_send-btn" onClick={this.sendFeedback}>
               Send Feedback

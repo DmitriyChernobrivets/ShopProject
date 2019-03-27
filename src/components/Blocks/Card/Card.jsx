@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import "./Card.scss";
+import React from "react";
+import "./styles.scss";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import ForSale from "../../Shared/forSale/forSale";
@@ -32,10 +32,8 @@ const Card = ({ product, match, addToBucket }) => {
       <Link to={link} className="product-card-title">
         <span>{title}</span>
       </Link>
-      <div className="product-card_review">
-        <RatingStars rating={rating} />
-      </div>
 
+      <RatingStars rating={rating} />
       <ForSale forSale={forSale} />
 
       <Button className="btn product-card-button" onClick={handleAdd}>

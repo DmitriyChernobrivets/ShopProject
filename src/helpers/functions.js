@@ -1,6 +1,6 @@
 import { NotificationManager } from "react-notifications";
 
-export const transformState = state => {
+const transformState = state => {
   const a = Object.keys(state).reduce((acc, el) => {
     const filters = Array.isArray(state[el]) ? state[el].filter(el => el.checked) : state[el];
     // console.log("result", filters);
@@ -15,7 +15,9 @@ export const transformState = state => {
   return a;
 };
 
-export const Notificationhandler = notification => {
+const totalPrice = items => items.reduce((acc, el) => acc + el.price, 0);
+
+const Notificationhandler = notification => {
   switch (notification.status) {
     case "Exists":
       NotificationManager.error("User already exists");
@@ -33,3 +35,5 @@ export const Notificationhandler = notification => {
       return;
   }
 };
+
+export { totalPrice, Notificationhandler, transformState };

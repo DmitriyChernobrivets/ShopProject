@@ -84,6 +84,11 @@
   }
   .user-controls {
     cursor: pointer;
+    transition: 0.2s linear;
+    &:hover {
+      fill: red;
+      transition: 0.2s linear;
+    }
   }
   background: rgba(236, 234, 234, 0.5);
   display: flex;
@@ -103,10 +108,22 @@
   }
   .user-bucket {
     margin-left: 30px;
+    position: relative;
     transition: 0.2s linear;
     &:hover {
       transition: 0.2s linear;
       fill: red;
+    }
+    .bucket-count {
+      position: absolute;
+      border-radius: 50%;
+      padding: 2px 5px;
+      font-size: 12px;
+      font-weight: bold;
+      right: -8px;
+      top: -5px;
+      background-color: red;
+      color: #fff;
     }
   }
   .left-panel {

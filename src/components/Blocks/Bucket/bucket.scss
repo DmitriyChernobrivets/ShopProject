@@ -1,10 +1,6 @@
 @import "../../../scss/variables.scss";
 
 .bucket {
-  & .row > div {
-    margin-bottom: 30px;
-  }
-
   &_image-container {
     max-height: 140px;
     width: 100px;
@@ -21,6 +17,7 @@
     justify-content: space-between;
     border: 1px solid #b1b1b1;
     padding: 20px;
+    margin-bottom: 30px;
   }
   &_product-price {
     display: flex;
@@ -80,7 +77,15 @@
     margin-bottom: 20px;
   }
   &_return-link {
+    font-size: 14px;
     display: block;
+    background-color: #fff;
+    cursor: pointer;
+    border: none;
+    width: 70px;
+    &:hover {
+      color: red;
+    }
   }
 }
 .total_price {
@@ -89,4 +94,17 @@
   & span {
     font-weight: bold;
   }
+}
+
+.item-enter-active {
+  transform: translateX(0);
+
+  transition: 500ms ease-in;
+}
+.item-exit {
+  transform: translateX(0);
+}
+.item-exit-active {
+  transform: translateX(-9999px);
+  transition: 500ms ease-in;
 }

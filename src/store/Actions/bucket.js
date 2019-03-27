@@ -1,17 +1,31 @@
-const incrementtotalprice = payload => {
+import { totalPrice } from "../../helpers/functions";
+
+const increment = payload => {
   return {
-    type: "INCREMENT_TOTAL",
+    type: "INCREMENT",
     payload
   };
 };
 
-const decrementtotalprice = payload => {
+const decrement = payload => {
   return {
-    type: "DECREMENT_TOTAL",
+    type: "DECREMENT",
     payload
   };
 };
+const updateBucket = () => {
+  const items = JSON.parse(localStorage.getItem("bucket")) || [];
+  const total = totalPrice(items);
 
+  const updatedState = {
+    total: total,
+    items: items
+  };
+  return {
+    type: "UPDATE_BUCKET",
+    payload: updatedState
+  };
+};
 const addToBucket = payload => {
   const bucketItem = JSON.parse(localStorage.getItem("bucket")) || [];
   const isDuplicate = bucketItem.find(el => el._id === payload._id);
@@ -20,9 +34,10 @@ const addToBucket = payload => {
     localStorage.setItem("bucket", JSON.stringify(bucketItem));
   }
 
+  const total = totalPrice(bucketItem);
   return {
     type: "ADD_TO_BUCKET",
-    payload: { bucketItem, price: !isDuplicate ? payload.price : 0 }
+    payload: { bucketItem, total }
   };
 };
 
@@ -35,11 +50,5 @@ const deleteItem = payload => {
     payload: { newItems: filteredItems, price: payload.price }
   };
 };
-const getitems = () => {
-  const items = JSON.parse(localStorage.getItem("bucket")) || [];
-  return {
-    type: "GET_ITEMS",
-    payload: items
-  };
-};
-export { incrementtotalprice, decrementtotalprice, getitems, deleteItem, addToBucket };
+
+export { increment, decrement, updateBucket, deleteItem, addToBucket };

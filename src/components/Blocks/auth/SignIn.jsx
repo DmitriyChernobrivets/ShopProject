@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import ReactDom from "react-dom";
+import Modal from "../../Shared/Modal/Modal";
+import Tabs from "../../Shared/Tabs/Tabs";
 import Registration from "./Registration";
 import Login from "./Login";
 
 import { connect } from "react-redux";
 import { changeSignTab } from "../../../store/Actions/getUser";
-import "./signin.scss";
+import "./styles.scss";
 import { NotificationContainer } from "react-notifications";
 import { Notificationhandler } from "../../../helpers/functions";
 import "react-notifications/lib/notifications.css";
@@ -20,6 +21,7 @@ class SignIn extends Component {
       this.el.click();
     }
   }
+
   changeTab = val => () => {
     const { changeTab } = this.props;
     changeTab(val);
@@ -28,23 +30,13 @@ class SignIn extends Component {
     const { closeModal, currentTab } = this.props;
 
     return (
-      <div
-        className="signin-modal"
-        onClick={closeModal}
-        ref={val => {
-          this.el = val;
-        }}
-      >
+      <Modal click={closeModal}>
         <div className="signin-container">
-          <div className="signin_tabs">
-            <span onClick={this.changeTab("Login")}>Login</span>
-            <span onClick={this.changeTab("Registration")}>Reg</span>
-          </div>
+          <Tabs currentTab={currentTab} click={this.changeTab} />
           {currentTab === "Login" ? <Login /> : <Registration />}
         </div>
-
         <NotificationContainer />
-      </div>
+      </Modal>
     );
   }
 }
