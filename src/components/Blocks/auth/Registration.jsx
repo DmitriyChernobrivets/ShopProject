@@ -9,8 +9,8 @@ class Registration extends Component {
     firstName: "",
     lastName: "",
     password: "",
-    email: "",
-    error: null
+    email: ""
+    // error: null
   };
   handleInput = e => {
     this.setState({
@@ -18,33 +18,35 @@ class Registration extends Component {
     });
   };
   handleSubmit = e => {
-    const { createUser } = this.props;
     e.preventDefault();
-    if (this.inputsValidation()) {
-      createUser(this.state);
-    }
+    const { createUser } = this.props;
+
+    // if (this.inputsValidation()) {
+    createUser(this.state);
+    // }
   };
-  inputsValidation = () => {
-    const isEmpty = Object.keys(this.state).find(el => {
-      if (this.state[el] !== null) {
-        return this.state[el].length === 0;
-      }
-    });
-    if (isEmpty) {
-      this.setState({
-        error: "wrong inputs"
-      });
-      return false;
-    }
-    return true;
-  };
+  // inputsValidation = () => {
+  //   const isEmpty = Object.keys(this.state).find(el => {
+  //     if (this.state[el] !== null) {
+  //       return this.state[el].length === 0;
+  //     }
+  //   });
+  //   if (isEmpty) {
+  //     this.setState({
+  //       error: "wrong inputs"
+  //     });
+  //     return false;
+  //   }
+  //   return true;
+  // };
   render() {
-    const { firstname, lastname, password, email, error } = this.state;
+    const { firstname, lastname, password, email } = this.state;
+    // const { error } = this.props;
 
     return (
       <form className="signin-form">
         <TextField
-          error={error ? true : false}
+          // error={error ? true : false}
           required
           name="firstName"
           label="FirstName"
@@ -53,7 +55,7 @@ class Registration extends Component {
           onChange={this.handleInput}
         />
         <TextField
-          error={error ? true : false}
+          // error={error ? true : false}
           required
           name="lastName"
           label="LastName"
@@ -63,7 +65,7 @@ class Registration extends Component {
         />
 
         <TextField
-          error={error ? true : false}
+          // error={error ? true : false}
           required
           name="email"
           label="Email"
@@ -73,7 +75,7 @@ class Registration extends Component {
           onChange={this.handleInput}
         />
         <TextField
-          error={error ? true : false}
+          // error={error ? true : false}
           required
           name="password"
           label="Password"

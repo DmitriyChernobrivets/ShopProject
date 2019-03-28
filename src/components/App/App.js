@@ -9,7 +9,7 @@ import Bucket from "../Blocks/Bucket/Bucket";
 import Errorpage from "../Blocks/Errorpage/Errorpage";
 import { connect } from "react-redux";
 import { defaultAuthorization } from "../../store/Actions/getUser";
-
+import { NotificationContainer } from "react-notifications";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 
 class App extends Component {
@@ -21,6 +21,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <HeaderComponents />
+          <NotificationContainer />
           <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
           <Switch>
             <Route exact path="/" component={Home} />

@@ -7,18 +7,14 @@ import Login from "./Login";
 import { connect } from "react-redux";
 import { changeSignTab } from "../../../store/Actions/getUser";
 import "./styles.scss";
-import { NotificationContainer } from "react-notifications";
-import { Notificationhandler } from "../../../helpers/functions";
+
 import "react-notifications/lib/notifications.css";
 
 class SignIn extends Component {
   componentWillReceiveProps(nextProps) {
-    if (this.props.currentTab === nextProps.currentTab) {
-      Notificationhandler(nextProps.signUp);
-    }
-
+    const { closeModal } = this.props;
     if (nextProps.user.status === "User") {
-      this.el.click();
+      this.el.closeModal();
     }
   }
 
@@ -30,12 +26,11 @@ class SignIn extends Component {
     const { closeModal, currentTab } = this.props;
 
     return (
-      <Modal click={closeModal}>
+      <Modal closeModal={closeModal}>
         <div className="signin-container">
           <Tabs currentTab={currentTab} click={this.changeTab} />
           {currentTab === "Login" ? <Login /> : <Registration />}
         </div>
-        <NotificationContainer />
       </Modal>
     );
   }

@@ -3,7 +3,7 @@ import { NotificationManager } from "react-notifications";
 const transformState = state => {
   const a = Object.keys(state).reduce((acc, el) => {
     const filters = Array.isArray(state[el]) ? state[el].filter(el => el.checked) : state[el];
-    // console.log("result", filters);
+
     if (!acc[el]) {
       acc[el] = Array.isArray(filters) ? [...filters] : filters;
     } else {
@@ -25,9 +25,7 @@ const Notificationhandler = notification => {
     case "Success":
       NotificationManager.success("User Created");
       break;
-    // case "LOGIN":
-    //   NotificationManager.success("WELCOME");
-    //   break;
+
     case "Failed":
       NotificationManager.error("Wrong User");
       break;
@@ -35,5 +33,8 @@ const Notificationhandler = notification => {
       return;
   }
 };
+const validateInputs = state => {
+  return Object.keys(state).some(el => !state[el]);
+};
 
-export { totalPrice, Notificationhandler, transformState };
+export { totalPrice, Notificationhandler, transformState, validateInputs };

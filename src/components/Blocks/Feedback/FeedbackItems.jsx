@@ -1,5 +1,5 @@
 import React from "react";
-import "./feedback.scss";
+import "./styles.scss";
 import moment from "moment";
 import { Col, Row } from "react-bootstrap";
 

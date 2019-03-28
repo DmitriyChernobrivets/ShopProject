@@ -94,7 +94,11 @@
 }
 
 .error {
-  border: 1px solid red;
+  outline: 1px solid red;
+  border: none;
+}
+.error-label {
+  color: red;
 }
 .error-field {
   color: red;

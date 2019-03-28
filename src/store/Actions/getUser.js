@@ -1,4 +1,5 @@
 import api from "../../service/api";
+import { NotificationManager } from "react-notifications";
 
 const Login = payload => {
   return {
@@ -39,7 +40,7 @@ const defaultAuthorization = () => {
         dispatch(Login(el.data));
         localStorage.setItem("token", el.data.token);
       })
-      .catch(err => console.log(err.message));
+      .catch(err => dispatch(LoginFailure(err.message)));
 };
 
 const createUser = userData => {
@@ -49,12 +50,18 @@ const createUser = userData => {
       .then(({ data }) => {
         if (data.error) {
           dispatch(createUsererror(data));
+          NotificationManager.success(`Sorry bro :(`);
         } else {
           dispatch(userCreateSuccess());
           dispatch(changeSignTab("Login"));
+          NotificationManager.success(`Welcome, ${data.user.firstName}`);
         }
       })
-      .catch(err => dispatch(createUsererror(err.message)));
+      .catch(
+        err =>
+          dispatch(createUsererror(err.message)) &&
+          NotificationManager.success(`Server error bro !`)
+      );
 };
 
 const login = userData => {

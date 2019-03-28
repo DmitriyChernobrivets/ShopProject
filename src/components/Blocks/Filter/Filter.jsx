@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./filter.scss";
+import "./styles.scss";
 import Checkbox from "../../Shared/checkbox/Checkbox";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";

@@ -7,7 +7,7 @@ const getFeedback = (req, res) => {
     .getFeedacks("Feedback", id)
     .sort({ created: 1 })
     .then(el => res.send({ statuse: "OK", feedback: el }))
-    .catch(err => res.send({ statuse: "Failed", Error: err.message }));
+    .catch(err => res.send({ statuse: "Failed", error: err.message }));
 };
 
 module.exports = getFeedback;

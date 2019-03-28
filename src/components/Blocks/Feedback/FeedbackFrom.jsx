@@ -1,74 +1,35 @@
 import React, { Component } from "react";
-import "./feedback.scss";
+import "./styles.scss";
 import axios from "axios";
 import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
 import FeedbackInput from "../../Shared/feedbackinput/FeedBackInput";
-import { NotificationContainer, NotificationManager } from "react-notifications";
+import { connect } from "react-redux";
+import { getFeedbackItems, sendFeedback } from "../../../store/Actions/feedback";
+
 import "react-notifications/lib/notifications.css";
 
 class FeedbackForm extends Component {
   state = {
-    feedbacks: [],
     name: "",
     comments: "",
     advantages: "",
-    disadvantages: "",
-    error: null,
-    isInputsValid: true
+    disadvantages: ""
   };
   componentDidMount() {
-    const { id } = this.props;
-
-    axios
-      .get(`/feedback?id=${id}`)
-      .then(this.onSuccess)
-      .catch(this.onError);
+    const { id, getFeedbackItems } = this.props;
+    console.log(this.props);
+    getFeedbackItems(id);
   }
+
   sendFeedback = e => {
     e.preventDefault();
-    const { id } = this.props;
-    this.isInputValid() && this.sendPost(id);
-  };
-
-  onSuccess = feedbacks => {
-    this.setState({
-      feedbacks: feedbacks.data.feedback,
-      error: null
-    });
-  };
-  onError = error => {
-    this.setState({
-      feedbacks: [],
-      error: error
-    });
-  };
-  isInputValid = () => {
+    const { _id } = this.props.product;
     const { name, comments, advantages, disadvantages } = this.state;
-    if (!name || !comments || !advantages || !disadvantages) {
-      this.setState(
-        {
-          isInputsValid: false,
-          name: "",
-          comments: "",
-          advantages: "",
-          disadvantages: ""
-        },
-        () => NotificationManager.error("Sorry :(", "Invalid inputs")
-      );
-      return false;
-    } else return true;
-  };
-  sendPost = id => {
-    const { name, comments, advantages, disadvantages } = this.state;
+    const { sendFeedback } = this.props;
     this.setState(
       { isInputsValid: true, name: "", comments: "", advantages: "", disadvantages: "" },
-      () => {
-        axios
-          .post("/feedback", { name, comments, advantages, disadvantages, product_ID: id })
-          .then(() => NotificationManager.success("Thanck You", "Comment sended"))
-          .catch(() => NotificationManager.error("Error", "Server error"));
-      }
+      () => sendFeedback({ name, comments, advantages, disadvantages, product_ID: _id })
     );
   };
   inputHandle = e => {
@@ -78,18 +39,18 @@ class FeedbackForm extends Component {
   };
 
   render() {
-    const { feedbacks } = this.state;
-    const { name, comments, advantages, disadvantages, isInputsValid } = this.state;
+    const { name, comments, advantages, disadvantages } = this.state;
+    const { items, error } = this.props;
 
     return (
       <Row className="feedback">
         <h2 className="feedback-head">
-          Feedback <span>{feedbacks.length}</span>
+          Feedback <span>{items.length}</span>
         </h2>
 
-        {feedbacks && <FeedbackItems feedbacks={feedbacks} />}
+        {items.length > 0 && <FeedbackItems feedbacks={items} />}
 
-        <form className="feedback_form">
+        <form className="feedback_form" ref={form => (this.form = form)}>
           <Col md={6} lg={5}>
             <FeedbackInput
               title="Enter your name"
@@ -98,7 +59,7 @@ class FeedbackForm extends Component {
               onchange={this.inputHandle}
               name="name"
               placeholder="Enter your name"
-              isInputsValid={isInputsValid}
+              isInputsValid={error}
             />
           </Col>
           <Col lg={12}>
@@ -109,7 +70,7 @@ class FeedbackForm extends Component {
               onchange={this.inputHandle}
               name="advantages"
               placeholder="Enter your feedback here"
-              isInputsValid={isInputsValid}
+              isInputsValid={error}
             />
             <FeedbackInput
               title="Disadvanteges"
@@ -118,7 +79,7 @@ class FeedbackForm extends Component {
               onchange={this.inputHandle}
               name="disadvantages"
               placeholder="Enter your feedback here"
-              isInputsValid={isInputsValid}
+              isInputsValid={error}
               textarea
             />
             <FeedbackInput
@@ -128,7 +89,7 @@ class FeedbackForm extends Component {
               onchange={this.inputHandle}
               name="comments"
               placeholder="Enter your feedback here"
-              isInputsValid={isInputsValid}
+              isInputsValid={error}
               textarea
             />
             <button className="feedback_send-btn" onClick={this.sendFeedback}>
@@ -136,10 +97,25 @@ class FeedbackForm extends Component {
             </button>
           </Col>
         </form>
-        <NotificationContainer />
       </Row>
     );
   }
 }
 
-export default FeedbackForm;
+const getState = state => {
+  return {
+    items: state.feedback.items,
+    error: state.feedback.error,
+    product: state.currentProductInfo.product
+  };
+};
+const getDispatcher = dispatch => {
+  return {
+    getFeedbackItems: id => dispatch(getFeedbackItems(id)),
+    sendFeedback: payload => dispatch(sendFeedback(payload))
+  };
+};
+export default connect(
+  getState,
+  getDispatcher
+)(FeedbackForm);

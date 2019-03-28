@@ -1,18 +1,20 @@
 import { combineReducers } from "redux";
-import getProductsReducer from "./getProductsReducer";
-import categoriesReducer from "./categoriesReducer";
-import getProductByIdReducer from "./getProductByIdReducer";
-import bucketReducer from "./bucketReducer";
-import filterReducer from "./filtersReducer";
-import userReducer from "./userReducer";
+import getProducts from "./getProducts";
+import categories from "./categories";
+import getProductById from "./getProductById";
+import bucket from "./bucket";
+import filter from "./filters";
+import user from "./user";
+import feedback from "./feedback";
 
 const rootReducer = combineReducers({
-  allProducts: getProductsReducer,
-  currentProductInfo: getProductByIdReducer,
-  categories: categoriesReducer,
-  bucket: bucketReducer,
-  currentFilters: filterReducer,
-  auth: userReducer
+  allProducts: getProducts,
+  auth: user,
+  currentProductInfo: getProductById,
+  bucket: bucket,
+  currentFilters: filter,
+  feedback: feedback,
+  categories: categories
 });
 
 export default rootReducer;

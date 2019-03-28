@@ -20,6 +20,7 @@ class HeaderComponents extends Component {
     });
   };
   closeModal = e => {
+    console.log(e);
     if (e.target.className.includes("signin-modal")) {
       this.setState({
         modalIsOpen: false
