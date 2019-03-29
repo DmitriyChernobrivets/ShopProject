@@ -11,22 +11,22 @@ import "./styles.scss";
 import "react-notifications/lib/notifications.css";
 
 class SignIn extends Component {
-  componentWillReceiveProps(nextProps) {
-    const { closeModal } = this.props;
-    if (nextProps.user.status === "User") {
-      this.el.closeModal();
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const { closeModal } = this.props;
+  //   if (nextProps.user.status === "User") {
+  //     this.el.closeModal();
+  //   }
+  // }
 
   changeTab = val => () => {
     const { changeTab } = this.props;
     changeTab(val);
   };
   render() {
-    const { closeModal, currentTab } = this.props;
+    const { closeModal, currentTab, user } = this.props;
 
     return (
-      <Modal closeModal={closeModal}>
+      <Modal closeModal={closeModal} status={user}>
         <div className="signin-container">
           <Tabs currentTab={currentTab} click={this.changeTab} />
           {currentTab === "Login" ? <Login /> : <Registration />}

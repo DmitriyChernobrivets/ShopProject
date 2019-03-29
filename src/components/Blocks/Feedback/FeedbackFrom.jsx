@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./styles.scss";
-import axios from "axios";
+
 import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
 import FeedbackInput from "../../Shared/feedbackinput/FeedBackInput";
@@ -50,7 +50,7 @@ class FeedbackForm extends Component {
 
         {items.length > 0 && <FeedbackItems feedbacks={items} />}
 
-        <form className="feedback_form" ref={form => (this.form = form)}>
+        <form className="feedback_form">
           <Col md={6} lg={5}>
             <FeedbackInput
               title="Enter your name"
