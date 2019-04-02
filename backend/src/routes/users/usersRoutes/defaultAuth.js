@@ -13,7 +13,7 @@ const generateToken = payload => {
 const auth = (req, res) => {
   const token = req.headers["x-access-token"];
   const tokendata = jwt.decode(token);
-  console.log(tokendata);
+
   if (token === "GUEST" || jwt.decode(token).guest) {
     const payload = { guest: "guest" };
     const token = generateToken(payload);
