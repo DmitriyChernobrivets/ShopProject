@@ -1,5 +1,5 @@
 import axios from "axios";
-// import onError from "./Error";
+import api from "../../service/api";
 
 const getProductId = payload => {
   return {
@@ -14,10 +14,10 @@ const onError = payload => {
     payload
   };
 };
-export const fetchProductById = url => {
+const fetchProductById = url => {
   return dispatch => {
-    axios
-      .get(`${url}`)
+    api
+      .getProductById(url)
       .then(({ data }) => {
         if (data.status === "OK") {
           dispatch(getProductId(data.product));
@@ -26,3 +26,5 @@ export const fetchProductById = url => {
       .catch(err => dispatch(onError(err.message)));
   };
 };
+
+export { fetchProductById };

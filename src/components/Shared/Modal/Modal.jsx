@@ -1,25 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 import "./styles.scss";
 
-const Modal = props => {
-  const { closeModal, children, status } = props;
-  let modalRef = null;
-
-  if (status === "User") {
-    modalRef.click();
-    console.log(status);
+class Modal extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isLogedin) {
+      this.el.click();
+    }
   }
-  return (
-    <div
-      className="signin-modal"
-      onClick={closeModal}
-      ref={modal => {
-        modalRef = modal;
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+  render() {
+    const { closeModal, children } = this.props;
+    return (
+      <div
+        className="signin-modal"
+        onClick={closeModal}
+        ref={val => {
+          this.el = val;
+        }}
+      >
+        {children}
+      </div>
+    );
+  }
+}
 
 export default Modal;

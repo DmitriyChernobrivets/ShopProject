@@ -23,9 +23,10 @@ const userReducer = (state = initialState, { payload, type }) => {
         }
       };
     case "CREATE_USER_ERROR":
-      return { ...state, Signnup: { ...payload } };
+      return { ...state, Signnup: payload };
+
     case "LOGIN_FAILURE":
-      return { ...state, Signnup: { ...payload } };
+      return { ...state, Signnup: payload };
 
     case "CREATE_USER_SUCCESS":
       return {

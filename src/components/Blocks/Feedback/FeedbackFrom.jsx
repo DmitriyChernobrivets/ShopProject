@@ -18,7 +18,6 @@ class FeedbackForm extends Component {
   };
   componentDidMount() {
     const { id, getFeedbackItems } = this.props;
-    console.log(this.props);
     getFeedbackItems(id);
   }
 

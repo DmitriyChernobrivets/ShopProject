@@ -22,7 +22,6 @@ const onSuccess = payload => {
   };
 };
 const getFeedbackItems = id => {
-  console.log(id);
   return dispatch => {
     api
       .getFeedbackItems(id)

@@ -15,7 +15,14 @@ class Main extends Component {
     this.props.getfilteredProducts(currentFilters);
   }
   render() {
-    const { allproducts, match, totalPageCount, currentFilters, getfilteredProducts } = this.props;
+    const {
+      allproducts,
+      match,
+      totalPageCount,
+      currentFilters,
+      getfilteredProducts,
+      bucketItems
+    } = this.props;
     const { products, preloader } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
 
@@ -30,8 +37,9 @@ class Main extends Component {
               <SortMenu />
               <Row>
                 {preloader && <Circle2 color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />}
+
                 {products.map(prod => (
-                  <Card product={prod} match={match} key={prod._id} />
+                  <Card product={prod} match={match} key={prod._id} bucketItems={bucketItems} />
                 ))}
               </Row>
               <ReactPaginate
@@ -57,7 +65,8 @@ const mapStateToProps = state => {
   return {
     totalPageCount: state.currentFilters.totalPageCount,
     allproducts: state.allProducts,
-    currentFilters: state.currentFilters
+    currentFilters: state.currentFilters,
+    bucketItems: state.bucket.items
   };
 };
 

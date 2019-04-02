@@ -9,19 +9,21 @@ const initialState = {
 };
 
 const bucketReducer = (state = initialState, { type, payload }) => {
+  console.log(type);
   switch (type) {
-    case "INCREMENT":
-      return { ...state, total: state.total + payload };
-    case "DECREMENT":
-      return { ...state, total: state.total - payload };
-    case "UPDATE_BUCKET":
-      return { ...state, ...payload };
     case "ADD_TO_BUCKET":
       return {
         ...state,
         items: payload.bucketItem,
         total: payload.total
       };
+    case "INCREMENT":
+      return { ...state, total: state.total + payload };
+    case "DECREMENT":
+      return { ...state, total: state.total - payload };
+    case "UPDATE_BUCKET":
+      return { ...state, ...payload };
+
     case "DELETE_ITEM":
       return { ...state, total: state.total - payload.price, items: payload.newItems };
     default:

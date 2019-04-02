@@ -7,6 +7,7 @@ import SVG from "../../Shared/Svg/svg";
 import UserPanel from "../auth/UserPanel";
 import { defaultAuthorization } from "../../../store/Actions/getUser";
 import SignIn from "../auth/SignIn";
+import Modal from "../../Shared/Modal/Modal";
 import { CSSTransition } from "react-transition-group";
 const { CABINET, BUCKET } = options;
 
@@ -33,7 +34,11 @@ class HeaderComponents extends Component {
     const { defaultAutorization, bucketitems } = this.props;
     return (
       <header className="header">
-        {modalIsOpen && <SignIn closeModal={this.closeModal} />}
+        {modalIsOpen && (
+          <Modal closeModal={this.closeModal} isLogedin={user}>
+            <SignIn />
+          </Modal>
+        )}
         <div className="left-panel">
           <div>Just Smile</div>
         </div>

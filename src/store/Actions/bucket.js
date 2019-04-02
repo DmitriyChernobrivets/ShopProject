@@ -1,4 +1,5 @@
 import { totalPrice } from "../../helpers/functions";
+import { NotificationManager } from "react-notifications";
 
 const increment = payload => {
   return {
@@ -32,6 +33,7 @@ const addToBucket = payload => {
   if (!isDuplicate) {
     bucketItem.push(payload);
     localStorage.setItem("bucket", JSON.stringify(bucketItem));
+    NotificationManager.success("Added to bucket!");
   }
 
   const total = totalPrice(bucketItem);
@@ -45,6 +47,8 @@ const deleteItem = payload => {
   const items = JSON.parse(localStorage.getItem("bucket"));
   const filteredItems = items.filter(el => el._id !== payload.id);
   localStorage.setItem("bucket", JSON.stringify(filteredItems));
+  NotificationManager.success("Deleted!!");
+
   return {
     type: "DELETE_ITEM",
     payload: { newItems: filteredItems, price: payload.price }

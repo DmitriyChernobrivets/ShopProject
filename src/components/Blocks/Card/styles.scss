@@ -27,7 +27,10 @@
     color: red;
     border: 1px solid red;
     margin-bottom: 10px;
-
+    &.added {
+      color: #fff;
+      background-color: red;
+    }
     &::before {
       content: "";
       position: absolute;

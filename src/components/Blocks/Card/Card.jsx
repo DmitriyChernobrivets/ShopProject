@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+
 import ForSale from "../../Shared/forSale/forSale";
 import RatingStars from "../../Shared/Stars/RatingStars";
 import Details from "../../Shared/Details/Details";
@@ -9,41 +9,59 @@ import { Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { addToBucket } from "../../../store/Actions/bucket";
 
-const Card = ({ product, match, addToBucket }) => {
-  const handleAdd = () => {
+class Card extends Component {
+  state = {
+    isAddedtoBucket: false
+  };
+  componentDidMount() {
+    const { bucketItems, product } = this.props;
+    const isiteminBucket = bucketItems.find(item => item._id === product._id);
+    if (isiteminBucket) {
+      this.setState({ isAddedtoBucket: true });
+    }
+  }
+  handleBucketAdd = () => {
+    const { product, addToBucket } = this.props;
+    this.setState({ isAddedtoBucket: true });
     addToBucket(product);
   };
+  render() {
+    const { _id, description, title, forSale, images, price, hot, rating } = this.props.product;
+    const { isAddedtoBucket } = this.state;
+    const { categories } = this.props.match.params;
+    const link = categories + "/" + _id;
+    const addedBtnStyle = !isAddedtoBucket
+      ? "btn product-card-button"
+      : "btn product-card-button added";
 
-  const { _id, description, title, forSale, images, price, hot, rating } = product;
-  const { categories } = match.params;
-  const link = categories + "/" + _id;
-  return (
-    <Col className="product-card" xs={12} sm={6} lg={4}>
-      {hot && (
-        <div className="hot-price">
-          <span>HOT</span>
+    return (
+      <Col className="product-card" xs={12} sm={6} lg={4}>
+        {hot && (
+          <div className="hot-price">
+            <span>HOT</span>
+          </div>
+        )}
+        <div className="prdouct-image">
+          <Link to={link}>
+            <img src={images[0]} alt="img" />
+          </Link>
         </div>
-      )}
-      <div className="prdouct-image">
-        <Link to={link}>
-          <img src={images[0]} alt="img" />
+        <Link to={link} className="product-card-title">
+          <span>{title}</span>
         </Link>
-      </div>
-      <Link to={link} className="product-card-title">
-        <span>{title}</span>
-      </Link>
 
-      <RatingStars rating={rating} />
-      <ForSale forSale={forSale} />
+        <RatingStars rating={rating} />
+        <ForSale forSale={forSale} />
 
-      <Button className="btn product-card-button" onClick={handleAdd}>
-        <span>{price} UAH</span>
-      </Button>
+        <button className={addedBtnStyle} onClick={this.handleBucketAdd}>
+          {!isAddedtoBucket ? <span>{price} UAH</span> : <span>In bucket</span>}
+        </button>
 
-      <Details description={description} />
-    </Col>
-  );
-};
+        <Details description={description} />
+      </Col>
+    );
+  }
+}
 
 const dispatchToPRops = dispatch => {
   return {

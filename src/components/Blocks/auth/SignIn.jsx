@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import Modal from "../../Shared/Modal/Modal";
+import React, { Component, Fragment } from "react";
+
 import Tabs from "../../Shared/Tabs/Tabs";
 import Registration from "./Registration";
 import Login from "./Login";
-
 import { connect } from "react-redux";
 import { changeSignTab } from "../../../store/Actions/getUser";
 import "./styles.scss";
-
 import "react-notifications/lib/notifications.css";
 
 class SignIn extends Component {
@@ -23,15 +21,16 @@ class SignIn extends Component {
     changeTab(val);
   };
   render() {
-    const { closeModal, currentTab, user } = this.props;
+    const { currentTab } = this.props;
 
     return (
-      <Modal closeModal={closeModal} status={user}>
+      <Fragment>
         <div className="signin-container">
           <Tabs currentTab={currentTab} click={this.changeTab} />
+
           {currentTab === "Login" ? <Login /> : <Registration />}
         </div>
-      </Modal>
+      </Fragment>
     );
   }
 }

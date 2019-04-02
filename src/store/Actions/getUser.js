@@ -50,17 +50,17 @@ const createUser = userData => {
       .then(({ data }) => {
         if (data.error) {
           dispatch(createUsererror(data));
-          NotificationManager.success(`Sorry bro :(`);
+
+          NotificationManager.error(`${data.error}!`);
         } else {
           dispatch(userCreateSuccess());
           dispatch(changeSignTab("Login"));
-          NotificationManager.success(`Welcome, ${data.user.firstName}`);
+          NotificationManager.success(`User created!`);
         }
       })
       .catch(
         err =>
-          dispatch(createUsererror(err.message)) &&
-          NotificationManager.success(`Server error bro !`)
+          dispatch(createUsererror(err.message)) && NotificationManager.error(`Server error bro !`)
       );
 };
 
@@ -71,6 +71,7 @@ const login = userData => {
       .then(({ data }) => {
         if (data.Error) {
           dispatch(LoginFailure(data));
+          NotificationManager.error(`Error, ${data.Error}`);
         } else {
           dispatch(Login(data));
           localStorage.setItem("token", data.token);

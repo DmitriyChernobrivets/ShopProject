@@ -9,6 +9,7 @@ const api = {
   createUser: payload => axios.post("/users/create", payload),
 
   getProducts: (url, payload) => axios.post(url, payload),
+  getProductById: url => axios.get(url),
 
   getFeedbackItems: id => axios.get(`/feedback?id=${id}`),
   sendFeedback: payload => axios.post("/feedback", payload)
