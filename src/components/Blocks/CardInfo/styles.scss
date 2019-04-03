@@ -1,7 +1,9 @@
 .card-info {
-  padding: 20px;
-  max-height: 260px;
-  background-color: rgb(243, 241, 241);
+  &_buy {
+    padding: 20px;
+    min-height: 172px;
+    background-color: rgb(243, 241, 241);
+  }
   &_image {
     min-height: 30px;
   }
@@ -61,17 +63,32 @@
       transition: 0.2s linear;
     }
   }
-  &_row {
+  &_container {
+    .hot-price {
+      border-radius: 5px;
+      padding: 5px 14px;
+      background-color: rgb(248, 4, 4);
+      color: #fff;
+      font-weight: bold;
+      position: absolute;
+      top: 50px;
+      left: 18px;
+    }
     margin-bottom: 50px;
+    & ~ div .access-notification {
+      background-color: rgb(240, 209, 173);
+      padding: 30px 0 30px 50px;
+
+      display: flex;
+      margin-top: 50px;
+      justify-content: center;
+      align-items: flex-end;
+      color: red;
+
+      & i {
+        font-size: 50px;
+        margin-right: 30px;
+      }
+    }
   }
-}
-.hot-price {
-  border-radius: 5px;
-  padding: 5px 14px;
-  background-color: rgb(248, 4, 4);
-  color: #fff;
-  font-weight: bold;
-  position: absolute;
-  top: 50px;
-  left: 18px;
 }

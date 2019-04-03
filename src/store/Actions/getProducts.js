@@ -1,26 +1,32 @@
 import api from "../../service/api";
+import {
+  GET_PRODUCTS,
+  TURN_ON_PRELOADER,
+  SET_FILTERS,
+  GET_PRODUCTS_FAILURE
+} from "../../constants/constants";
 import { transformState } from "../../helpers/functions";
 
 const setProducts = payload => {
   return {
-    type: "GET_PRODUCTS",
+    type: GET_PRODUCTS,
     payload
   };
 };
 const preLoader = () => {
   return {
-    type: "TURN_ON_PRELOADER"
+    type: TURN_ON_PRELOADER
   };
 };
 const setCurrentFilters = payload => {
   return {
-    type: "SET_FILTERS",
+    type: SET_FILTERS,
     payload
   };
 };
 const onError = payload => {
   return {
-    type: "GET_PRODUCTS_FAILURE",
+    type: GET_PRODUCTS_FAILURE,
     payload
   };
 };
@@ -44,6 +50,6 @@ export const getFilteredProducts = data => {
           dispatch(setProducts(product));
         }
       })
-      .catch(err => dispatch(onError(data.Error)));
+      .catch(err => dispatch(onError(err.message)));
   };
 };

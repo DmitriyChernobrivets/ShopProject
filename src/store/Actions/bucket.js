@@ -1,16 +1,23 @@
 import { totalPrice } from "../../helpers/functions";
 import { NotificationManager } from "react-notifications";
+import {
+  INCREMENT,
+  DECREMENT,
+  UPDATE_BUCKET,
+  ADD_TO_BUCKET,
+  DELETE_ITEM
+} from "../../constants/constants";
 
 const increment = payload => {
   return {
-    type: "INCREMENT",
+    type: INCREMENT,
     payload
   };
 };
 
 const decrement = payload => {
   return {
-    type: "DECREMENT",
+    type: DECREMENT,
     payload
   };
 };
@@ -23,7 +30,7 @@ const updateBucket = () => {
     items: items
   };
   return {
-    type: "UPDATE_BUCKET",
+    type: UPDATE_BUCKET,
     payload: updatedState
   };
 };
@@ -38,7 +45,7 @@ const addToBucket = payload => {
 
   const total = totalPrice(bucketItem);
   return {
-    type: "ADD_TO_BUCKET",
+    type: ADD_TO_BUCKET,
     payload: { bucketItem, total }
   };
 };
@@ -50,7 +57,7 @@ const deleteItem = payload => {
   NotificationManager.success("Deleted!!");
 
   return {
-    type: "DELETE_ITEM",
+    type: DELETE_ITEM,
     payload: { newItems: filteredItems, price: payload.price }
   };
 };

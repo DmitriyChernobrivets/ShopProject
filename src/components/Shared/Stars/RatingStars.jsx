@@ -1,8 +1,9 @@
 import React from "react";
-import "./ratingstars.scss";
+import PropTypes from "prop-types";
+import "./styles.scss";
 
 const RatingStars = props => {
-  const rating = props.rating;
+  const { rating } = props;
   const baseStarsCount = [1, 2, 3, 4, 5];
   return (
     <div className="stars-container">
@@ -22,6 +23,10 @@ const RatingStars = props => {
       <span>{rating}</span>
     </div>
   );
+};
+
+RatingStars.propTypes = {
+  rating: PropTypes.number.isRequired
 };
 
 export default RatingStars;

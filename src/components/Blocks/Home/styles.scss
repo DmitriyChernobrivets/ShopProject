@@ -1,0 +1,42 @@
+.home-category {
+  & a {
+    display: block;
+    position: relative;
+    text-align: center;
+    &:before {
+      position: absolute;
+      content: "";
+      top: 40%;
+      right: 38%;
+      width: 90px;
+      height: 90px;
+      visibility: hidden;
+
+      border: 2px solid white;
+      border-radius: 50%;
+    }
+    &:hover::before {
+      animation: circlePulse 0.5s linear infinite;
+      visibility: visible;
+    }
+  }
+
+  & h3 {
+    z-index: 2;
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    color: #fff;
+  }
+}
+@keyframes circlePulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.5);
+    opacity: 0.5;
+    background-color: #fff;
+  }
+}

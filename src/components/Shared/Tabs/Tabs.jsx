@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./styles.scss";
 
 const Tabs = props => {
@@ -15,6 +16,11 @@ const Tabs = props => {
       </span>
     </div>
   );
+};
+
+Tabs.propTypes = {
+  currentTab: PropTypes.string,
+  click: PropTypes.func.isRequired
 };
 
 export default Tabs;

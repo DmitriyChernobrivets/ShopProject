@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./styles.scss";
 import Checkbox from "../../Shared/checkbox/Checkbox";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
-
+import PropTypes from "prop-types";
 import InputRange from "react-input-range";
+import "./styles.scss";
 import "react-input-range/lib/css/index.css";
 
 class Filter extends Component {
@@ -63,6 +63,11 @@ class Filter extends Component {
     );
   }
 }
+
+Filter.propTypes = {
+  sort: PropTypes.string.isRequired,
+  getFilteredProducts: PropTypes.func.isRequired
+};
 
 const getState = state => {
   return {

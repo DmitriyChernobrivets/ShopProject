@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-
 import ForSale from "../../Shared/forSale/forSale";
 import RatingStars from "../../Shared/Stars/RatingStars";
 import Details from "../../Shared/Details/Details";
 import { Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { addToBucket } from "../../../store/Actions/bucket";
-
+import PropTypes from "prop-types";
 class Card extends Component {
   state = {
     isAddedtoBucket: false
@@ -21,7 +20,11 @@ class Card extends Component {
     }
   }
   handleBucketAdd = () => {
-    const { product, addToBucket } = this.props;
+    const { isAddedtoBucket } = this.state;
+    const { product, addToBucket, history } = this.props;
+    if (isAddedtoBucket) {
+      history.push("/bucket");
+    }
     this.setState({ isAddedtoBucket: true });
     addToBucket(product);
   };
@@ -62,6 +65,12 @@ class Card extends Component {
     );
   }
 }
+
+Card.propTypes = {
+  product: PropTypes.object.isRequired,
+  bucketItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToBucket: PropTypes.func.isRequired
+};
 
 const dispatchToPRops = dispatch => {
   return {

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import "./bucket.scss";
 import { Col, Row, Container } from "react-bootstrap";
 import BucketItems from "./Buket-items";
 import { connect } from "react-redux";
 import { updateBucket } from "../../../store/Actions/bucket";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import PropTypes from "prop-types";
+import "./styles.scss";
 
 class Bucket extends Component {
   componentWillUnmount() {
@@ -44,6 +45,12 @@ class Bucket extends Component {
     );
   }
 }
+
+Bucket.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  total: PropTypes.number.isRequired
+};
+
 const stateToProps = state => {
   return {
     total: state.bucket.total,

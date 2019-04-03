@@ -1,23 +1,28 @@
 import api from "../../service/api";
+import {
+  GET_FEEDBACK_ITEMS,
+  ERROR_FEEDBACK,
+  SUCCESS_SENDED_FEEDBACK
+} from "../../constants/constants";
 import { NotificationManager } from "react-notifications";
 import { validateInputs } from "../../helpers/functions";
 
 const getItems = payload => {
   return {
-    type: "GET_FEEDBACK_ITEMS",
+    type: GET_FEEDBACK_ITEMS,
     payload
   };
 };
 
 const onError = payload => {
   return {
-    type: "ERROR_FEEDBACK",
+    type: ERROR_FEEDBACK,
     payload
   };
 };
 const onSuccess = payload => {
   return {
-    type: "SUCCESS_SENDED_FEEDBACK",
+    type: SUCCESS_SENDED_FEEDBACK,
     payload
   };
 };

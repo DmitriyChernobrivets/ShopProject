@@ -1,14 +1,21 @@
-import React, { Component } from "react";
-import "./checkbox.scss";
-export default class Checkbox extends Component {
-  render() {
-    const { item, onChangeAction } = this.props;
+import React from "react";
+import PropTypes from "prop-types";
+import "./styles.scss";
 
-    return (
-      <label forhtml="check" className="checkbox_title">
-        <input type="checkbox" id="check" checked={item.checked} onChange={onChangeAction} />
-        {item.name}
-      </label>
-    );
-  }
-}
+const Checkbox = props => {
+  const { item, onChangeAction } = props;
+
+  return (
+    <label forhtml="check" className="checkbox_title">
+      <input type="checkbox" id="check" checked={item.checked} onChange={onChangeAction} />
+      {item.name}
+    </label>
+  );
+};
+
+Checkbox.propTypes = {
+  item: PropTypes.object.isRequired,
+  onChangeAction: PropTypes.func.isRequired
+};
+
+export default Checkbox;

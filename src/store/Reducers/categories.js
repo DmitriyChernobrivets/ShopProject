@@ -1,6 +1,6 @@
-const initialState = ["Notebooks", "Telephones", "PCs"];
+const DEFAULT_STATE = ["Notebooks", "Telephones", "PCs"];
 
-const categoriesReducer = (state = initialState, { type, payload }) => {
+const categoriesReducer = (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
     // case "GET_ALL_CATEGORIES":
     //   return state;

@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import "./styles.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { options } from "../../Shared/Svg/options";
 import SVG from "../../Shared/Svg/svg";
 import UserPanel from "../auth/UserPanel";
-import { defaultAuthorization } from "../../../store/Actions/getUser";
+import { logout } from "../../../store/Actions/getUser";
 import SignIn from "../auth/SignIn";
 import Modal from "../../Shared/Modal/Modal";
-import { CSSTransition } from "react-transition-group";
+import PropTypes from "prop-types";
+import "./styles.scss";
+
 const { CABINET, BUCKET } = options;
 
 class HeaderComponents extends Component {
@@ -31,7 +32,7 @@ class HeaderComponents extends Component {
   render() {
     const { modalIsOpen } = this.state;
     const { user } = this.props.user;
-    const { defaultAutorization, bucketitems } = this.props;
+    const { logout, bucketitems } = this.props;
     return (
       <header className="header">
         {modalIsOpen && (
@@ -40,7 +41,7 @@ class HeaderComponents extends Component {
           </Modal>
         )}
         <div className="left-panel">
-          <div>Just Smile</div>
+          <Link to="/">Just Smile</Link>
         </div>
         <div className="header-left">
           <ul className="menu">
@@ -54,7 +55,7 @@ class HeaderComponents extends Component {
         <div className="header-right">
           <div className="user-auth">
             {this.props.user.status !== "Guest" ? (
-              <UserPanel logout={defaultAutorization} user={user} />
+              <UserPanel logout={logout} user={user} />
             ) : (
               <div className="user-controls" onClick={this.openModal}>
                 <SVG path={CABINET} viewbox="0 0 36 32" height="23" width="23" />
@@ -76,6 +77,12 @@ class HeaderComponents extends Component {
   }
 }
 
+HeaderComponents.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  user: PropTypes.object.isRequired,
+  bucketitems: PropTypes.arrayOf(PropTypes.object).isRequired
+};
+
 const getState = state => {
   return {
     categories: state.categories,
@@ -86,7 +93,7 @@ const getState = state => {
 
 const getDispatcher = dispatch => {
   return {
-    defaultAutorization: () => dispatch(defaultAuthorization())
+    logout: () => dispatch(logout())
   };
 };
 export default connect(

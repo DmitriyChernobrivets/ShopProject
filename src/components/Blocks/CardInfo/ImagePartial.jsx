@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import RatingStars from "../../Shared/Stars/RatingStars";
+import PropTypes from "prop-types";
 import "./styles.scss";
 
 const ImagePartial = props => {
@@ -18,6 +19,10 @@ const ImagePartial = props => {
       </div>
     </Fragment>
   );
+};
+
+ImagePartial.propTypes = {
+  product: PropTypes.object.isRequired
 };
 
 export default ImagePartial;

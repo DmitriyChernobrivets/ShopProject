@@ -1,4 +1,6 @@
-const initialState = {
+import { SET_FILTERS } from "../../constants/constants";
+
+const DEFAULT_STATE = {
   title: [],
   memory: [],
   price: { min: 0, max: 150000 },
@@ -6,9 +8,9 @@ const initialState = {
   totalPageCount: 1
 };
 
-const filterReducer = (state = initialState, { type, payload }) => {
+const filterReducer = (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
-    case "SET_FILTERS":
+    case SET_FILTERS:
       return { ...state, ...payload };
 
     default:

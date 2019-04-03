@@ -1,4 +1,13 @@
-const initialState = {
+import {
+  LOGIN,
+  LOGOUT,
+  LOGIN_FAILURE,
+  CREATE_USER_ERROR,
+  CREATE_USER_SUCCESS,
+  CHANGE_SIGN_TAB
+} from "../../constants/constants";
+
+const DEFAULT_STATE = {
   currentUser: {
     status: "Guest",
     error: null
@@ -11,9 +20,9 @@ const initialState = {
   currentTab: "Login"
 };
 
-const userReducer = (state = initialState, { payload, type }) => {
+const userReducer = (state = DEFAULT_STATE, { payload, type }) => {
   switch (type) {
-    case "LOGIN":
+    case LOGIN:
       return {
         ...state,
         currentUser: { ...payload, error: null },
@@ -22,13 +31,14 @@ const userReducer = (state = initialState, { payload, type }) => {
           error: null
         }
       };
-    case "CREATE_USER_ERROR":
+    case CREATE_USER_ERROR:
+      return { ...state, Signnup: payload };
+    case LOGOUT:
+      return { ...state, currentUser: { ...payload, error: null } };
+    case LOGIN_FAILURE:
       return { ...state, Signnup: payload };
 
-    case "LOGIN_FAILURE":
-      return { ...state, Signnup: payload };
-
-    case "CREATE_USER_SUCCESS":
+    case CREATE_USER_SUCCESS:
       return {
         ...state,
         Signnup: {
@@ -36,7 +46,7 @@ const userReducer = (state = initialState, { payload, type }) => {
           error: null
         }
       };
-    case "CHANGE_SIGN_TAB":
+    case CHANGE_SIGN_TAB:
       return { ...state, currentTab: payload };
     default:
       return state;

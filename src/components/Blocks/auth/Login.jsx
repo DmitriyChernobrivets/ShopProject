@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { validateInputs } from "../../../helpers/functions";
 import { connect } from "react-redux";
 import { login } from "../../../store/Actions/getUser";
+import PropTypes from "prop-types";
 class Login extends Component {
   state = {
     email: "",
@@ -64,6 +65,11 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  login: PropTypes.func
+};
+
 // const getState = state => {
 //   return {
 //     user: state.auth.currentUser

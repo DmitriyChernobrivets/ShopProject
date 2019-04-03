@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 const app = require("../module/bootstrap-express");
 
-const gettoken = req => req.body.token || req.query.token || req.headers["x-access-token"];
+const gettoken = req => req.body.token || req.query.token || req.headers["authorization"];
 
 const checktoken = (req, res, next) => {
   const token = gettoken(req);
   const secretKey = app.get("superSecret");
-  console.log(token);
+
   if (!token) {
     return res.status(403).send({
       status: "Failed",

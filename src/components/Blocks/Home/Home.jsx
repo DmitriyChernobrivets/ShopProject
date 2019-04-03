@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Row, Container } from "react-bootstrap";
-
 import SearchInput from "../../Shared/searchInput/searchInput";
 import { options } from "../../Shared/Svg/options";
 import HomeCard from "./HomeCard";
 import { connect } from "react-redux";
-import "./home.scss";
+import PropTypes from "prop-types";
+import "./styles.scss";
 
 class Home extends Component {
   render() {
@@ -24,6 +24,10 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
 const getState = state => {
   return {

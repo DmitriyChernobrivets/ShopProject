@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./forSale.scss";
 
 const ForSale = prop => {
@@ -17,6 +18,10 @@ const ForSale = prop => {
       )}
     </div>
   );
+};
+
+ForSale.propTypes = {
+  forSale: PropTypes.bool.isRequired
 };
 
 export default ForSale;

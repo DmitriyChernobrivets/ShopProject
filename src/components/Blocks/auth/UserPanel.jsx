@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../Header/styles.scss";
 
 class UserPanel extends Component {
@@ -24,10 +25,10 @@ class UserPanel extends Component {
   }
   logout = () => {
     const { logout } = this.props;
-    localStorage.removeItem("token");
 
     logout();
   };
+
   render() {
     const { dropDown } = this.state;
     const { user } = this.props;
@@ -59,5 +60,10 @@ class UserPanel extends Component {
     );
   }
 }
+
+UserPanel.propTypes = {
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
 
 export default UserPanel;

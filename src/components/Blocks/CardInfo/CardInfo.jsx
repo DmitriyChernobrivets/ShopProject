@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import "./styles.scss";
 import { fetchProductById } from "../../../store/Actions/getProductById";
 import { connect } from "react-redux";
 import { addToBucket } from "../../../store/Actions/bucket";
+import AccessNotification from "./Feedback_notification";
 import BuyPartial from "./BuyPartial";
 import ImagePartial from "./ImagePartial";
 import Details from "../../Shared/Details/Details";
 import FeeadbackForm from "../Feedback/FeedbackFrom";
+import PropTypes from "prop-types";
+import "./styles.scss";
 
 class CardInfo extends Component {
   componentDidMount() {
@@ -18,11 +20,11 @@ class CardInfo extends Component {
 
   render() {
     const { product } = this.props.product;
-    const { addToBucket } = this.props;
+    const { addToBucket, status } = this.props;
     return (
       product && (
         <Container>
-          <Row className="card-info_row">
+          <Row className="card-info_container">
             <div className="card-info_title">
               <h1>{product.title}</h1>
             </div>
@@ -38,23 +40,31 @@ class CardInfo extends Component {
                 </Col>
               </Row>
             </Col>
-            <Col className="card-info" xs={12} sm={6} md={6} lg={4}>
+            <Col className="card-info_buy " xs={12} sm={6} md={6} lg={4}>
               <div>
                 <h3 className="card-info_garantee">Garantee 12 months</h3>
               </div>
               <BuyPartial product={product} click={addToBucket} />
             </Col>
           </Row>
-
-          <FeeadbackForm id={product._id} />
+          {status === "Guest" ? <AccessNotification /> : <FeeadbackForm id={product._id} />}
         </Container>
       )
     );
   }
 }
+
+CardInfo.propTypes = {
+  product: PropTypes.object.isRequired,
+  addToBucket: PropTypes.func.isRequired,
+  getProductById: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired
+};
+
 const StateToProps = state => {
   return {
-    product: state.currentProductInfo
+    product: state.currentProductInfo,
+    status: state.auth.currentUser.status
   };
 };
 

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
 const FeedbackInput = props => {
   const { title, icon, inputValue, onchange, name, placeholder, isInputsValid, textarea } = props;
@@ -29,6 +30,15 @@ const FeedbackInput = props => {
       )}
     </Fragment>
   );
+};
+
+FeedbackInput.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  inputValue: PropTypes.string.isRequired,
+  onchange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired
 };
 
 export default FeedbackInput;

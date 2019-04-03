@@ -1,16 +1,16 @@
-import axios from "axios";
 import api from "../../service/api";
+import { GET_PRODUCT_ID, GET_PRODUCT_ID_FAILURE } from "../../constants/constants";
 
 const getProductId = payload => {
   return {
-    type: "GET_PRODUCT_ID",
+    type: GET_PRODUCT_ID,
     payload: payload
   };
 };
 
 const onError = payload => {
   return {
-    type: "GET_PRODUCT_ID_FAILURE",
+    type: GET_PRODUCT_ID_FAILURE,
     payload
   };
 };

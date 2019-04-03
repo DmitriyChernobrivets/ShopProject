@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
-import "./Sort.scss";
+import PropTypes from "prop-types";
+import "./styles.scss";
+
 const options = [
   { value: "cheap", label: "Start from cheap" },
   { value: "exp", label: "Start from expensive" }
@@ -36,6 +38,12 @@ class SortMenu extends Component {
     );
   }
 }
+
+SortMenu.propTypes = {
+  currentFilters: PropTypes.object.isRequired,
+  getFilteredProducts: PropTypes.func.isRequired
+};
+
 const getState = state => {
   return {
     currentFilters: state.currentFilters

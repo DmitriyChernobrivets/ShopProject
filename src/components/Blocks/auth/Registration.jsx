@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { createUser } from "../../../store/Actions/getUser";
 import { validateInputs } from "../../../helpers/functions";
-
+import PropTypes from "prop-types";
 class Registration extends Component {
   state = {
     firstName: "",
@@ -88,6 +88,10 @@ class Registration extends Component {
     );
   }
 }
+
+Registration.propTypes = {
+  createUser: PropTypes.func
+};
 
 const getDispatcher = dispatch => {
   return {

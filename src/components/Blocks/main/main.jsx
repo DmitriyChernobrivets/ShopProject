@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import Card from "../Card/Card";
-import "./main.scss";
 import { Col, Row, Container } from "react-bootstrap";
 import Filter from "../Filter/Filter";
 import SortMenu from "../Sort-menu/SortMenu";
 import ReactPaginate from "react-paginate";
 import { Circle2 } from "react-preloaders";
+import PropTypes from "prop-types";
+import "./styles.scss";
 class Main extends Component {
   componentDidMount() {
     const { currentFilters } = this.props;
@@ -21,7 +22,8 @@ class Main extends Component {
       totalPageCount,
       currentFilters,
       getfilteredProducts,
-      bucketItems
+      bucketItems,
+      history
     } = this.props;
     const { products, preloader } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
@@ -39,7 +41,13 @@ class Main extends Component {
                 {preloader && <Circle2 color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />}
 
                 {products.map(prod => (
-                  <Card product={prod} match={match} key={prod._id} bucketItems={bucketItems} />
+                  <Card
+                    product={prod}
+                    match={match}
+                    history={history}
+                    key={prod._id}
+                    bucketItems={bucketItems}
+                  />
                 ))}
               </Row>
               <ReactPaginate
@@ -60,6 +68,14 @@ class Main extends Component {
     );
   }
 }
+
+Main.propTypes = {
+  bucketItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  totalPageCount: PropTypes.number.isRequired,
+  allproducts: PropTypes.object.isRequired,
+  currentFilters: PropTypes.object.isRequired,
+  getfilteredProducts: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => {
   return {

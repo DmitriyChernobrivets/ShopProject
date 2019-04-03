@@ -18,4 +18,12 @@ const transformQuery = body =>
     }
   }, {});
 
-module.exports = { transformQuery };
+const sort_by = query => {
+  if (query === "cheap") {
+    return { price: 1 };
+  } else if (query === "exp") {
+    return { price: -1 };
+  } else return;
+};
+
+module.exports = { transformQuery, sort_by };

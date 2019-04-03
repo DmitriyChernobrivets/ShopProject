@@ -38,7 +38,7 @@ class App extends Component {
 
 const getDispatcher = dispatch => {
   return {
-    getDefaultRights: val => dispatch(defaultAuthorization(val))
+    getDefaultRights: () => dispatch(defaultAuthorization())
   };
 };
 

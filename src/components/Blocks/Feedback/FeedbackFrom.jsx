@@ -6,7 +6,7 @@ import { Col, Row } from "react-bootstrap";
 import FeedbackInput from "../../Shared/feedbackinput/FeedBackInput";
 import { connect } from "react-redux";
 import { getFeedbackItems, sendFeedback } from "../../../store/Actions/feedback";
-
+import PropTypes from "prop-types";
 import "react-notifications/lib/notifications.css";
 
 class FeedbackForm extends Component {
@@ -100,6 +100,15 @@ class FeedbackForm extends Component {
     );
   }
 }
+
+FeedbackForm.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  error: PropTypes.any,
+  product: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  getFeedbackItems: PropTypes.func.isRequired,
+  sendFeedback: PropTypes.func.isRequired
+};
 
 const getState = state => {
   return {

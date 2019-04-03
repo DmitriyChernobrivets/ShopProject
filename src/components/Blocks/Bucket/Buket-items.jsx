@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./bucket.scss";
+import "./styles.scss";
 import { connect } from "react-redux";
 import { increment, decrement, deleteItem } from "../../../store/Actions/bucket";
 import Svg from "../../Shared/Svg/svg";
 import { options } from "../../Shared/Svg/options";
-
+import PropTypes from "prop-types";
 class BuketItems extends Component {
   state = {
     count: 1
@@ -71,6 +71,10 @@ class BuketItems extends Component {
     );
   }
 }
+BuketItems.propTypes = {
+  item: PropTypes.object.isRequired,
+  decrement: PropTypes.func.isRequired
+};
 
 const setDispatchToProps = dispatch => {
   return {

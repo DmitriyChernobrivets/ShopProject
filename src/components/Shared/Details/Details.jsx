@@ -1,6 +1,6 @@
-import "./details.scss";
-
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./styles.scss";
 
 class Details extends Component {
   state = {
@@ -8,7 +8,8 @@ class Details extends Component {
     disabled: false
   };
   componentDidMount() {
-    if (this.props.disabled) {
+    const { disabled } = this.props;
+    if (disabled) {
       this.setState({ seeMore: true, disabled: true });
     }
   }
@@ -39,5 +40,9 @@ class Details extends Component {
     );
   }
 }
+
+Details.propTypes = {
+  description: PropTypes.object.isRequired
+};
 
 export default Details;
