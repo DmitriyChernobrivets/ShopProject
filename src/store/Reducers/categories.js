@@ -1,4 +1,4 @@
-const DEFAULT_STATE = ["Notebooks", "Telephones", "PCs"];
+const DEFAULT_STATE = ["Notebooks", "Mobile", "PCs"];
 
 const categoriesReducer = (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
