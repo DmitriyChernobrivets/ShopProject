@@ -23,5 +23,4 @@ const api = {
   getFeedbackItems: id => site.get(`/feedback?id=${id}`),
   sendFeedback: payload => site.post("/feedback", payload)
 };
-
 export default api;
