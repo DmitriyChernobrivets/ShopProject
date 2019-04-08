@@ -5,7 +5,7 @@ import {
   UPDATE_BUCKET,
   ADD_TO_BUCKET,
   DELETE_ITEM
-} from "../../constants/constants";
+} from "../../constants/ActionTypes";
 
 const items = JSON.parse(localStorage.getItem("bucket")) || [];
 const total = totalPrice(items);

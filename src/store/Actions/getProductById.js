@@ -1,5 +1,5 @@
 import api from "../../service/api";
-import { GET_PRODUCT_ID, GET_PRODUCT_ID_FAILURE } from "../../constants/constants";
+import { GET_PRODUCT_ID, GET_PRODUCT_ID_FAILURE } from "../../constants/ActionTypes";
 
 const getProductId = payload => {
   return {

@@ -1,4 +1,4 @@
-const Model = require("../mongoDB/models/Model");
+const Model = require("../mongoDB/Model");
 const { sort_by } = require("./helpers");
 
 const api = {

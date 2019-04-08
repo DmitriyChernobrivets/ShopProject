@@ -32,7 +32,7 @@ class HeaderComponents extends Component {
   render() {
     const { modalIsOpen } = this.state;
     const { user } = this.props.user;
-    const { logout, bucketitems } = this.props;
+    const { logout, bucketitems, categories } = this.props;
     return (
       <header className="header">
         {modalIsOpen && (
@@ -45,7 +45,7 @@ class HeaderComponents extends Component {
         </div>
         <div className="header-left">
           <ul className="menu">
-            {this.props.categories.map(category => (
+            {categories.map(category => (
               <li className="menu-item" key={category}>
                 <Link to={"/category/" + category}>{category}</Link>
               </li>

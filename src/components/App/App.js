@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import HeaderComponents from "../Blocks/Header/Header";
 import Main from "../Blocks/main/main";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
@@ -28,7 +27,7 @@ class App extends Component {
             <Route exact path="/category/:categories" component={Main} />
             <Route exact path="/category/:categories/:id" component={CardInfo} />
             <Route path="/bucket" component={Bucket} />
-            <Route exact path="*" component={Errorpage} />
+            <Route component={Errorpage} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -11,9 +11,19 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 class Main extends Component {
   componentDidMount() {
-    const { currentFilters } = this.props;
-
-    this.props.getfilteredProducts(currentFilters);
+    const { currentFilters, history, getfilteredProducts } = this.props;
+    this.unlisten = history.listen(this.onRouteChange);
+    getfilteredProducts(currentFilters);
+  }
+  onRouteChange = location => {
+    const { currentFilters, getfilteredProducts } = this.props;
+    const category = location.pathname.match(/(Mobile|Notebooks|PCs)/);
+    if (category) {
+      getfilteredProducts(currentFilters);
+    }
+  };
+  componentWillUnmount() {
+    this.unlisten();
   }
   render() {
     const {
@@ -33,7 +43,7 @@ class Main extends Component {
         <Container className="wrapper">
           <Row>
             <Col lg={3}>
-              <Filter />
+              <Filter match={match} history={history} />
             </Col>
             <Col lg={9}>
               <SortMenu />

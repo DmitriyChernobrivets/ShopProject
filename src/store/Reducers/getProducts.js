@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, TURN_ON_PRELOADER, GET_PRODUCTS_FAILURE } from "../../constants/constants";
+import { GET_PRODUCTS, TURN_ON_PRELOADER, GET_PRODUCTS_FAILURE } from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
   products: [],

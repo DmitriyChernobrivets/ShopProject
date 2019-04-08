@@ -1,4 +1,4 @@
-import { GET_PRODUCT_ID, GET_PRODUCT_ID_FAILURE } from "../../constants/constants";
+import { GET_PRODUCT_ID, GET_PRODUCT_ID_FAILURE } from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
   product: null,

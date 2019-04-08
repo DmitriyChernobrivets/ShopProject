@@ -4,7 +4,7 @@ import {
   TURN_ON_PRELOADER,
   SET_FILTERS,
   GET_PRODUCTS_FAILURE
-} from "../../constants/constants";
+} from "../../constants/ActionTypes";
 import { transformState } from "../../helpers/functions";
 
 const setProducts = payload => {

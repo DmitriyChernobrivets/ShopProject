@@ -2,7 +2,7 @@ import {
   GET_FEEDBACK_ITEMS,
   ERROR_FEEDBACK,
   SUCCESS_SENDED_FEEDBACK
-} from "../../constants/constants";
+} from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
   items: [],

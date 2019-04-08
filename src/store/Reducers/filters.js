@@ -1,4 +1,4 @@
-import { SET_FILTERS } from "../../constants/constants";
+import { SET_FILTERS } from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
   title: [],

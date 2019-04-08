@@ -5,7 +5,7 @@ import {
   CREATE_USER_ERROR,
   CREATE_USER_SUCCESS,
   CHANGE_SIGN_TAB
-} from "../../constants/constants";
+} from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
   currentUser: {

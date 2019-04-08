@@ -14,7 +14,6 @@ import "./styles.scss";
 class CardInfo extends Component {
   componentDidMount() {
     const { url } = this.props.match;
-
     this.props.getProductById(url);
   }
 

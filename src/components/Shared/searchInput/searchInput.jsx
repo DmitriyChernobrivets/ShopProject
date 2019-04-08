@@ -19,7 +19,7 @@ class SearchInput extends Component {
 }
 
 SearchInput.propTypes = {
-  path: PropTypes.string.isRequired
+  path: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default SearchInput;

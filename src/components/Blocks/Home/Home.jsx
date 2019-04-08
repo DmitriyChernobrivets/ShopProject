@@ -12,6 +12,7 @@ class Home extends Component {
     const { categories } = this.props;
 
     const { SEARCH } = options;
+
     return (
       <Container>
         <Row>

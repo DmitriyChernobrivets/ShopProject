@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Checkbox from "../../Shared/checkbox/Checkbox";
+import defaultOptions from "../../../service/filters";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
@@ -8,16 +9,20 @@ import "./styles.scss";
 import "react-input-range/lib/css/index.css";
 
 class Filter extends Component {
-  state = {
-    title: [{ checked: false, name: "ThinkPad" }, { checked: false, name: "Lenovo" }],
-    memory: [
-      { checked: false, name: "32" },
-      { checked: false, name: "16" },
-      { checked: false, name: "8" }
-    ],
-    price: { min: 0, max: 150000 }
+  state = defaultOptions[this.props.match.params.categories];
+  componentDidMount() {
+    const { history } = this.props;
+    this.unlisten = history.listen(this.onRouteChange);
+  }
+  onRouteChange = location => {
+    const category = location.pathname.match(/(Mobile|Notebooks|PCs)/);
+    if (category) {
+      this.setState(defaultOptions[category[0]]);
+    }
   };
-
+  componentWillUnmount() {
+    this.unlisten();
+  }
   onChangeAction(idx, key) {
     const { sort } = this.props;
 

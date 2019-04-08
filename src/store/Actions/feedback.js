@@ -3,7 +3,7 @@ import {
   GET_FEEDBACK_ITEMS,
   ERROR_FEEDBACK,
   SUCCESS_SENDED_FEEDBACK
-} from "../../constants/constants";
+} from "../../constants/ActionTypes";
 import { NotificationManager } from "react-notifications";
 import { validateInputs } from "../../helpers/functions";
 
