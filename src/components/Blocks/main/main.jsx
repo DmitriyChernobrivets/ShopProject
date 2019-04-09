@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
-import Card from "../Card/Card";
+import { options } from "../../Shared/Svg/options";
+import Card from "../Card/index";
 import { Col, Row, Container } from "react-bootstrap";
 import Filter from "../Filter/Filter";
 import SortMenu from "../Sort-menu/SortMenu";
 import ReactPaginate from "react-paginate";
 import { Circle2 } from "react-preloaders";
 import PropTypes from "prop-types";
+import SearchInput from "../../Shared/searchInput/searchInput";
 import "./styles.scss";
+
+const { SEARCH } = options;
 class Main extends Component {
   componentDidMount() {
     const { currentFilters, history, getfilteredProducts } = this.props;
@@ -46,7 +50,14 @@ class Main extends Component {
               <Filter match={match} history={history} />
             </Col>
             <Col lg={9}>
-              <SortMenu />
+              <Row className="sort-wrapper">
+                <Col>
+                  <SortMenu />
+                </Col>
+                <Col>
+                  <SearchInput path={SEARCH} />
+                </Col>
+              </Row>
               <Row>
                 {preloader && <Circle2 color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />}
 

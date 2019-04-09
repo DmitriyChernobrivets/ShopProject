@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Row, Container } from "react-bootstrap";
-import SearchInput from "../../Shared/searchInput/searchInput";
-import { options } from "../../Shared/Svg/options";
 import HomeCard from "./HomeCard";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -11,12 +9,9 @@ class Home extends Component {
   render() {
     const { categories } = this.props;
 
-    const { SEARCH } = options;
-
     return (
       <Container>
         <Row>
-          <SearchInput path={SEARCH} />
           {categories.map((card, idx) => (
             <HomeCard key={idx} category={card} />
           ))}

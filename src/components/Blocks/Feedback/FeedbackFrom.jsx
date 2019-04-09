@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import "./styles.scss";
-
 import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
 import FeedbackInput from "../../Shared/feedbackinput/FeedBackInput";
 import { connect } from "react-redux";
 import { getFeedbackItems, sendFeedback } from "../../../store/Actions/feedback";
 import PropTypes from "prop-types";
+import "./styles.scss";
 import "react-notifications/lib/notifications.css";
 
 class FeedbackForm extends Component {

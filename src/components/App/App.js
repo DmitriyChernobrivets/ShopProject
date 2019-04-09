@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import HeaderComponents from "../Blocks/Header/Header";
+import Header from "../Blocks/Header/index";
 import Main from "../Blocks/main/main";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import CardInfo from "../Blocks/CardInfo/CardInfo";
+import CardInfo from "../Blocks/CardInfo/index";
 import Home from "../Blocks/Home/Home";
-import Bucket from "../Blocks/Bucket/Bucket";
+import Bucket from "../Blocks/Bucket/index";
 import Errorpage from "../Blocks/Errorpage/Errorpage";
 import { connect } from "react-redux";
 import { defaultAuthorization } from "../../store/Actions/getUser";
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <HeaderComponents />
+          <Header />
           <NotificationContainer />
           <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
           <Switch>

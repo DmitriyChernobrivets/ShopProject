@@ -12,6 +12,9 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 
 class CardInfo extends Component {
+  state = {
+    isAddedtoBucket: false
+  };
   componentDidMount() {
     const { url } = this.props.match;
     this.props.getProductById(url);
@@ -19,7 +22,7 @@ class CardInfo extends Component {
 
   render() {
     const { product } = this.props.product;
-    const { addToBucket, status } = this.props;
+    const { addToBucket, status, history, bucketItems } = this.props;
     return (
       product && (
         <Container>
@@ -43,7 +46,12 @@ class CardInfo extends Component {
               <div>
                 <h3 className="card-info_garantee">Garantee 12 months</h3>
               </div>
-              <BuyPartial product={product} click={addToBucket} />
+              <BuyPartial
+                product={product}
+                click={addToBucket}
+                history={history}
+                bucketItems={bucketItems}
+              />
             </Col>
           </Row>
           {status === "Guest" ? <AccessNotification /> : <FeeadbackForm id={product._id} />}
@@ -63,7 +71,8 @@ CardInfo.propTypes = {
 const StateToProps = state => {
   return {
     product: state.currentProductInfo,
-    status: state.auth.currentUser.status
+    status: state.auth.currentUser.status,
+    bucketItems: state.bucket.items
   };
 };
 

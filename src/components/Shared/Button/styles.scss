@@ -1,0 +1,32 @@
+.product-card-button {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  color: red;
+  border: 1px solid red;
+  margin-bottom: 10px;
+  &.added {
+    color: #fff;
+    background-color: red;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    background-image: url(../../../images/trash.svg);
+    top: -1px;
+    right: -1px;
+    border-left: 1px solid #fff;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    border-radius: 0 5px 5px 0;
+    width: 41px;
+    height: 38px;
+    background-color: red;
+  }
+  &:hover {
+    background-color: red;
+    color: #fff;
+  }
+}

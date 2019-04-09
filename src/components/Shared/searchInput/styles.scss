@@ -5,15 +5,15 @@
   text-align: center;
   .search-input {
     padding: 10px;
-    width: 97%;
-
+    margin-top: 21px;
+    width: 100%;
     border: 1px solid rgb(202, 201, 201);
   }
   .search-btn {
     position: absolute;
-    right: 17px;
+    right: 0;
     height: inherit;
-    top: 0;
+    bottom: 0;
     border: none;
     height: 40px;
     background-color: #000;

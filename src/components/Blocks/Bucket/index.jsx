@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import BucketItems from "./Buket-items";
+import Items from "./Items";
 import { connect } from "react-redux";
 import { updateBucket } from "../../../store/Actions/bucket";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import BottomNav from "./BottomNav";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
@@ -26,19 +27,13 @@ class Bucket extends Component {
             <TransitionGroup>
               {items.map(item => (
                 <CSSTransition key={item._id} timeout={500} classNames="item">
-                  <BucketItems item={item} />
+                  <Items item={item} />
                 </CSSTransition>
               ))}
             </TransitionGroup>
           </Col>
           <Col>
-            <div className="total_price">
-              Total price: <span>{total} UAH</span>
-            </div>
-            <button className="bucket_buy-btn">BUY</button>
-            <button className="bucket_return-link" onClick={this.goBack}>
-              Go back
-            </button>
+            <BottomNav total={total} click={this.goBack} />
           </Col>
         </Row>
       </Container>

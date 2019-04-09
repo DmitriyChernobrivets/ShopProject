@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import "./styles.scss";
-import { Link } from "react-router-dom";
 import ForSale from "../../Shared/forSale/forSale";
-import RatingStars from "../../Shared/Stars/RatingStars";
 import Details from "../../Shared/Details/Details";
+import ImageContainer from "./ImageContainer";
+import Title from "./Title";
 import { Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { addToBucket } from "../../../store/Actions/bucket";
+import Button from "../../Shared/Button/Button";
 import PropTypes from "prop-types";
+import "./styles.scss";
 class Card extends Component {
   state = {
     isAddedtoBucket: false
@@ -29,36 +30,24 @@ class Card extends Component {
     addToBucket(product);
   };
   render() {
-    const { _id, description, title, forSale, images, price, hot, rating } = this.props.product;
-    const { isAddedtoBucket } = this.state;
+    const { _id, description, forSale } = this.props.product;
+    const { bucketItems, product, addToBucket, history, match } = this.props;
+
     const { categories } = this.props.match.params;
     const link = categories + "/" + _id;
-    const addedBtnStyle = !isAddedtoBucket
-      ? "btn product-card-button"
-      : "btn product-card-button added";
 
     return (
       <Col className="product-card" xs={12} sm={6} lg={4}>
-        {hot && (
-          <div className="hot-price">
-            <span>HOT</span>
-          </div>
-        )}
-        <div className="prdouct-image">
-          <Link to={link}>
-            <img src={images[0]} alt="img" />
-          </Link>
-        </div>
-        <Link to={link} className="product-card-title">
-          <span>{title}</span>
-        </Link>
+        <ImageContainer product={product} match={match} link={link} />
 
-        <RatingStars rating={rating} />
+        <Title product={product} link={link} />
         <ForSale forSale={forSale} />
-
-        <button className={addedBtnStyle} onClick={this.handleBucketAdd}>
-          {!isAddedtoBucket ? <span>{price} UAH</span> : <span>In bucket</span>}
-        </button>
+        <Button
+          product={product}
+          bucketItems={bucketItems}
+          addToBucket={addToBucket}
+          history={history}
+        />
 
         <Details description={description} />
       </Col>

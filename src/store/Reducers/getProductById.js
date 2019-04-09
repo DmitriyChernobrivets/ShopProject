@@ -1,8 +1,13 @@
-import { GET_PRODUCT_ID, GET_PRODUCT_ID_FAILURE } from "../../constants/ActionTypes";
+import {
+  GET_PRODUCT_ID,
+  GET_PRODUCT_ID_FAILURE,
+  PRODUCT_ID_PRELOADER
+} from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
   product: null,
-  error: null
+  error: null,
+  loading: false
 };
 
 const getProductByIdReducer = (state = DEFAULT_STATE, { type, payload }) => {
@@ -11,12 +16,20 @@ const getProductByIdReducer = (state = DEFAULT_STATE, { type, payload }) => {
       return {
         ...state,
         product: { ...payload },
-        error: null
+        error: null,
+        loading: false
       };
     case GET_PRODUCT_ID_FAILURE:
       return {
         ...state,
-        error: payload
+        error: payload,
+        loading: false
+      };
+    case PRODUCT_ID_PRELOADER:
+      return {
+        ...state,
+
+        loading: true
       };
     default:
       return state;

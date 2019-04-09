@@ -70,11 +70,6 @@ Login.propTypes = {
   login: PropTypes.func
 };
 
-// const getState = state => {
-//   return {
-//     user: state.auth.currentUser
-//   };
-// };
 const getDispatcher = dispatch => {
   return {
     login: val => dispatch(login(val))
