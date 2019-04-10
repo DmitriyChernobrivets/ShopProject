@@ -25,7 +25,7 @@ class Login extends Component {
     signInFlow: "popup",
     signInOptions: [firebase.auth.FacebookAuthProvider.PROVIDER_ID],
     callbacks: {
-      signInSuccessWithAuthResult: () => true
+      signInSuccess: () => true
     }
   };
   handleInput = e => {
