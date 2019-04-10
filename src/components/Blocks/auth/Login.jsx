@@ -4,20 +4,41 @@ import Button from "@material-ui/core/Button";
 import { validateInputs } from "../../../helpers/functions";
 import { connect } from "react-redux";
 import { login } from "../../../store/Actions/getUser";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
 import PropTypes from "prop-types";
+import "./styles.scss";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyBNEZMSCgfoizQ9tAL0SMNDk62HsE9ROJo",
+  authDomain: "shop-project-4ccad.firebaseapp.com"
+});
 class Login extends Component {
   state = {
     email: "",
     password: "",
-    error: null
+    error: null,
+    isSignedIn: false
   };
-
+  uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [firebase.auth.FacebookAuthProvider.PROVIDER_ID],
+    callbacks: {
+      signInSuccessWithAuthResult: () => true
+    }
+  };
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value,
       error: null
     });
   };
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.setState({ isSignedIn: !!user });
+    });
+  }
   onError = () => {
     this.setState({ error: "Wrond inputs" });
   };
@@ -37,6 +58,7 @@ class Login extends Component {
 
     return (
       <form className="signin-form">
+        <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
         <TextField
           error={error ? true : false}
           required

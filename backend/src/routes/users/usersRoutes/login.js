@@ -30,7 +30,7 @@ const auth = (req, res) => {
     };
 
     const token = generateToken(payload);
-    console.log(token);
+
     res.json({
       status: "User",
       user,

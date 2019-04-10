@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../Blocks/Header/index";
-import Main from "../Blocks/main/main";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import Main from "../Blocks/main/index";
+import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import CardInfo from "../Blocks/CardInfo/index";
 import Home from "../Blocks/Home/Home";
 import Bucket from "../Blocks/Bucket/index";
@@ -27,7 +27,7 @@ class App extends Component {
             <Route exact path="/category/:categories" component={Main} />
             <Route exact path="/category/:categories/:id" component={CardInfo} />
             <Route path="/bucket" component={Bucket} />
-            <Route component={Errorpage} />
+            <Route path="*" component={Errorpage} />
           </Switch>
         </div>
       </BrowserRouter>
