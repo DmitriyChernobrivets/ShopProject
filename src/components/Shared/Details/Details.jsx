@@ -1,40 +1,47 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 import "./styles.scss";
 
 class Details extends Component {
   state = {
-    seeMore: false,
+    isOpen: false,
     disabled: false
   };
   componentDidMount() {
     const { disabled } = this.props;
     if (disabled) {
-      this.setState({ seeMore: true, disabled: true });
+      this.setState({ isOpen: true, disabled: true });
     }
   }
-  seeMore = () => {
+  toogleDetails = () => {
     this.setState(prevState => ({
-      seeMore: !prevState.seeMore
+      isOpen: !prevState.isOpen
     }));
   };
   render() {
-    const { seeMore, disabled } = this.state;
+    const { isOpen, disabled } = this.state;
     const { description } = this.props;
+    const isActive = !isOpen
+      ? "far fa-arrow-alt-circle-down"
+      : "far fa-arrow-alt-circle-down details-acive";
     return (
       <div className="product-description">
-        {seeMore
-          ? Object.keys(description).map(name => (
-              <p className="product-description_text" key={name}>
+        {isOpen ? (
+          <ul className="items-container">
+            {Object.keys(description).map(name => (
+              <li className="product-description_text" key={name}>
                 <span>{name} : </span>
                 {description[name]}
-              </p>
-            ))
-          : null}
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {!disabled && (
-          <span className="see-more" href="#" onClick={this.seeMore}>
-            See Details
-          </span>
+          <div className="see-more" onClick={this.toogleDetails}>
+            <i class={isActive} />
+            <span>Details</span>
+          </div>
         )}
       </div>
     );
