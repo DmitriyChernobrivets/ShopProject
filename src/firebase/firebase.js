@@ -1,9 +1,13 @@
 import firebase from "firebase";
+import config from "./config";
 
 const uiConfig = callback => {
   return {
     signInFlow: "popup",
-    signInOptions: [firebase.auth.FacebookAuthProvider.PROVIDER_ID],
+    signInOptions: [
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID
+    ],
     callbacks: {
       signInSuccessWithAuthResult: callback
     }
@@ -11,15 +15,8 @@ const uiConfig = callback => {
 };
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBNEZMSCgfoizQ9tAL0SMNDk62HsE9ROJo",
-  authDomain: "shop-project-4ccad.firebaseapp.com"
+  apiKey: config.apiKey,
+  authDomain: config.authDomain
 });
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     console.log(user);
-//   } else {
-
-//   }
-// });
 
 export { uiConfig, firebase };

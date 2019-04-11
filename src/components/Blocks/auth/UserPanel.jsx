@@ -35,7 +35,7 @@ class UserPanel extends Component {
     const isdpMenuOpen = dropDown ? "dp-menu dp-open" : "dp-menu";
     return (
       <div className="user-garage">
-        <div className="welcome">Welcome, dear</div>
+        <div className="welcome">Welcome,{user.firstName}</div>
         <div className="user-img" onClick={this.openUserMenu}>
           <span>
             {user.firstName[0].toUpperCase()}.{user.lastName[0].toUpperCase()}

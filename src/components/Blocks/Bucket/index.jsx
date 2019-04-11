@@ -25,11 +25,15 @@ class Bucket extends Component {
         <Row>
           <Col lg={12}>
             <TransitionGroup>
-              {items.map(item => (
-                <CSSTransition key={item._id} timeout={500} classNames="item">
-                  <Items item={item} />
-                </CSSTransition>
-              ))}
+              {items.length !== 0 ? (
+                items.map(item => (
+                  <CSSTransition key={item._id} timeout={500} classNames="item">
+                    <Items item={item} />
+                  </CSSTransition>
+                ))
+              ) : (
+                <h3 className="empty-text">Bucket is Empty :((</h3>
+              )}
             </TransitionGroup>
           </Col>
           <Col>

@@ -10,7 +10,6 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const mongoose = require("mongoose");
 const { mongoURI, SECRET } = require("../config/config");
 const checktoken = require("../services/checktoken");
-const PassportConfig = require("../services/passport");
 const cors = require("cors");
 
 const server = port => {

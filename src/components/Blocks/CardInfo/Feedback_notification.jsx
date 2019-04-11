@@ -8,7 +8,7 @@ const AccessNotification = () => {
       <Col lg={12}>
         <div className="access-notification">
           <i className="fas fa-exclamation-triangle" />
-          <h4>Feedback - only for registered users!!</h4>
+          <h6>Feedback - only for registered users!!</h6>
         </div>
       </Col>
     </Row>

@@ -1,6 +1,8 @@
-@import "../../../scss/variables.scss";
-
 .bucket {
+  .empty-text {
+    color: red;
+    margin-bottom: 30px;
+  }
   &_image-container {
     max-height: 140px;
     width: 100px;
@@ -69,7 +71,7 @@
     color: red;
   }
   &_buy-btn {
-    background-color: $bgc-r;
+    background-color: red;
     border: none;
     cursor: pointer;
     padding: 10px 40px;

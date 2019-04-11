@@ -22,9 +22,14 @@ const Logout = payload => {
   };
 };
 const FacebookLoginSuccess = payload => {
+  const newUser = {
+    firstName: payload.user.displayName,
+    lastName: payload.user.displayName,
+    email: payload.user.email
+  };
   return {
     type: "FACEBOOK_LOGIN_SUCCESS",
-    payload
+    payload: newUser
   };
 };
 const LoginFailure = payload => {
@@ -51,6 +56,7 @@ const changeSignTab = payload => {
 
 const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("firebaseui::rememberedAccounts");
 
   return dispatch =>
     api

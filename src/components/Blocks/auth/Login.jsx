@@ -16,17 +16,10 @@ class Login extends Component {
     password: "",
     error: null
   };
-  onSuccess = res => {
+  FacebookCallback = response => {
     const { FacebookLoginSuccess, history } = this.props;
 
-    const newUser = {
-      firstName: res.additionalUserInfo.profile.first_name,
-      lastName: res.additionalUserInfo.profile.last_name,
-      email: res.additionalUserInfo.profile.email,
-      _id: res.additionalUserInfo.profile.id
-    };
-
-    FacebookLoginSuccess(newUser);
+    FacebookLoginSuccess(response);
 
     history.push("/");
   };
@@ -57,7 +50,10 @@ class Login extends Component {
 
     return (
       <form className="signin-form">
-        <StyledFirebaseAuth uiConfig={uiConfig(this.onSuccess)} firebaseAuth={firebase.auth()} />
+        <StyledFirebaseAuth
+          uiConfig={uiConfig(this.FacebookCallback)}
+          firebaseAuth={firebase.auth()}
+        />
 
         <TextField
           error={error ? true : false}
