@@ -21,6 +21,12 @@ const Logout = payload => {
     payload
   };
 };
+const FacebookLoginSuccess = payload => {
+  return {
+    type: "FACEBOOK_LOGIN_SUCCESS",
+    payload
+  };
+};
 const LoginFailure = payload => {
   return {
     type: LOGIN_FAILURE,
@@ -105,4 +111,4 @@ const login = userData => {
       .catch(err => dispatch(LoginFailure(err.message)));
 };
 
-export { defaultAuthorization, login, createUser, changeSignTab, logout };
+export { defaultAuthorization, login, createUser, changeSignTab, logout, FacebookLoginSuccess };

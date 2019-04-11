@@ -31,6 +31,15 @@ const userReducer = (state = DEFAULT_STATE, { payload, type }) => {
           error: null
         }
       };
+    case "FACEBOOK_LOGIN_SUCCESS":
+      return {
+        ...state,
+        currentUser: {
+          status: "User",
+          user: payload,
+          error: null
+        }
+      };
     case CREATE_USER_ERROR:
       return { ...state, Signnup: payload };
     case LOGOUT:

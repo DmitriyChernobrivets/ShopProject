@@ -28,13 +28,13 @@ class Header extends Component {
 
   render() {
     const { modalIsOpen } = this.state;
-    const { user } = this.props;
-    const { logout, bucketitems, categories } = this.props;
+    const { logout, bucketitems, categories, user, history } = this.props;
+
     return (
       <header className="header">
         {modalIsOpen && (
           <Modal closeModal={this.closeModal} isLogedin={user}>
-            <SignIn />
+            <SignIn history={history} />
           </Modal>
         )}
         <div className="left-panel">

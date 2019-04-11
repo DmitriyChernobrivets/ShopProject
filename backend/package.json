@@ -19,6 +19,7 @@
   "homepage": "https://github.com/DmitriyChernobrivets/food-delivery-server-goit#readme",
   "dependencies": {
     "bcrypt": "^3.0.4",
+    "cors": "^2.8.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-formidable": "^1.2.0",
@@ -33,6 +34,7 @@
     "multer-gridfs-storage": "^3.2.3",
     "multiparty": "^4.2.1",
     "passport": "^0.4.0",
+    "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",
     "uuid": "^3.3.2"
   },

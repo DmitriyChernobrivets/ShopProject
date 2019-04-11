@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../Blocks/Header/index";
 import Main from "../Blocks/main/index";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import CardInfo from "../Blocks/CardInfo/index";
 import Home from "../Blocks/Home/Home";
 import Bucket from "../Blocks/Bucket/index";
@@ -15,11 +15,13 @@ class App extends Component {
   componentDidMount() {
     this.props.getDefaultRights();
   }
+
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header />
+          {/* <Header /> */}
+          <Route component={Header} />
           <NotificationContainer />
           <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
           <Switch>

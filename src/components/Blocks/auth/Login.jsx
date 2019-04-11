@@ -3,42 +3,41 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { validateInputs } from "../../../helpers/functions";
 import { connect } from "react-redux";
-import { login } from "../../../store/Actions/getUser";
-import firebase from "firebase";
+import { login, FacebookLoginSuccess } from "../../../store/Actions/getUser";
+import { firebase, uiConfig } from "../../../firebase/firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import PropTypes from "prop-types";
 import "./styles.scss";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyBNEZMSCgfoizQ9tAL0SMNDk62HsE9ROJo",
-  authDomain: "shop-project-4ccad.firebaseapp.com"
-});
 class Login extends Component {
   state = {
     email: "",
     password: "",
-    error: null,
-    isSignedIn: false
+    error: null
   };
-  uiConfig = {
-    signInFlow: "popup",
-    signInOptions: [firebase.auth.FacebookAuthProvider.PROVIDER_ID],
-    callbacks: {
-      signInSuccess: () => true
-    }
+  onSuccess = res => {
+    const { FacebookLoginSuccess, history } = this.props;
+
+    const newUser = {
+      firstName: res.additionalUserInfo.profile.first_name,
+      lastName: res.additionalUserInfo.profile.last_name,
+      email: res.additionalUserInfo.profile.email,
+      _id: res.additionalUserInfo.profile.id
+    };
+
+    FacebookLoginSuccess(newUser);
+
+    history.push("/");
   };
+
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value,
       error: null
     });
   };
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.setState({ isSignedIn: !!user });
-    });
-  }
+
   onError = () => {
     this.setState({ error: "Wrond inputs" });
   };
@@ -58,7 +57,8 @@ class Login extends Component {
 
     return (
       <form className="signin-form">
-        <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+        <StyledFirebaseAuth uiConfig={uiConfig(this.onSuccess)} firebaseAuth={firebase.auth()} />
+
         <TextField
           error={error ? true : false}
           required
@@ -94,7 +94,8 @@ Login.propTypes = {
 
 const getDispatcher = dispatch => {
   return {
-    login: val => dispatch(login(val))
+    login: val => dispatch(login(val)),
+    FacebookLoginSuccess: val => dispatch(FacebookLoginSuccess(val))
   };
 };
 export default connect(

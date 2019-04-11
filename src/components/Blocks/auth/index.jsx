@@ -21,14 +21,14 @@ class SignIn extends Component {
     changeTab(val);
   };
   render() {
-    const { currentTab } = this.props;
+    const { currentTab, history } = this.props;
 
     return (
       <Fragment>
         <div className="signin-container">
           <Tabs currentTab={currentTab} click={this.changeTab} />
 
-          {currentTab === "Login" ? <Login /> : <Registration />}
+          {currentTab === "Login" ? <Login history={history} /> : <Registration />}
         </div>
       </Fragment>
     );
