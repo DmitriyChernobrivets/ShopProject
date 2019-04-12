@@ -9,26 +9,24 @@ import "./styles.scss";
 import "react-input-range/lib/css/index.css";
 
 class Filter extends Component {
-  state = defaultOptions[this.props.match.params.categories];
-  componentDidMount() {
-    const { history } = this.props;
-    this.unlisten = history.listen(this.onRouteChange);
+  state = {};
+  componentWillMount() {
+    this.setState(defaultOptions[this.props.match.params.categories]);
   }
-  onRouteChange = location => {
-    const category = location.pathname.match(/(Mobile|Notebooks|PCs)/);
-    if (category) {
+  componentWillUpdate(nextProps, nextState) {
+    const category = nextProps.location.pathname.match(/(Mobile|Notebooks|PCs)/);
+    if (nextProps.location.pathname !== this.props.location.pathname) {
       this.setState(defaultOptions[category[0]]);
-    }
-  };
+      return true;
+    } else return false;
+  }
   resetFilters = () => {
     const { sort, getFilteredProducts } = this.props;
     this.setState(defaultOptions[this.props.match.params.categories], () =>
       getFilteredProducts({ ...this.state, sort })
     );
   };
-  componentWillUnmount() {
-    this.unlisten();
-  }
+
   onChangeAction(idx, key) {
     const { sort, getFilteredProducts } = this.props;
 

@@ -16,23 +16,21 @@ import "./styles.scss";
 const { SEARCH } = options;
 class Main extends Component {
   componentDidMount() {
-    const { currentFilters, history, getfilteredProducts } = this.props;
-    this.unlisten = history.listen(this.onRouteChange);
+    const { currentFilters, getfilteredProducts } = this.props;
+
     getfilteredProducts(currentFilters);
   }
-  onRouteChange = location => {
+
+  componentWillUpdate(nextProps, nextState) {
     const { currentFilters, getfilteredProducts } = this.props;
-    const category = location.pathname.match(/(Mobile|Notebooks|PCs)/);
-    if (category) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
       getfilteredProducts(currentFilters);
+      return true;
+    } else {
+      return false;
     }
-  };
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.history.location.pathname !== this.props.history.location.pathname;
-  // }
-  componentWillUnmount() {
-    this.unlisten();
   }
+
   onPageChange = ({ selected }) => {
     const { currentFilters, getfilteredProducts } = this.props;
     const obj = { ...currentFilters, currentPage: selected };
@@ -46,6 +44,7 @@ class Main extends Component {
       totalPageCount,
       currentFilters,
       bucketItems,
+      location,
       history,
       getProductBySearchInput
     } = this.props;
@@ -57,7 +56,7 @@ class Main extends Component {
         <Container className="wrapper">
           <Row>
             <Col lg={3}>
-              <Filter match={match} history={history} />
+              <Filter match={match} location={location} />
             </Col>
             <Col lg={9}>
               <Row className="sort-wrapper">
