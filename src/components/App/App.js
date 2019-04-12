@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Header from "../Blocks/Header/index";
 import Main from "../Blocks/main/index";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { defaultAuthorization } from "../../store/Actions/getUser";
 import { NotificationContainer } from "react-notifications";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+import { Circle2 as Preloader } from "react-preloaders";
 
 class App extends Component {
   componentDidMount() {
@@ -17,13 +18,17 @@ class App extends Component {
   }
 
   render() {
+    const { preloaderAll, preloaderID } = this.props;
     return (
       <BrowserRouter>
-        <div className="App">
-          {/* <Header /> */}
-          <Route component={Header} />
+        <Fragment>
+          <Header />
+
           <NotificationContainer />
           <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
+          {(preloaderAll || preloaderID) && (
+            <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />
+          )}
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/category/:categories" component={Main} />
@@ -31,11 +36,17 @@ class App extends Component {
             <Route path="/bucket" component={Bucket} />
             <Route path="*" component={NotFounded} />
           </Switch>
-        </div>
+        </Fragment>
       </BrowserRouter>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    preloaderAll: state.allProducts.preloader,
+    preloaderID: state.currentProductInfo.loading
+  };
+};
 
 const getDispatcher = dispatch => {
   return {
@@ -44,6 +55,6 @@ const getDispatcher = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   getDispatcher
 )(App);

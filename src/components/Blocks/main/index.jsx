@@ -30,7 +30,7 @@ class Main extends Component {
       return false;
     }
   }
-
+  componentWillUnmount() {}
   onPageChange = ({ selected }) => {
     const { currentFilters, getfilteredProducts } = this.props;
     const obj = { ...currentFilters, currentPage: selected };
@@ -48,7 +48,7 @@ class Main extends Component {
       history,
       getProductBySearchInput
     } = this.props;
-    const { products, preloader } = allproducts;
+    const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
 
     return (
@@ -72,7 +72,6 @@ class Main extends Component {
                 </Col>
               </Row>
               <Row>
-                {preloader && <Circle2 color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />}
                 {products.length === 0 && <ErrorComponent title="Not founded" />}
                 {products.map(prod => (
                   <Card

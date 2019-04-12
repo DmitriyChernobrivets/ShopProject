@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { addToBucket } from "../../../store/Actions/bucket";
 import Button from "../../Shared/Button/Button";
 import PropTypes from "prop-types";
+
 import "./styles.scss";
 class Card extends Component {
   state = {
