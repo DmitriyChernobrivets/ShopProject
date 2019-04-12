@@ -39,7 +39,7 @@ class Details extends Component {
         ) : null}
         {!disabled && (
           <div className="see-more" onClick={this.toogleDetails}>
-            <i class={isActive} />
+            <i className={isActive} />
             <span>Details</span>
           </div>
         )}

@@ -20,11 +20,17 @@ class Filter extends Component {
       this.setState(defaultOptions[category[0]]);
     }
   };
+  resetFilters = () => {
+    const { sort, getFilteredProducts } = this.props;
+    this.setState(defaultOptions[this.props.match.params.categories], () =>
+      getFilteredProducts({ ...this.state, sort })
+    );
+  };
   componentWillUnmount() {
     this.unlisten();
   }
   onChangeAction(idx, key) {
-    const { sort } = this.props;
+    const { sort, getFilteredProducts } = this.props;
 
     this.setState(
       prevState => {
@@ -35,7 +41,7 @@ class Filter extends Component {
           [key]: [...newData]
         };
       },
-      () => this.props.getFilteredProducts({ ...this.state, sort })
+      () => getFilteredProducts({ ...this.state, sort })
     );
   }
   onRangeChange = price =>
@@ -64,6 +70,7 @@ class Filter extends Component {
             )}
           </div>
         ))}
+        <button onClick={this.resetFilters}>reset filters</button>
       </div>
     );
   }

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getFilteredProducts } from "../../../store/Actions/getProducts";
+import { getFilteredProducts, getProductBySearchInput } from "../../../store/Actions/getProducts";
 import { options } from "../../Shared/Svg/options";
 import Card from "../Card/index";
 import { Col, Row, Container } from "react-bootstrap";
 import Filter from "../Filter/Filter";
+import ErrorComponent from "../../Shared/Errorpage/ErrorComponent";
 import SortMenu from "../Sort-menu/SortMenu";
 import ReactPaginate from "react-paginate";
 import { Circle2 } from "react-preloaders";
@@ -26,18 +27,27 @@ class Main extends Component {
       getfilteredProducts(currentFilters);
     }
   };
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.history.location.pathname !== this.props.history.location.pathname;
+  // }
   componentWillUnmount() {
     this.unlisten();
   }
+  onPageChange = ({ selected }) => {
+    const { currentFilters, getfilteredProducts } = this.props;
+    const obj = { ...currentFilters, currentPage: selected };
+
+    getfilteredProducts(obj);
+  };
   render() {
     const {
       allproducts,
       match,
       totalPageCount,
       currentFilters,
-      getfilteredProducts,
       bucketItems,
-      history
+      history,
+      getProductBySearchInput
     } = this.props;
     const { products, preloader } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
@@ -55,12 +65,16 @@ class Main extends Component {
                   <SortMenu />
                 </Col>
                 <Col>
-                  <SearchInput path={SEARCH} />
+                  <SearchInput
+                    path={SEARCH}
+                    getProductBySearchInput={getProductBySearchInput}
+                    sort={currentFilters.sort}
+                  />
                 </Col>
               </Row>
               <Row>
                 {preloader && <Circle2 color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />}
-
+                {products.length === 0 && <ErrorComponent title="Not founded" />}
                 {products.map(prod => (
                   <Card
                     product={prod}
@@ -71,17 +85,15 @@ class Main extends Component {
                   />
                 ))}
               </Row>
-              <ReactPaginate
-                containerClassName="pagination"
-                activeClassName="pagination_active"
-                activeLinkClassName="pagination_active-link"
-                pageCount={paginationCount}
-                onPageChange={({ selected }) => {
-                  const obj = { ...currentFilters, currentPage: selected };
-
-                  getfilteredProducts(obj);
-                }}
-              />
+              {products.length !== 0 && (
+                <ReactPaginate
+                  containerClassName="pagination"
+                  activeClassName="pagination_active"
+                  activeLinkClassName="pagination_active-link"
+                  pageCount={paginationCount}
+                  onPageChange={this.onPageChange}
+                />
+              )}
             </Col>
           </Row>
         </Container>
@@ -109,7 +121,8 @@ const mapStateToProps = state => {
 
 const mapDeispathToProps = dispatch => {
   return {
-    getfilteredProducts: val => dispatch(getFilteredProducts(val))
+    getfilteredProducts: val => dispatch(getFilteredProducts(val)),
+    getProductBySearchInput: val => dispatch(getProductBySearchInput(val))
   };
 };
 

@@ -4,7 +4,8 @@ import {
   LOGIN_FAILURE,
   CREATE_USER_ERROR,
   CREATE_USER_SUCCESS,
-  CHANGE_SIGN_TAB
+  CHANGE_SIGN_TAB,
+  SOCIALS_LOGIN_SUCCESS
 } from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
@@ -31,7 +32,7 @@ const userReducer = (state = DEFAULT_STATE, { payload, type }) => {
           error: null
         }
       };
-    case "FACEBOOK_LOGIN_SUCCESS":
+    case SOCIALS_LOGIN_SUCCESS:
       return {
         ...state,
         currentUser: {

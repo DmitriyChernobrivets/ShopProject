@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { validateInputs } from "../../../helpers/functions";
 import { connect } from "react-redux";
-import { login, FacebookLoginSuccess } from "../../../store/Actions/getUser";
+import { login, SocialsLoginSuccess } from "../../../store/Actions/getUser";
 import { firebase, uiConfig } from "../../../firebase/firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
@@ -17,9 +17,9 @@ class Login extends Component {
     error: null
   };
   FacebookCallback = response => {
-    const { FacebookLoginSuccess, history } = this.props;
+    const { SocialsLoginSuccess, history } = this.props;
 
-    FacebookLoginSuccess(response);
+    SocialsLoginSuccess(response);
 
     history.push("/");
   };
@@ -91,7 +91,7 @@ Login.propTypes = {
 const getDispatcher = dispatch => {
   return {
     login: val => dispatch(login(val)),
-    FacebookLoginSuccess: val => dispatch(FacebookLoginSuccess(val))
+    SocialsLoginSuccess: val => dispatch(SocialsLoginSuccess(val))
   };
 };
 export default connect(

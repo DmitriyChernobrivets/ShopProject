@@ -5,7 +5,8 @@ import {
   LOGIN_FAILURE,
   CREATE_USER_ERROR,
   CREATE_USER_SUCCESS,
-  CHANGE_SIGN_TAB
+  CHANGE_SIGN_TAB,
+  SOCIALS_LOGIN_SUCCESS
 } from "../../constants/ActionTypes";
 import { NotificationManager } from "react-notifications";
 
@@ -21,14 +22,14 @@ const Logout = payload => {
     payload
   };
 };
-const FacebookLoginSuccess = payload => {
+const SocialsLoginSuccess = payload => {
   const newUser = {
-    firstName: payload.user.displayName,
-    lastName: payload.user.displayName,
-    email: payload.user.email
+    firstName: payload.displayName || payload.user.displayName,
+    lastName: payload.displayName || payload.user.displayName,
+    email: payload.email || payload.user.email
   };
   return {
-    type: "FACEBOOK_LOGIN_SUCCESS",
+    type: SOCIALS_LOGIN_SUCCESS,
     payload: newUser
   };
 };
@@ -69,15 +70,21 @@ const logout = () => {
 };
 
 const defaultAuthorization = () => {
-  return dispatch =>
-    api
+  const isSocial = localStorage.getItem("firebaseui::rememberedAccounts");
+  const user = JSON.parse(isSocial);
+  return dispatch => {
+    return api
       .defaultAuth()
       .then(({ data }) => {
-        dispatch(Login(data));
-
+        if (isSocial) {
+          dispatch(SocialsLoginSuccess(user[0]));
+        } else {
+          dispatch(Login(data));
+        }
         localStorage.setItem("token", data.token);
       })
       .catch(err => dispatch(LoginFailure(err.message)));
+  };
 };
 
 const createUser = userData => {
@@ -117,4 +124,4 @@ const login = userData => {
       .catch(err => dispatch(LoginFailure(err.message)));
 };
 
-export { defaultAuthorization, login, createUser, changeSignTab, logout, FacebookLoginSuccess };
+export { defaultAuthorization, login, createUser, changeSignTab, logout, SocialsLoginSuccess };

@@ -4,7 +4,7 @@ const { sort_by } = require("./helpers");
 const api = {
   getProductByID: (collection, id) => Model[collection].findById(id),
 
-  getProducts: async (collection, queryObj, sort, page = 0, limit = 6) => {
+  getProducts: async (collection, queryObj, sort = "", page = 0, limit = 6) => {
     const sortValue = sort_by(sort);
 
     const items = await Model[collection]
@@ -14,6 +14,12 @@ const api = {
       .sort(sortValue);
 
     const count = await Model[collection].find(queryObj).count();
+    return { product: items, totalCount: count };
+  },
+  SearchProducts: async (collection, title, sort) => {
+    const sortValue = sort_by(sort);
+    const items = await Model[collection].find({ title }).sort(sortValue);
+    const count = await Model[collection].find({ title }).count();
     return { product: items, totalCount: count };
   },
 

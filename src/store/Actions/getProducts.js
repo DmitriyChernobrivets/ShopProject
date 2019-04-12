@@ -3,7 +3,8 @@ import {
   GET_PRODUCTS,
   TURN_ON_PRELOADER,
   SET_FILTERS,
-  GET_PRODUCTS_FAILURE
+  GET_PRODUCTS_FAILURE,
+  RESET_FILTERS
 } from "../../constants/ActionTypes";
 import { transformState } from "../../helpers/functions";
 
@@ -31,7 +32,27 @@ const onError = payload => {
   };
 };
 
-export const getFilteredProducts = data => {
+const getProductBySearchInput = data => {
+  const SearchQuery = { title: data.value, sort: data.sort };
+  const url = window.location.pathname;
+  return dispatch => {
+    dispatch(preLoader());
+    api
+      .Search(url, SearchQuery)
+      .then(({ data }) => {
+        const { product, totalCount } = data;
+
+        if (data.Error) {
+          dispatch(onError(data.Error));
+        } else {
+          dispatch(setCurrentFilters({ totalPageCount: totalCount }));
+          dispatch(setProducts(product));
+        }
+      })
+      .catch(err => dispatch(onError(err.message)));
+  };
+};
+const getFilteredProducts = data => {
   const currentfilters = transformState(data);
 
   const url = window.location.pathname;
@@ -53,3 +74,5 @@ export const getFilteredProducts = data => {
       .catch(err => dispatch(onError(err.message)));
   };
 };
+
+export { getFilteredProducts, getProductBySearchInput };

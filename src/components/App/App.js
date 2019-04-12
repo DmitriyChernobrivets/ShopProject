@@ -5,7 +5,7 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import CardInfo from "../Blocks/CardInfo/index";
 import Home from "../Blocks/Home/Home";
 import Bucket from "../Blocks/Bucket/index";
-import Errorpage from "../Blocks/Errorpage/Errorpage";
+import NotFounded from "../Shared/Errorpage/NotFounded";
 import { connect } from "react-redux";
 import { defaultAuthorization } from "../../store/Actions/getUser";
 import { NotificationContainer } from "react-notifications";
@@ -29,7 +29,7 @@ class App extends Component {
             <Route exact path="/category/:categories" component={Main} />
             <Route exact path="/category/:categories/:id" component={CardInfo} />
             <Route path="/bucket" component={Bucket} />
-            <Route path="*" component={Errorpage} />
+            <Route path="*" component={NotFounded} />
           </Switch>
         </div>
       </BrowserRouter>

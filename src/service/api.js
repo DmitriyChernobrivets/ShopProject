@@ -19,6 +19,7 @@ const api = {
 
   getProducts: (url, payload) => site.post(url, payload),
   getProductById: url => site.get(url),
+  Search: (url, payload) => site.post(`${url}/search`, payload),
 
   getFeedbackItems: id => site.get(`/feedback?id=${id}`),
   sendFeedback: payload => site.post("/feedback", payload)
