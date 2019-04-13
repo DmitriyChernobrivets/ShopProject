@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getFilteredProducts, getProductBySearchInput } from "../../../store/Actions/getProducts";
+import {
+  getFilteredProducts,
+  getProductBySearchInput,
+  resetFilters,
+  resetStore
+} from "../../../store/Actions/getProducts";
 import { options } from "../../Shared/Svg/options";
 import Card from "../Card/index";
 import { Col, Row, Container } from "react-bootstrap";
@@ -8,7 +13,6 @@ import Filter from "../Filter/Filter";
 import ErrorComponent from "../../Shared/Errorpage/ErrorComponent";
 import SortMenu from "../Sort-menu/SortMenu";
 import ReactPaginate from "react-paginate";
-import { Circle2 } from "react-preloaders";
 import PropTypes from "prop-types";
 import SearchInput from "../../Shared/searchInput/searchInput";
 import "./styles.scss";
@@ -16,8 +20,8 @@ import "./styles.scss";
 const { SEARCH } = options;
 class Main extends Component {
   componentDidMount() {
-    const { currentFilters, getfilteredProducts } = this.props;
-
+    const { currentFilters, getfilteredProducts, resetStore } = this.props;
+    resetStore();
     getfilteredProducts(currentFilters);
   }
 
@@ -30,7 +34,10 @@ class Main extends Component {
       return false;
     }
   }
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    const { resetFilters } = this.props;
+    resetFilters();
+  }
   onPageChange = ({ selected }) => {
     const { currentFilters, getfilteredProducts } = this.props;
     const obj = { ...currentFilters, currentPage: selected };
@@ -50,7 +57,7 @@ class Main extends Component {
     } = this.props;
     const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
-
+    const { error } = allproducts;
     return (
       <main>
         <Container className="wrapper">
@@ -72,7 +79,7 @@ class Main extends Component {
                 </Col>
               </Row>
               <Row>
-                {products.length === 0 && <ErrorComponent title="Not founded" />}
+                {error && <ErrorComponent title={error} />}
                 {products.map(prod => (
                   <Card
                     product={prod}
@@ -120,7 +127,9 @@ const mapStateToProps = state => {
 const mapDeispathToProps = dispatch => {
   return {
     getfilteredProducts: val => dispatch(getFilteredProducts(val)),
-    getProductBySearchInput: val => dispatch(getProductBySearchInput(val))
+    getProductBySearchInput: val => dispatch(getProductBySearchInput(val)),
+    resetFilters: () => dispatch(resetFilters()),
+    resetStore: () => dispatch(resetStore())
   };
 };
 

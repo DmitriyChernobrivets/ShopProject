@@ -47,7 +47,7 @@ const sendFeedback = payload => {
   return dispatch => {
     api
       .sendFeedback(payload)
-      .then(() => dispatch(onSuccess()) && NotificationManager.success("FEEDBACK SENDED, Yahoo!"))
+      .then(() => dispatch(onSuccess()) || NotificationManager.success("FEEDBACK SENDED, Yahoo!"))
       .catch(
         err =>
           dispatch(onError(err.message)) &&

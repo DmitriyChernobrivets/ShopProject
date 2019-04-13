@@ -17,7 +17,8 @@ class CardInfo extends Component {
   };
   componentDidMount() {
     const { url } = this.props.match;
-    this.props.getProductById(url);
+    const { resetByID, getProductById } = this.props;
+    getProductById(url);
   }
 
   render() {

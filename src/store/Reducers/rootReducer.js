@@ -6,6 +6,7 @@ import bucket from "./bucket";
 import filter from "./filters";
 import user from "./user";
 import feedback from "./feedback";
+import errorHandler from "./errorHandler";
 
 const rootReducer = combineReducers({
   allProducts: getProducts,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   bucket: bucket,
   currentFilters: filter,
   feedback: feedback,
-  categories: categories
+  categories: categories,
+  error: errorHandler
 });
 
 export default rootReducer;

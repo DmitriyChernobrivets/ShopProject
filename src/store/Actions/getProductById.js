@@ -2,13 +2,19 @@ import api from "../../service/api";
 import {
   GET_PRODUCT_ID,
   GET_PRODUCT_ID_FAILURE,
-  PRODUCT_ID_PRELOADER
+  PRODUCT_ID_PRELOADER,
+  RESET_STORE_BY_ID
 } from "../../constants/ActionTypes";
 
 const getProductId = payload => {
   return {
     type: GET_PRODUCT_ID,
     payload: payload
+  };
+};
+const resetByID = () => {
+  return {
+    type: RESET_STORE_BY_ID
   };
 };
 const preLoader = () => {
@@ -25,7 +31,7 @@ const onError = payload => {
 };
 const fetchProductById = url => {
   return dispatch => {
-    dispatch(preLoader());
+    dispatch(resetByID()) || dispatch(preLoader());
     api
       .getProductById(url)
       .then(({ data }) => {

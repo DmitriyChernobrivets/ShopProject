@@ -8,7 +8,6 @@ import "./styles.scss";
 class Home extends Component {
   render() {
     const { categories } = this.props;
-
     return (
       <Container>
         <Row>

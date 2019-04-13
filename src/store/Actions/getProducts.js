@@ -4,7 +4,9 @@ import {
   TURN_ON_PRELOADER,
   SET_FILTERS,
   GET_PRODUCTS_FAILURE,
-  RESET_FILTERS
+  RESET_FILTERS,
+  RESET_STORE_ALL_PRODUCTS,
+  EMPTY_PRODUCT_LIST
 } from "../../constants/ActionTypes";
 import { transformState } from "../../helpers/functions";
 
@@ -19,10 +21,25 @@ const preLoader = () => {
     type: TURN_ON_PRELOADER
   };
 };
+const isEmpty = () => {
+  return {
+    type: EMPTY_PRODUCT_LIST
+  };
+};
 const setCurrentFilters = payload => {
   return {
     type: SET_FILTERS,
     payload
+  };
+};
+const resetFilters = () => {
+  return {
+    type: RESET_FILTERS
+  };
+};
+const resetStore = () => {
+  return {
+    type: RESET_STORE_ALL_PRODUCTS
   };
 };
 const onError = payload => {
@@ -44,6 +61,8 @@ const getProductBySearchInput = data => {
 
         if (data.Error) {
           dispatch(onError(data.Error));
+        } else if (data.product.length === 0) {
+          dispatch(isEmpty());
         } else {
           dispatch(setCurrentFilters({ totalPageCount: totalCount }));
           dispatch(setProducts(product));
@@ -66,6 +85,8 @@ const getFilteredProducts = data => {
 
         if (data.Error) {
           dispatch(onError(data.Error));
+        } else if (data.product.length === 0) {
+          dispatch(isEmpty());
         } else {
           dispatch(setCurrentFilters({ ...currentfilters, totalPageCount: totalCount }));
           dispatch(setProducts(product));
@@ -75,4 +96,4 @@ const getFilteredProducts = data => {
   };
 };
 
-export { getFilteredProducts, getProductBySearchInput };
+export { getFilteredProducts, getProductBySearchInput, resetFilters, resetStore };

@@ -1,4 +1,4 @@
-import { SET_FILTERS } from "../../constants/ActionTypes";
+import { SET_FILTERS, RESET_FILTERS } from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
   title: [],
@@ -10,6 +10,8 @@ const DEFAULT_STATE = {
 
 const filterReducer = (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
+    case RESET_FILTERS:
+      return DEFAULT_STATE;
     case SET_FILTERS:
       return { ...state, ...payload };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import HeaderLeft from "./HeaderLeft";
 import HeaderRight from "./HeaderRight";
 import { connect } from "react-redux";
@@ -37,9 +37,7 @@ class Header extends Component {
             <SignIn history={history} />
           </Modal>
         )}
-        <div className="left-panel">
-          <Link to="/">Just Smile</Link>
-        </div>
+
         <HeaderLeft categories={categories} />
         <HeaderRight
           logout={logout}
@@ -71,7 +69,9 @@ const getDispatcher = dispatch => {
     logout: () => dispatch(logout())
   };
 };
-export default connect(
-  getState,
-  getDispatcher
-)(Header);
+export default withRouter(
+  connect(
+    getState,
+    getDispatcher
+  )(Header)
+);

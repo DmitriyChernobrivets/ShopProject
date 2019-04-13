@@ -1,7 +1,8 @@
 import {
   GET_PRODUCT_ID,
   GET_PRODUCT_ID_FAILURE,
-  PRODUCT_ID_PRELOADER
+  PRODUCT_ID_PRELOADER,
+  RESET_STORE_BY_ID
 } from "../../constants/ActionTypes";
 
 const DEFAULT_STATE = {
@@ -12,6 +13,8 @@ const DEFAULT_STATE = {
 
 const getProductByIdReducer = (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
+    case RESET_STORE_BY_ID:
+      return DEFAULT_STATE;
     case GET_PRODUCT_ID:
       return {
         ...state,
