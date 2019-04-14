@@ -11,16 +11,17 @@ const generateToken = payload => {
 };
 
 const auth = (req, res) => {
-  const token = req.headers["x-access-token"];
+  const token = req.headers["authorization"];
 
   const tokendata = jwt.decode(token);
 
   if (!token || jwt.decode(token).guest) {
     const payload = { guest: "guest" };
-    const token = generateToken(payload);
+    const newtoken = generateToken(payload);
+
     res.send({
       status: "Guest",
-      token: token
+      token: newtoken
     });
   } else {
     const { id } = tokendata;

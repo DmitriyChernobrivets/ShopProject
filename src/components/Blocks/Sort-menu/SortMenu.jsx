@@ -3,6 +3,7 @@ import Select from "react-select";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
+import { Col } from "react-bootstrap";
 import "./styles.scss";
 
 const options = [
@@ -25,16 +26,18 @@ class SortMenu extends Component {
     const { selectedOption } = this.state;
 
     return (
-      <div className="sort-menu">
-        <h5>Sort by price: </h5>
-        <Select
-          className="price-select"
-          onChange={this.onChange}
-          placeholder="Select..."
-          options={options}
-          value={selectedOption}
-        />
-      </div>
+      <Col>
+        <div className="sort-menu">
+          <h5>Sort by price: </h5>
+          <Select
+            className="price-select"
+            onChange={this.onChange}
+            placeholder="Select..."
+            options={options}
+            value={selectedOption}
+          />
+        </div>
+      </Col>
     );
   }
 }

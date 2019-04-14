@@ -14,6 +14,7 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
+
     error: null
   };
   FacebookCallback = response => {

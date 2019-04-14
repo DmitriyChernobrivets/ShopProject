@@ -4,12 +4,15 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { createUser } from "../../../store/Actions/getUser";
 import { validateInputs } from "../../../helpers/functions";
+import { NotificationManager } from "react-notifications";
 import PropTypes from "prop-types";
+import "./styles.scss";
 class Registration extends Component {
   state = {
     firstName: "",
     lastName: "",
     password: "",
+    comparepassword: "",
     email: "",
     error: null
   };
@@ -19,22 +22,29 @@ class Registration extends Component {
       error: null
     });
   };
-  onError = () => {
-    this.setState({ error: "Wrond inputs" });
+  onError = val => {
+    this.setState({ error: val });
   };
   handleSubmit = e => {
     e.preventDefault();
     const { error, ...inputs } = this.state;
     const { createUser } = this.props;
-    if (!validateInputs(inputs)) {
-      createUser(inputs);
+    const ispasswordmatch =
+      this.password.props.defaultValue === this.comparepassword.props.defaultValue;
+    const isinputsEmpty = validateInputs(inputs);
+
+    if (isinputsEmpty) {
+      this.onError("Wrong Inputs");
+      NotificationManager.error("Wrong Inputs");
+    } else if (!ispasswordmatch) {
+      NotificationManager.error("Passwords do not match");
     } else {
-      this.onError();
+      createUser(inputs);
     }
   };
 
   render() {
-    const { firstname, lastname, password, email, error } = this.state;
+    const { firstname, lastname, password, email, error, comparepassword } = this.state;
 
     return (
       <form className="signin-form">
@@ -80,6 +90,23 @@ class Registration extends Component {
           type="password"
           onChange={this.handleInput}
           helperText={error ? "Please fill all fields" : null}
+          ref={val => {
+            this.password = val;
+          }}
+        />
+        <TextField
+          error={error ? true : false}
+          required
+          name="comparepassword"
+          label="Reapeat password"
+          defaultValue={comparepassword}
+          className="name"
+          type="password"
+          onChange={this.handleInput}
+          helperText={error ? "Please fill all fields" : null}
+          ref={val => {
+            this.comparepassword = val;
+          }}
         />
         <Button variant="contained" className="signin-form_btn" onClick={this.handleSubmit}>
           Registration

@@ -23,6 +23,7 @@ const checktoken = (req, res, next) => {
     }
 
     req.decoded = decoded;
+
     next();
   });
 };

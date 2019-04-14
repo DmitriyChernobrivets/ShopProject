@@ -19,6 +19,10 @@ import "./styles.scss";
 
 const { SEARCH } = options;
 class Main extends Component {
+  state = {
+    isFiltersOpen: false,
+    isSortOpen: false
+  };
   componentDidMount() {
     const { currentFilters, getfilteredProducts, resetStore } = this.props;
     resetStore();
@@ -67,16 +71,13 @@ class Main extends Component {
             </Col>
             <Col lg={9}>
               <Row className="sort-wrapper">
-                <Col>
-                  <SortMenu />
-                </Col>
-                <Col>
-                  <SearchInput
-                    path={SEARCH}
-                    getProductBySearchInput={getProductBySearchInput}
-                    sort={currentFilters.sort}
-                  />
-                </Col>
+                <SortMenu />
+
+                <SearchInput
+                  path={SEARCH}
+                  getProductBySearchInput={getProductBySearchInput}
+                  sort={currentFilters.sort}
+                />
               </Row>
               <Row>
                 {error && <ErrorComponent title={error} />}

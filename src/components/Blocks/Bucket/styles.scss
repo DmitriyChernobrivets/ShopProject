@@ -3,6 +3,9 @@
     color: red;
     margin-bottom: 30px;
   }
+  h1 {
+    border-bottom: 1px solid rgb(214, 213, 213);
+  }
   &_image-container {
     max-height: 140px;
     width: 100px;
@@ -85,7 +88,9 @@
   }
 }
 .total_price {
+  border-top: 1px solid rgb(214, 213, 213);
   font-size: 24px;
+  padding-top: 20px;
   margin-bottom: 30px;
   & span {
     font-weight: bold;

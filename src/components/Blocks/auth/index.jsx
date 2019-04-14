@@ -9,13 +9,6 @@ import "./styles.scss";
 import "react-notifications/lib/notifications.css";
 
 class SignIn extends Component {
-  // componentWillReceiveProps(nextProps) {
-  //   const { closeModal } = this.props;
-  //   if (nextProps.user.status === "User") {
-  //     this.el.closeModal();
-  //   }
-  // }
-
   changeTab = val => () => {
     const { changeTab } = this.props;
     changeTab(val);
