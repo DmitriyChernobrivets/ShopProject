@@ -9,6 +9,7 @@ import {
   EMPTY_PRODUCT_LIST
 } from "../../constants/ActionTypes";
 import { transformState } from "../../helpers/functions";
+import { DEFAULT_STATE } from "../Reducers/filters";
 
 const setProducts = payload => {
   return {
@@ -71,7 +72,7 @@ const getProductBySearchInput = data => {
       .catch(err => dispatch(onError(err.message)));
   };
 };
-const getFilteredProducts = data => {
+const getFilteredProducts = (data = DEFAULT_STATE) => {
   const currentfilters = transformState(data);
 
   const url = window.location.pathname;

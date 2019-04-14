@@ -9,7 +9,6 @@ import "./styles.scss";
 import "react-input-range/lib/css/index.css";
 
 class Filter extends Component {
-  state = {};
   componentWillMount() {
     this.setState(defaultOptions[this.props.match.params.categories]);
   }
@@ -21,10 +20,10 @@ class Filter extends Component {
     } else return false;
   }
   resetFilters = () => {
-    const { sort, getFilteredProducts } = this.props;
-    this.setState(defaultOptions[this.props.match.params.categories], () =>
-      getFilteredProducts({ ...this.state, sort })
-    );
+    const { sort, getFilteredProducts, match } = this.props;
+    this.setState(defaultOptions[match.params.categories], () => {
+      getFilteredProducts({ ...this.state, sort });
+    });
   };
 
   onChangeAction(idx, key) {
@@ -68,7 +67,9 @@ class Filter extends Component {
             )}
           </div>
         ))}
-        <button onClick={this.resetFilters}>reset filters</button>
+        <button className="filters_reset" onClick={this.resetFilters}>
+          reset filters
+        </button>
       </div>
     );
   }

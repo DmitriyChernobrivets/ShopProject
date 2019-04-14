@@ -1,6 +1,6 @@
 import { SET_FILTERS, RESET_FILTERS } from "../../constants/ActionTypes";
 
-const DEFAULT_STATE = {
+export const DEFAULT_STATE = {
   title: [],
   memory: [],
   price: { min: 0, max: 150000 },

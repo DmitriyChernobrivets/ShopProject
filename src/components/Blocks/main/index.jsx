@@ -26,9 +26,9 @@ class Main extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const { currentFilters, getfilteredProducts } = this.props;
+    const { getfilteredProducts } = this.props;
     if (nextProps.location.pathname !== this.props.location.pathname) {
-      getfilteredProducts(currentFilters);
+      getfilteredProducts();
       return true;
     } else {
       return false;

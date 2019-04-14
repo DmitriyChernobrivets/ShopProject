@@ -1,4 +1,4 @@
-const { port } = require("./config/config");
+const config = require("./config/config");
 const bootstrap = require("./server/server");
 
-bootstrap(port);
+bootstrap(config.PORT);

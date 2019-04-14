@@ -70,14 +70,7 @@
     font-size: 24px;
     color: red;
   }
-  &_buy-btn {
-    background-color: red;
-    border: none;
-    cursor: pointer;
-    padding: 10px 40px;
-    color: white;
-    margin-bottom: 20px;
-  }
+
   &_return-link {
     font-size: 14px;
     display: block;
@@ -85,6 +78,7 @@
     cursor: pointer;
     border: none;
     width: 70px;
+    text-decoration: underline;
     &:hover {
       color: red;
     }
