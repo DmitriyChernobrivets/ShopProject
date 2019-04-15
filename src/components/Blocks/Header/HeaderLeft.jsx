@@ -4,9 +4,9 @@ import "./styles.scss";
 
 const HeaderLeft = props => {
   const { categories } = props;
-
+  const { hide } = props;
   return (
-    <div className="header-left">
+    <div className={!hide ? "header-left" : "burder-list"}>
       <ul className="menu">
         <li className="menu-item">
           <NavLink exact to="/" activeClassName="active-link">

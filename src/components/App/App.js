@@ -11,7 +11,7 @@ import { defaultAuthorization } from "../../store/Actions/getUser";
 import { NotificationContainer } from "react-notifications";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import { Circle2 as Preloader } from "react-preloaders";
-
+import { slide as Menu } from "react-burger-menu";
 class App extends Component {
   componentDidMount() {
     this.props.getDefaultRights();
@@ -23,7 +23,20 @@ class App extends Component {
       <BrowserRouter>
         <Fragment>
           <Header />
-
+          {/* <Menu>
+            <a id="home" className="menu-item" href="/">
+              Home
+            </a>
+            <a id="about" className="menu-item" href="/about">
+              About
+            </a>
+            <a id="contact" className="menu-item" href="/contact">
+              Contact
+            </a>
+            <a className="menu-item--small" href="">
+              Settings
+            </a>
+          </Menu> */}
           <NotificationContainer />
           <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
           {(preloaderAll || preloaderID) && (

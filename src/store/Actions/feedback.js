@@ -5,7 +5,6 @@ import {
   SUCCESS_SENDED_FEEDBACK
 } from "../../constants/ActionTypes";
 import { NotificationManager } from "react-notifications";
-import { validateInputs } from "../../helpers/functions";
 
 const getItems = payload => {
   return {
@@ -38,12 +37,6 @@ const getFeedbackItems = id => {
 };
 
 const sendFeedback = payload => {
-  const isValid = validateInputs(payload);
-  if (isValid) {
-    NotificationManager.error("Incorrect inputs, bro!! :(");
-    return onError("Wrong Inputs");
-  }
-
   return dispatch => {
     api
       .sendFeedback(payload)

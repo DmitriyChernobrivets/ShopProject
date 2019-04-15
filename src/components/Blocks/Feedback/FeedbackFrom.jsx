@@ -3,7 +3,9 @@ import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
 import FeedbackInput from "../../Shared/feedbackinput/FeedBackInput";
 import { connect } from "react-redux";
+import { NotificationManager } from "react-notifications";
 import { getFeedbackItems, sendFeedback } from "../../../store/Actions/feedback";
+import { validateInputs } from "../../../helpers/functions";
 import PropTypes from "prop-types";
 import "./styles.scss";
 import "react-notifications/lib/notifications.css";
@@ -25,10 +27,14 @@ class FeedbackForm extends Component {
     const { _id } = this.props.product;
     const { name, comments, advantages, disadvantages } = this.state;
     const { sendFeedback } = this.props;
-    this.setState(
-      { isInputsValid: true, name: "", comments: "", advantages: "", disadvantages: "" },
-      () => sendFeedback({ name, comments, advantages, disadvantages, product_ID: _id })
-    );
+    const isValid = validateInputs(this.state);
+    if (isValid) {
+      NotificationManager.error("Incorrect inputs, bro!! :(");
+    } else {
+      this.setState({ name: "", comments: "", advantages: "", disadvantages: "" }, () =>
+        sendFeedback({ name, comments, advantages, disadvantages, product_ID: _id })
+      );
+    }
   };
   inputHandle = e => {
     this.setState({

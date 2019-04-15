@@ -1,87 +1,12 @@
 .header {
-  .user-garage {
-    display: flex;
-    justify-content: space-around;
-    width: 200px;
-    position: relative;
-
-    .dp-menu {
-      position: absolute;
-      opacity: 0;
-      display: none;
-      overflow: hidden;
-      width: 100px;
-      right: 0;
-      bottom: -5px;
-      transform: translateY(100%);
-
-      box-shadow: 0 5px 25px -7px grey;
-
-      & > li {
-        text-align: center;
-        font-size: 14px;
-        display: block;
-        padding: 7px 0;
-        background-color: rgb(240, 240, 240);
-        transition: 0.1s linear;
-        cursor: pointer;
-
-        &:hover {
-          color: red;
-          background-color: rgb(228, 225, 225);
-          transition: 0.1s linear;
-        }
-        & span i {
-          margin-right: 10px;
-        }
-      }
-    }
-  }
-
-  .welcome {
-    padding-top: 12px;
-    font-size: 15px;
-    text-decoration: underline;
-  }
-  .user-img {
-    background-color: Red;
-
-    padding: 10px 0;
-    position: relative;
-    color: #fff;
-
-    width: 44px;
-    height: 44px;
-    cursor: pointer;
-    transition: 0.1s ease-out;
-    &:hover {
-      transform: scale(1.2);
-      transition: 0.1s ease-in;
-    }
-    border-radius: 50%;
-    span {
-      position: absolute;
-      font-weight: bold;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-  .menu {
-    display: flex;
-    .menu-item {
-      padding: 0 20px;
-      font-size: 0.9em;
-
-      & > a:hover {
-        color: red;
-        transition: 0.2s ease;
-      }
-      & > a {
-        transition: 0.2s ease-in-out;
-      }
-    }
-  }
+  position: fixed;
+  background: rgba(236, 234, 234, 0.5);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  z-index: 100;
   .user-controls {
     cursor: pointer;
     transition: 0.2s linear;
@@ -91,17 +16,11 @@
       transition: 0.2s linear;
     }
   }
-  background: rgba(236, 234, 234, 0.5);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 60px;
-  width: 100%;
-
   .header-right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
     width: 40%;
     .active-link {
       color: red;
@@ -118,50 +37,125 @@
         background-color: red;
       }
     }
-  }
-  .header-left {
-    width: 40%;
-    .active-link {
-      color: red;
+    .user-bucket {
+      margin-left: 30px;
       position: relative;
-      font-weight: bold;
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: -22px;
-        left: 0;
+      transition: 0.2s linear;
+      fill: rgb(73, 73, 73);
+      &:hover {
+        transition: 0.2s linear;
         fill: red;
-        width: 100%;
-        height: 2px;
+      }
+      .bucket-count {
+        position: absolute;
+        border-radius: 50%;
+        padding: 2px 5px;
+        font-size: 12px;
+        font-weight: bold;
+        right: -8px;
+        top: -5px;
         background-color: red;
+        color: #fff;
       }
     }
   }
-  .user-bucket {
-    margin-left: 30px;
+}
+.burder-list {
+  .active-link {
+    color: red;
+
+    transition: 0.2s ease-in-out;
+  }
+}
+.header-left {
+  width: 40%;
+  .active-link {
+    background-color: red;
     position: relative;
-    transition: 0.2s linear;
-    fill: rgb(73, 73, 73);
+
+    color: #fff;
+    transition: 0.2s ease-in-out;
+  }
+  & a {
+    padding: 23px;
     &:hover {
-      transition: 0.2s linear;
-      fill: red;
-    }
-    .bucket-count {
-      position: absolute;
-      border-radius: 50%;
-      padding: 2px 5px;
-      font-size: 12px;
-      font-weight: bold;
-      right: -8px;
-      top: -5px;
-      background-color: red;
+      background-color: rgb(252, 90, 90);
       color: #fff;
+      transition: 0.2s ease;
+    }
+  }
+  .menu {
+    display: flex;
+  }
+}
+.user-garage {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  position: relative;
+
+  .dp-menu {
+    position: absolute;
+    opacity: 0;
+    display: none;
+    overflow: hidden;
+    width: 100px;
+    right: 0;
+    bottom: -5px;
+    transform: translateY(100%);
+
+    box-shadow: 0 5px 25px -7px grey;
+
+    & > li {
+      text-align: center;
+      font-size: 14px;
+      display: block;
+      padding: 7px 0;
+      background-color: rgb(240, 240, 240);
+      transition: 0.1s linear;
+      cursor: pointer;
+
+      &:hover {
+        color: red;
+        background-color: rgb(228, 225, 225);
+        transition: 0.1s linear;
+      }
+      & span i {
+        margin-right: 10px;
+      }
     }
   }
 }
-.nav-active {
-  color: red;
+
+.welcome {
+  padding-top: 12px;
+  font-size: 15px;
+  text-decoration: underline;
 }
+.user-img {
+  background-color: Red;
+
+  position: relative;
+  color: #fff;
+  padding: 13px 12px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.1s ease-in;
+  }
+  border-radius: 50%;
+  span {
+    // position: absolute;
+    font-weight: bold;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
+  }
+}
+
 .dp-open {
   opacity: 1 !important;
   display: block !important;
@@ -184,4 +178,74 @@
   100% {
     display: block;
   }
+}
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 20px;
+  cursor: pointer;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: rgb(236, 234, 234);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
 }

@@ -9,13 +9,15 @@ class Home extends Component {
   render() {
     const { categories } = this.props;
     return (
-      <Container>
-        <Row>
-          {categories.map((card, idx) => (
-            <HomeCard key={idx} category={card} />
-          ))}
-        </Row>
-      </Container>
+      <main>
+        <Container>
+          <Row>
+            {categories.map((card, idx) => (
+              <HomeCard key={idx} category={card} />
+            ))}
+          </Row>
+        </Container>
+      </main>
     );
   }
 }
