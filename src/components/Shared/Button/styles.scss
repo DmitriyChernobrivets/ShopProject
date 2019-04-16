@@ -30,3 +30,18 @@
     color: #fff;
   }
 }
+
+.default-btn {
+  background-color: #ffc600;
+  padding: 12px 22px;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  transition: 0.2s linear;
+  &:hover {
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 1px 1px 15px -3px #ffc600;
+    transition: 0.2s linear;
+  }
+}

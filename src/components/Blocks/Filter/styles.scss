@@ -16,6 +16,12 @@
 }
 .filter_container {
   padding-right: 30px;
+  @media screen and (max-width: 768px) {
+    padding: 30px;
+    z-index: 3000;
+    background-color: #fff;
+    margin-top: 30%;
+  }
   .filters_reset {
     background-color: transparent;
     border: none;

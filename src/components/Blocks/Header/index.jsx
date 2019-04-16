@@ -7,9 +7,7 @@ import { logout } from "../../../store/Actions/getUser";
 import SignIn from "../auth/index";
 import Modal from "../../Shared/Modal/Modal";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
 import { slide as Hamburger } from "react-burger-menu";
-
 import Media from "react-media";
 
 import "./styles.scss";
@@ -34,7 +32,7 @@ class Header extends Component {
   render() {
     const { modalIsOpen } = this.state;
     const { logout, bucketitems, categories, user, history } = this.props;
-    console.log(this.props);
+
     return (
       <header className="header">
         <Media query="(max-width: 768px)">

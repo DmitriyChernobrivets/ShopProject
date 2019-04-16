@@ -7,6 +7,7 @@ import { NotificationManager } from "react-notifications";
 import { getFeedbackItems, sendFeedback } from "../../../store/Actions/feedback";
 import { validateInputs } from "../../../helpers/functions";
 import PropTypes from "prop-types";
+import DefaultButton from "../../Shared/Button/defaultButton";
 import "./styles.scss";
 import "react-notifications/lib/notifications.css";
 
@@ -96,9 +97,7 @@ class FeedbackForm extends Component {
               isInputsValid={error}
               textarea
             />
-            <button className="feedback_send-btn" onClick={this.sendFeedback}>
-              Send Feedback
-            </button>
+            <DefaultButton title="Send Feedback" callback={this.sendFeedback} />
           </Col>
         </form>
       </Row>

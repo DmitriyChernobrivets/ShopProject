@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
 import InputRange from "react-input-range";
+import DefaultButton from "../../Shared/Button/defaultButton";
 import "./styles.scss";
 import "react-input-range/lib/css/index.css";
 
@@ -67,9 +68,7 @@ class Filter extends Component {
             )}
           </div>
         ))}
-        <button className="filters_reset" onClick={this.resetFilters}>
-          reset filters
-        </button>
+        <DefaultButton title="reset filters" callback={this.resetFilters} />
       </div>
     );
   }

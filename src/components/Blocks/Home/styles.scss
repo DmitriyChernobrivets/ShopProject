@@ -1,8 +1,14 @@
 .home-category {
+  &:not(:last-child) {
+    @media screen and (max-width: 768px) {
+      margin-bottom: 50px;
+    }
+  }
   & a {
     display: block;
     position: relative;
     text-align: center;
+
     &:before {
       position: absolute;
       content: "";

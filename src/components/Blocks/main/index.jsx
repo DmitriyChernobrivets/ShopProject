@@ -14,14 +14,16 @@ import ErrorComponent from "../../Shared/Errorpage/ErrorComponent";
 import SortMenu from "../Sort-menu/SortMenu";
 import ReactPaginate from "react-paginate";
 import PropTypes from "prop-types";
+import Media from "react-media";
 import SearchInput from "../../Shared/searchInput/searchInput";
+import Modal from "../../Shared/Modal/Modal";
+import DefaultButton from "../../Shared/Button/defaultButton";
 import "./styles.scss";
 
 const { SEARCH } = options;
 class Main extends Component {
   state = {
-    isFiltersOpen: false,
-    isSortOpen: false
+    isFiltersOpen: false
   };
   componentDidMount() {
     const { currentFilters, getfilteredProducts, resetStore } = this.props;
@@ -48,6 +50,20 @@ class Main extends Component {
 
     getfilteredProducts(obj);
   };
+
+  openModal = () => {
+    this.setState({
+      isFiltersOpen: true
+    });
+  };
+  closeModal = e => {
+    console.log(e.target.className);
+    if (e.target.className.includes("signin-modal")) {
+      this.setState({
+        isFiltersOpen: false
+      });
+    }
+  };
   render() {
     const {
       allproducts,
@@ -59,17 +75,35 @@ class Main extends Component {
       history,
       getProductBySearchInput
     } = this.props;
+    const { isFiltersOpen } = this.state;
     const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
     const { error } = allproducts;
     return (
       <main>
         <Container className="wrapper">
+          {isFiltersOpen && (
+            <Modal closeModal={this.closeModal}>
+              <Row>
+                <Col sm={{ offset: 2, span: 8 }} xs={{ offset: 2, span: 6 }}>
+                  <Filter match={match} location={location} />
+                </Col>
+              </Row>
+            </Modal>
+          )}
           <Row>
-            <Col lg={3}>
-              <Filter match={match} location={location} />
+            <Col>
+              <Media query="(max-width: 768px)">
+                {matches =>
+                  matches ? (
+                    <DefaultButton title="Filters" callback={this.openModal} />
+                  ) : (
+                    <Filter match={match} location={location} />
+                  )
+                }
+              </Media>
             </Col>
-            <Col lg={9}>
+            <Col md={9}>
               <Row className="sort-wrapper">
                 <SortMenu />
 

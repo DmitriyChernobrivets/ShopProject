@@ -15,7 +15,9 @@ class SearchInput extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    if (this.input.value === "") return;
+    if (this.input.value === "") {
+      return;
+    }
     const { getProductBySearchInput, sort } = this.props;
     const { value } = this.state;
     getProductBySearchInput({ value, sort });
@@ -29,7 +31,7 @@ class SearchInput extends Component {
           <input
             type="text"
             className="search-input"
-            placeholder="Search"
+            placeholder="Search by title"
             onChange={this.handleInput}
             ref={val => (this.input = val)}
           />

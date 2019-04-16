@@ -17,7 +17,7 @@ class CardInfo extends Component {
   };
   componentDidMount() {
     const { url } = this.props.match;
-    const { resetByID, getProductById } = this.props;
+    const { getProductById } = this.props;
     getProductById(url);
   }
 
@@ -31,19 +31,19 @@ class CardInfo extends Component {
             <div className="card-info_title">
               <h1>{product.title}</h1>
             </div>
-            <Col xs={12} sm={6} md={6} lg={8}>
+            <Col xs={12} sm={12} md={6} lg={8}>
               <Row>
-                <Col xs={12} lg={6}>
+                <Col xs={6} sm={6} md={12} lg={6}>
                   <ImagePartial product={product} />
                 </Col>
-                <Col lg={6} className="card-info_content">
+                <Col xs={6} sm={6} md={12} lg={6} className="card-info_content">
                   <h3 className="card-info_about">Detail</h3>
 
                   <Details disabled description={product.description} />
                 </Col>
               </Row>
             </Col>
-            <Col className="card-info_buy " xs={12} sm={6} md={6} lg={4}>
+            <Col className="card-info_buy " xs={12} sm={12} md={6} lg={4}>
               <div>
                 <h3 className="card-info_garantee">Garantee 12 months</h3>
               </div>

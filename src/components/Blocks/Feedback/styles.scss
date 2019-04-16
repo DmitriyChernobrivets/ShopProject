@@ -80,17 +80,6 @@
     width: 100%;
     margin-bottom: 30px;
   }
-  &_send-btn {
-    background-color: #ffc600;
-    padding: 12px 22px;
-    border: none;
-    font-size: 15px;
-    &:hover {
-      cursor: pointer;
-      box-shadow: 1px 1px 22px -3px #ffc600;
-      transition: 0.2s ease-in;
-    }
-  }
 }
 
 .error {
