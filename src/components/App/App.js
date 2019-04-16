@@ -14,11 +14,11 @@ import { Circle2 as Preloader } from "react-preloaders";
 
 class App extends Component {
   componentDidMount() {
-    this.props.getDefaultRights();
+    this.props.defaultAuthorization();
   }
 
   render() {
-    const { preloaderAll, preloaderID } = this.props;
+    const { preloaderAll, preloaderID, auth } = this.props;
     return (
       <BrowserRouter>
         <Fragment>
@@ -29,13 +29,15 @@ class App extends Component {
           {(preloaderAll || preloaderID) && (
             <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.2)"} time={1400} />
           )}
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/category/:categories" component={Main} />
-            <Route exact path="/category/:categories/:id" component={CardInfo} />
-            <Route path="/bucket" component={Bucket} />
-            <Route path="*" component={NotFounded} />
-          </Switch>
+          {auth !== "unauthorized" ? (
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/category/:categories" component={Main} />
+              <Route exact path="/category/:categories/:id" component={CardInfo} />
+              <Route path="/bucket" component={Bucket} />
+              <Route path="*" component={NotFounded} />
+            </Switch>
+          ) : null}
         </Fragment>
       </BrowserRouter>
     );
@@ -44,13 +46,14 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     preloaderAll: state.allProducts.preloader,
-    preloaderID: state.currentProductInfo.loading
+    preloaderID: state.currentProductInfo.loading,
+    auth: state.auth.currentUser.status
   };
 };
 
 const getDispatcher = dispatch => {
   return {
-    getDefaultRights: () => dispatch(defaultAuthorization())
+    defaultAuthorization: () => dispatch(defaultAuthorization())
   };
 };
 

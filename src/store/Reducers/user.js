@@ -10,7 +10,8 @@ import {
 
 const DEFAULT_STATE = {
   currentUser: {
-    status: "Guest",
+    status: "unauthorized",
+    token: null,
     error: null
   },
 

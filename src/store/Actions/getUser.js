@@ -76,7 +76,6 @@ const defaultAuthorization = () => {
     return api
       .defaultAuth()
       .then(({ data }) => {
-        console.log(data);
         if (isSocial) {
           dispatch(SocialsLoginSuccess(user[0]));
         } else {

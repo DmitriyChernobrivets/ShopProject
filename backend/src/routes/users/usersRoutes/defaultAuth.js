@@ -16,8 +16,7 @@ const auth = (req, res) => {
   const tokendata = jwt.decode(token);
 
   if (!token || jwt.decode(token).guest) {
-    const payload = { guest: "guest" };
-    const newtoken = generateToken(payload);
+    const newtoken = generateToken({ guest: "guest" });
 
     res.send({
       status: "Guest",

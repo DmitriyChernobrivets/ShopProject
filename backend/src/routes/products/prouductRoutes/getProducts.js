@@ -13,7 +13,7 @@ const getProducts = (req, res) => {
     .then(({ totalCount, product }) =>
       res.send({ status: "OK", totalCount: totalCount, product: product })
     )
-    .catch(err => res.send({ status: "Error", Error: err.message }));
+    .catch(err => console.log(err) || res.send({ status: "Error", Error: err.message }));
 };
 
 module.exports = getProducts;

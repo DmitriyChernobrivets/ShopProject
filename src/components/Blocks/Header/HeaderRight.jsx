@@ -13,7 +13,7 @@ const HeaderRight = props => {
   return (
     <div className="header-right">
       <div className="user-auth">
-        {user.status !== "Guest" ? (
+        {user.status === "User" ? (
           <UserPanel logout={logout} user={user.user} />
         ) : (
           <div className="user-controls" onClick={openModal}>
