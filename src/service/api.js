@@ -8,7 +8,8 @@ const site = axios.create({
 
 site.interceptors.request.use(config => {
   const token = localStorage.getItem("token");
-  config.headers.authorization = token ? `${token}` : "";
+  config.headers.common["Authorization"] = token ? `${token}` : "";
+
   return config;
 });
 

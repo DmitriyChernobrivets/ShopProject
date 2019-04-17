@@ -6,7 +6,7 @@ const gettoken = req => req.body.token || req.query.token || req.headers["author
 const checktoken = (req, res, next) => {
   const token = gettoken(req);
   const secretKey = app.get("superSecret");
-
+  console.log(req.headers);
   if (!token) {
     return res.status(403).send({
       status: "Failed",
