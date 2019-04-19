@@ -3,48 +3,41 @@ import Tabs from "../../Shared/Tabs/Tabs";
 import Registration from "./Registration";
 import Login from "./Login";
 import { connect } from "react-redux";
-import { changeSignTab } from "../../../store/Actions/getUser";
-import PropTypes from "prop-types";
 import "./styles.scss";
 import "react-notifications/lib/notifications.css";
 
 class SignIn extends Component {
-  changeTab = val => () => {
-    const { changeTab } = this.props;
-    changeTab(val);
+  state = {
+    currentTabidx: 1
+  };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.user) {
+      this.props.hideModal();
+    }
+  }
+  changeTab = idx => () => {
+    this.setState({ currentTabidx: idx });
   };
   render() {
-    const { currentTab, history } = this.props;
-
+    const { history } = this.props;
+    const { currentTabidx } = this.state;
     return (
       <Fragment>
         <div className="signin-container">
-          <Tabs currentTab={currentTab} click={this.changeTab} />
+          <Tabs currentTab={currentTabidx} click={this.changeTab} />
 
-          {currentTab === "Login" ? <Login history={history} /> : <Registration />}
+          {currentTabidx === 1 ? <Login history={history} /> : <Registration />}
         </div>
       </Fragment>
     );
   }
 }
 
-SignIn.propTypes = {
-  changeTab: PropTypes.func.isRequired
-};
-
 const getState = state => {
   return {
     user: state.auth.currentUser,
-    signUp: state.auth.Signnup,
-    currentTab: state.auth.currentTab
+    signUp: state.auth.Signnup
   };
 };
-const getDispatcher = dispatch => {
-  return {
-    changeTab: val => dispatch(changeSignTab(val))
-  };
-};
-export default connect(
-  getState,
-  getDispatcher
-)(SignIn);
+
+export default connect(getState)(SignIn);

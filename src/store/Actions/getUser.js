@@ -5,7 +5,7 @@ import {
   LOGIN_FAILURE,
   CREATE_USER_ERROR,
   CREATE_USER_SUCCESS,
-  CHANGE_SIGN_TAB,
+  ERROR_MSG_RESET,
   SOCIALS_LOGIN_SUCCESS
 } from "../../constants/ActionTypes";
 import { NotificationManager } from "react-notifications";
@@ -43,17 +43,18 @@ const createUsererror = payload => {
   return { type: CREATE_USER_ERROR, payload };
 };
 
-const userCreateSuccess = () => {
+const resetError = () => {
+  window.location.reload();
   return {
-    type: CREATE_USER_SUCCESS
+    type: ERROR_MSG_RESET
   };
 };
-const changeSignTab = payload => {
-  return {
-    type: CHANGE_SIGN_TAB,
-    payload
-  };
-};
+// const userCreateSuccess = payload => {
+//   return {
+//     type: CREATE_USER_SUCCESS,
+//     payload
+//   };
+// };
 
 const logout = () => {
   localStorage.removeItem("token");
@@ -66,7 +67,7 @@ const logout = () => {
         dispatch(Logout(data));
         localStorage.setItem("token", data.token);
       })
-      .catch(err => dispatch(LoginFailure(err.message)));
+      .catch(err => dispatch(LoginFailure(err.response)));
 };
 
 const defaultAuthorization = () => {
@@ -83,7 +84,7 @@ const defaultAuthorization = () => {
         }
         localStorage.setItem("token", data.token);
       })
-      .catch(err => dispatch(LoginFailure(err.message)));
+      .catch(err => dispatch(LoginFailure(err.response)));
   };
 };
 
@@ -97,14 +98,14 @@ const createUser = userData => {
 
           NotificationManager.error(`${data.error}!`);
         } else {
-          dispatch(userCreateSuccess());
-          dispatch(changeSignTab("Login"));
+          dispatch(login({ email: userData.email, password: userData.password }));
+          // dispatch(userCreateSuccess(data));
           NotificationManager.success(`User created!`);
         }
       })
       .catch(
         err =>
-          dispatch(createUsererror(err.message)) && NotificationManager.error(`Server error bro !`)
+          dispatch(createUsererror(err.response)) && NotificationManager.error(`Server error bro !`)
       );
 };
 
@@ -121,7 +122,7 @@ const login = userData => {
           localStorage.setItem("token", data.token);
         }
       })
-      .catch(err => dispatch(LoginFailure(err.message)));
+      .catch(err => dispatch(LoginFailure(err.response)));
 };
 
-export { defaultAuthorization, login, createUser, changeSignTab, logout, SocialsLoginSuccess };
+export { defaultAuthorization, login, createUser, logout, SocialsLoginSuccess, resetError };

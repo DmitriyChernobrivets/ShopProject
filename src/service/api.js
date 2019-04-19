@@ -19,7 +19,7 @@ const api = {
   createUser: payload => site.post("/users/create", payload),
 
   getProducts: (url, payload) => site.post(url, payload),
-  getProductById: url => site.get(url),
+  getProductById: url => site.post(url),
   Search: (url, payload) => site.post(`${url}/search`, payload),
 
   getFeedbackItems: id => site.get(`/feedback?id=${id}`),

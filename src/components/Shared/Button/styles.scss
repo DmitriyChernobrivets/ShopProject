@@ -5,6 +5,7 @@
   color: red;
   border: 1px solid red;
   margin-bottom: 10px;
+
   &.added {
     color: #fff;
     background-color: red;
@@ -38,6 +39,7 @@
   font-weight: bold;
   font-size: 15px;
   transition: 0.2s linear;
+
   &:hover {
     cursor: pointer;
     color: #fff;

@@ -14,10 +14,9 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
-
     error: null
   };
-  FacebookCallback = response => {
+  SocialsCallback = response => {
     const { SocialsLoginSuccess, history } = this.props;
 
     SocialsLoginSuccess(response);
@@ -52,7 +51,7 @@ class Login extends Component {
     return (
       <form className="signin-form">
         <StyledFirebaseAuth
-          uiConfig={uiConfig(this.FacebookCallback)}
+          uiConfig={uiConfig(this.SocialsCallback)}
           firebaseAuth={firebase.auth()}
         />
 

@@ -4,13 +4,14 @@ import Main from "../Blocks/main/index";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import CardInfo from "../Blocks/CardInfo/index";
 import Home from "../Blocks/Home/Home";
+import ErrorComponent from "../Shared/Errorpage/ErrorComponent";
 import Bucket from "../Blocks/Bucket/index";
-import NotFounded from "../Shared/Errorpage/NotFounded";
 import { connect } from "react-redux";
-import { defaultAuthorization } from "../../store/Actions/getUser";
+import { defaultAuthorization, resetError } from "../../store/Actions/getUser";
 import { NotificationContainer } from "react-notifications";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import { Circle2 as Preloader } from "react-preloaders";
+import "./styles.scss";
 
 class App extends Component {
   componentDidMount() {
@@ -18,12 +19,13 @@ class App extends Component {
   }
 
   render() {
-    const { preloaderAll, preloaderID, auth } = this.props;
+    const { preloaderAll, preloaderID, auth, errHandler, resetError } = this.props;
+
     return (
       <BrowserRouter>
         <Fragment>
           <Header />
-
+          {errHandler && <ErrorComponent title={errHandler} refresh={resetError} />}
           <NotificationContainer />
           <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
           {(preloaderAll || preloaderID) && (
@@ -35,7 +37,7 @@ class App extends Component {
               <Route exact path="/category/:categories" component={Main} />
               <Route exact path="/category/:categories/:id" component={CardInfo} />
               <Route path="/bucket" component={Bucket} />
-              <Route path="*" component={NotFounded} />
+              <Route path="*" component={ErrorComponent} />
             </Switch>
           ) : null}
         </Fragment>
@@ -43,17 +45,20 @@ class App extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     preloaderAll: state.allProducts.preloader,
     preloaderID: state.currentProductInfo.loading,
-    auth: state.auth.currentUser.status
+    auth: state.auth.currentUser.status,
+    errHandler: state.error
   };
 };
 
 const getDispatcher = dispatch => {
   return {
-    defaultAuthorization: () => dispatch(defaultAuthorization())
+    defaultAuthorization: () => dispatch(defaultAuthorization()),
+    resetError: () => dispatch(resetError())
   };
 };
 

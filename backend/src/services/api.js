@@ -18,6 +18,7 @@ const api = {
   },
   SearchProducts: async (collection, title, sort) => {
     const sortValue = sort_by(sort);
+
     const items = await Model[collection].find({ title }).sort(sortValue);
     const count = await Model[collection].find({ title }).count();
     return { product: items, totalCount: count };

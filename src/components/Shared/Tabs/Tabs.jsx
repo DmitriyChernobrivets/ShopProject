@@ -4,14 +4,14 @@ import "./styles.scss";
 
 const Tabs = props => {
   const { click, currentTab } = props;
-  const isActiveLogin = currentTab === "Login" ? "active-tab" : null;
-  const isActiveReg = currentTab === "Registration" ? "active-tab" : null;
+  const isActiveLogin = currentTab === 1 ? "active-tab" : null;
+  const isActiveReg = currentTab === 2 ? "active-tab" : null;
   return (
     <div className="signin_tabs">
-      <span className={isActiveLogin} onClick={click("Login")}>
+      <span className={isActiveLogin} onClick={click(1)}>
         Login
       </span>
-      <span className={isActiveReg} onClick={click("Registration")}>
+      <span className={isActiveReg} onClick={click(2)}>
         Registration
       </span>
     </div>
@@ -19,7 +19,7 @@ const Tabs = props => {
 };
 
 Tabs.propTypes = {
-  currentTab: PropTypes.string,
+  currentTab: PropTypes.number.isRequired,
   click: PropTypes.func.isRequired
 };
 

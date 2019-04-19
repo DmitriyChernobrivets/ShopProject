@@ -6,17 +6,20 @@
     box-shadow: 0 0 9px 5px #c9c7c7;
     transition: 0.1s ease-out;
   }
-  .product-card-title {
+  .card-title {
     display: block;
     margin-bottom: 10px;
     font-size: 14px;
     height: 40px;
   }
-  .prdouct-image {
-    cursor: pointer;
+
+  .prdouct-image a {
     border: 1px solid rgb(212, 211, 211);
+    cursor: pointer;
+
     min-height: 270px;
     margin-bottom: 10px;
+    display: block;
   }
 
   .product-card-button {

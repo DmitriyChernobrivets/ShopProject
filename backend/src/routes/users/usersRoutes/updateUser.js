@@ -9,7 +9,7 @@ const updateUser = (req, res) => {
       ({ id, username }) =>
         console.log(id) || res.send({ status: "Updated", User: { username, id } })
     )
-    .catch(err => res.send({ status: "Failed", error: err.message }));
+    .catch(err => res.send({ status: "Failed", Error: err.message }));
 };
 
 module.exports = updateUser;

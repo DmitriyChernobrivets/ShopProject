@@ -44,12 +44,6 @@ class UserPanel extends Component {
 
         <ul className={isdpMenuOpen} ref={val => (this.dropdownMenu = val)}>
           <li>
-            <span>
-              <i className="fas fa-sign-out-alt" />
-              cabinet
-            </span>
-          </li>
-          <li>
             <span onClick={this.logout}>
               <i className="fas fa-user-tie" />
               logout

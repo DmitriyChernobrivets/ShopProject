@@ -20,27 +20,29 @@ class Bucket extends Component {
     const { total, items } = this.props;
 
     return (
-      <Container className="bucket">
-        <h1>Bucket</h1>
-        <Row>
-          <Col lg={12}>
-            <TransitionGroup>
-              {items.length !== 0 ? (
-                items.map(item => (
-                  <CSSTransition key={item._id} timeout={500} classNames="item">
-                    <Items item={item} />
-                  </CSSTransition>
-                ))
-              ) : (
-                <h3 className="empty-text">Bucket is Empty :((</h3>
-              )}
-            </TransitionGroup>
-          </Col>
-          <Col>
-            <BottomNav total={total} click={this.goBack} />
-          </Col>
-        </Row>
-      </Container>
+      <main>
+        <Container className="bucket">
+          <h1>Bucket</h1>
+          <Row>
+            <Col lg={12}>
+              <TransitionGroup>
+                {items.length !== 0 ? (
+                  items.map(item => (
+                    <CSSTransition key={item._id} timeout={500} classNames="item">
+                      <Items item={item} />
+                    </CSSTransition>
+                  ))
+                ) : (
+                  <h3 className="empty-text">Bucket is Empty :((</h3>
+                )}
+              </TransitionGroup>
+            </Col>
+            <Col>
+              <BottomNav total={total} click={this.goBack} />
+            </Col>
+          </Row>
+        </Container>
+      </main>
     );
   }
 }

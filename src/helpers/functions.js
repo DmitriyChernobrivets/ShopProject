@@ -37,4 +37,12 @@ const validateInputs = state => {
   return Object.keys(state).some(el => !state[el]);
 };
 
-export { totalPrice, Notificationhandler, transformState, validateInputs };
+const isFiltersEmpty = state =>
+  state.title.every(el => !el.checked) &&
+  state.memory.every(el => !el.checked) &&
+  state.price.min === 0 &&
+  state.price.max === 150000
+    ? true
+    : false;
+
+export { totalPrice, Notificationhandler, transformState, validateInputs, isFiltersEmpty };

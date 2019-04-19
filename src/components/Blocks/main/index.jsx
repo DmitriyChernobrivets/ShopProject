@@ -16,14 +16,14 @@ import ReactPaginate from "react-paginate";
 import PropTypes from "prop-types";
 import Media from "react-media";
 import SearchInput from "../../Shared/searchInput/searchInput";
-import Modal from "../../Shared/Modal/Modal";
 import DefaultButton from "../../Shared/Button/defaultButton";
+import { Modal } from "react-bootstrap";
 import "./styles.scss";
 
 const { SEARCH } = options;
 class Main extends Component {
   state = {
-    isFiltersOpen: false
+    isshow: false
   };
   componentDidMount() {
     const { currentFilters, getfilteredProducts, resetStore } = this.props;
@@ -33,6 +33,7 @@ class Main extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     const { getfilteredProducts } = this.props;
+
     if (nextProps.location.pathname !== this.props.location.pathname) {
       getfilteredProducts();
       return true;
@@ -51,19 +52,14 @@ class Main extends Component {
     getfilteredProducts(obj);
   };
 
-  openModal = () => {
-    this.setState({
-      isFiltersOpen: true
-    });
+  handleClose = () => {
+    this.setState({ isshow: false });
   };
-  closeModal = e => {
-    console.log(e.target.className);
-    if (e.target.className.includes("signin-modal")) {
-      this.setState({
-        isFiltersOpen: false
-      });
-    }
+
+  handleShow = () => {
+    this.setState({ isshow: true });
   };
+
   render() {
     const {
       allproducts,
@@ -75,28 +71,28 @@ class Main extends Component {
       history,
       getProductBySearchInput
     } = this.props;
-    const { isFiltersOpen } = this.state;
+
     const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
     const { error } = allproducts;
+
     return (
       <main>
         <Container className="wrapper">
-          {isFiltersOpen && (
-            <Modal closeModal={this.closeModal}>
-              <Row>
-                <Col sm={{ offset: 2, span: 8 }} xs={{ offset: 2, span: 6 }}>
-                  <Filter match={match} location={location} />
-                </Col>
-              </Row>
-            </Modal>
-          )}
+          <Modal show={this.state.isshow} onHide={this.handleClose}>
+            <Row>
+              <Col sm={{ offset: 2, span: 8 }} xs={{ offset: 2, span: 6 }}>
+                <Filter match={match} location={location} />
+              </Col>
+            </Row>
+          </Modal>
+
           <Row>
             <Col>
               <Media query="(max-width: 768px)">
                 {matches =>
                   matches ? (
-                    <DefaultButton title="Filters" callback={this.openModal} />
+                    <DefaultButton title="Filters" callback={this.handleShow} />
                   ) : (
                     <Filter match={match} location={location} />
                   )
@@ -114,16 +110,19 @@ class Main extends Component {
                 />
               </Row>
               <Row>
-                {error && <ErrorComponent title={error} />}
-                {products.map(prod => (
-                  <Card
-                    product={prod}
-                    match={match}
-                    history={history}
-                    key={prod._id}
-                    bucketItems={bucketItems}
-                  />
-                ))}
+                {!error ? (
+                  products.map(prod => (
+                    <Card
+                      product={prod}
+                      match={match}
+                      history={history}
+                      key={prod._id}
+                      bucketItems={bucketItems}
+                    />
+                  ))
+                ) : (
+                  <ErrorComponent title={error} />
+                )}
               </Row>
               {products.length !== 0 && (
                 <ReactPaginate

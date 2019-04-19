@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Checkbox from "../../Shared/checkbox/Checkbox";
-import defaultOptions from "../../../service/filters";
+import { isFiltersEmpty } from "../../../helpers/functions";
+import defaultOptions from "../../../constants/filters";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
@@ -21,7 +22,11 @@ class Filter extends Component {
     } else return false;
   }
   resetFilters = () => {
+    const isStateDefault = isFiltersEmpty(this.state);
+    if (isStateDefault) return;
+
     const { sort, getFilteredProducts, match } = this.props;
+
     this.setState(defaultOptions[match.params.categories], () => {
       getFilteredProducts({ ...this.state, sort });
     });
@@ -47,6 +52,7 @@ class Filter extends Component {
   render() {
     return (
       <div className="filter_container">
+        <h3>Filters</h3>
         {Object.keys(this.state).map((el, idx) => (
           <div className="filter_box" key={idx}>
             <h5>By {el === "memory" ? el + ", Gb" : el}</h5>

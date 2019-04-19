@@ -1,4 +1,18 @@
 .home-category {
+  overflow: hidden;
+
+  & img {
+    transition: 0.2s linear;
+  }
+  &:hover img {
+    transform: scale(1.2);
+    filter: grayscale(100%);
+    transition: 0.2s linear;
+  }
+  &:hover h3 {
+    opacity: 1;
+    transition: 0.2s linear;
+  }
   &:not(:last-child) {
     @media screen and (max-width: 768px) {
       margin-bottom: 50px;
@@ -8,36 +22,6 @@
     display: block;
     position: relative;
     text-align: center;
-
-    &:before {
-      position: absolute;
-      content: "";
-      top: 40%;
-      right: 38%;
-      width: 90px;
-      height: 90px;
-      visibility: hidden;
-
-      border: 2px solid white;
-      border-radius: 50%;
-    }
-    &:after {
-      position: absolute;
-      content: "";
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      transition: 0.2s ease-in-out;
-    }
-    &:hover::after {
-      background: rgba(255, 255, 255, 0.2);
-      transition: 0.2s ease-in-out;
-    }
-    &:hover::before {
-      animation: circlePulse 0.5s linear infinite;
-      visibility: visible;
-    }
   }
 
   & h3 {
@@ -46,6 +30,8 @@
     bottom: 30px;
     width: 100%;
     color: #fff;
+    opacity: 0;
+    transition: 0.2s linear;
   }
 }
 @keyframes circlePulse {

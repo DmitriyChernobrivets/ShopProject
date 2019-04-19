@@ -1,9 +1,9 @@
-import { ERROR_MSG, CHANGE_SIGN_TAB } from "../constants/ActionTypes";
+import { ERROR_MSG } from "../constants/ActionTypes";
 
 const ErrorHandler = store => next => action => {
-  if (typeof action.payload === "string" && action.type !== CHANGE_SIGN_TAB) {
-    store.dispatch({ type: ERROR_MSG });
-    return;
+  console.log(action.payload);
+  if (action.payload && action.payload.statusText) {
+    store.dispatch({ type: ERROR_MSG, payload: action.payload.statusText });
   } else {
     next(action);
   }

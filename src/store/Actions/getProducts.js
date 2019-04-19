@@ -59,7 +59,6 @@ const getProductBySearchInput = data => {
       .Search(url, SearchQuery)
       .then(({ data }) => {
         const { product, totalCount } = data;
-
         if (data.Error) {
           dispatch(onError(data.Error));
         } else if (data.product.length === 0) {

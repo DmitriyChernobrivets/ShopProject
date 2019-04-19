@@ -5,32 +5,27 @@ import HeaderRight from "./HeaderRight";
 import { connect } from "react-redux";
 import { logout } from "../../../store/Actions/getUser";
 import SignIn from "../auth/index";
-import Modal from "../../Shared/Modal/Modal";
 import PropTypes from "prop-types";
 import { slide as Hamburger } from "react-burger-menu";
+import { Modal } from "react-bootstrap";
 import Media from "react-media";
 
 import "./styles.scss";
 
 class Header extends Component {
   state = {
-    modalIsOpen: false
+    show: false
   };
-  openModal = () => {
-    this.setState({
-      modalIsOpen: true
-    });
+
+  handleClose = () => {
+    this.setState({ show: false });
   };
-  closeModal = e => {
-    if (e.target.className.includes("signin-modal")) {
-      this.setState({
-        modalIsOpen: false
-      });
-    }
+
+  handleShow = () => {
+    this.setState({ show: true });
   };
 
   render() {
-    const { modalIsOpen } = this.state;
     const { logout, bucketitems, categories, user, history } = this.props;
 
     return (
@@ -47,17 +42,15 @@ class Header extends Component {
           }
         </Media>
 
-        {modalIsOpen && (
-          <Modal closeModal={this.closeModal} isLogedin={user}>
-            <SignIn history={history} />
-          </Modal>
-        )}
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <SignIn history={history} hideModal={this.handleClose} />
+        </Modal>
 
         <HeaderRight
           logout={logout}
           user={user}
           bucketitems={bucketitems}
-          openModal={this.openModal}
+          openModal={this.handleShow}
         />
       </header>
     );

@@ -4,7 +4,7 @@ const validateUser = (req, res, next) => {
   const { email } = req.body;
   User.findOne({ email })
     .then(el => (el ? res.send({ status: "Exists", error: "User already exists" }) : next()))
-    .catch(err => res.send({ status: "Error", Error: err.message }));
+    .catch(err => res.send({ status: "Failed", Error: err.message }));
 };
 
 module.exports = validateUser;

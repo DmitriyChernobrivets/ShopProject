@@ -6,8 +6,14 @@ const Checkbox = props => {
   const { item, onChangeAction } = props;
 
   return (
-    <label forhtml="check" className="checkbox_title">
-      <input type="checkbox" className="filter_checkbox"id="check" checked={item.checked} onChange={onChangeAction} />
+    <label forhtml="check" className="checkbox_label">
+      <input
+        type="checkbox"
+        className="checkbox"
+        id="check"
+        checked={item.checked}
+        onChange={onChangeAction}
+      />
       {item.name}
     </label>
   );

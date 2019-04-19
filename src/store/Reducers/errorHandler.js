@@ -1,10 +1,12 @@
-import { ERROR_MSG } from "../../constants/ActionTypes";
+import { ERROR_MSG, ERROR_MSG_RESET } from "../../constants/ActionTypes";
 const DEFAULT_STATE = null;
 
 const errorHandler = (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
+    case ERROR_MSG_RESET:
+      return null;
     case ERROR_MSG:
-      return "Something Goes wrong :(";
+      return payload;
     default:
       return state;
   }

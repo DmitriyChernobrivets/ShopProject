@@ -6,6 +6,6 @@ const getByID = (req, res) => {
   api
     .getProductByID(category, id)
     .then(el => res.send({ status: "OK", product: el }))
-    .catch(err => res.send({ status: "Error", Error: err.message }));
+    .catch(err => res.send({ status: "Failed", Error: err.message }));
 };
 module.exports = getByID;

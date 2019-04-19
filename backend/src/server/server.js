@@ -1,5 +1,6 @@
 const app = require("../module/bootstrap-express");
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const notebookRouter = require("../routes/products/router");
 const userRouter = require("../routes/users/router");
@@ -23,16 +24,21 @@ const server = port => {
     .use(urlencodedParser)
     .use(bodyParser.json())
     .use(morgan("dev"))
-    .use(express.static("./src/public"))
+
+    .use(express.static(path.join(__dirname, "../", "public")))
+
     .use(cors())
+
     .use("/users", userRouter);
 
   app
-    .use(checktoken)
     .use("/category", notebookRouter)
+    // .use(checktoken)
 
     .use("/feedback", feedbackRouter)
-
+    .get("/*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../", "public/", "index.html"));
+    })
     .use(errorHandler)
     .listen(port, () => console.log(`listening port ${port}`));
 };
