@@ -65,7 +65,6 @@ Header.propTypes = {
 
 const getState = state => {
   return {
-    categories: state.categories,
     user: state.auth.currentUser,
     bucketitems: state.bucket.items
   };

@@ -50,7 +50,7 @@ class FeedbackForm extends Component {
     return (
       <Row className="feedback">
         <h2 className="feedback-head">
-          Feedback <span>{items.length}</span>
+          Feedback <div>{items.length}</div>
         </h2>
 
         {items.length > 0 && <FeedbackItems feedbacks={items} />}

@@ -1,9 +1,15 @@
-.fade-enter {
-    opacity: 0;
-    z-index: 1;
-  }
-  
-  .fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 250ms ease-in;
-  }
+.fadeAnimation-enter {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: transform 400ms linear, opacity 250ms linear;
+}
+
+.fadeAnimation-enter.fadeAnimation-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 250ms ease-in, opacity 250ms ease-in;
+}
+.fadeAnimation-exit.fadeAnimation-exit-active {
+  display: none;
+  transition: opacity 300ms ease-in;
+}

@@ -24,6 +24,7 @@
 
     .user-garage {
       position: relative;
+      animation: userCabAppear 0.4s ease-in;
       div {
         display: inline-block;
         &:first-child {
@@ -178,6 +179,17 @@
   opacity: 1 !important;
   display: block !important;
   animation: dropdown 0.1s linear !important;
+}
+
+@keyframes userCabAppear {
+  from {
+    opacity: 0;
+    transition: 0.3s ease-in;
+  }
+  to {
+    opacity: 1;
+    transition: 0.3s ease-in;
+  }
 }
 
 @keyframes dropdown {

@@ -4,7 +4,6 @@ import {
   LOGOUT,
   LOGIN_FAILURE,
   CREATE_USER_ERROR,
-  CREATE_USER_SUCCESS,
   ERROR_MSG_RESET,
   SOCIALS_LOGIN_SUCCESS
 } from "../../constants/ActionTypes";
@@ -49,12 +48,6 @@ const resetError = () => {
     type: ERROR_MSG_RESET
   };
 };
-// const userCreateSuccess = payload => {
-//   return {
-//     type: CREATE_USER_SUCCESS,
-//     payload
-//   };
-// };
 
 const logout = () => {
   localStorage.removeItem("token");

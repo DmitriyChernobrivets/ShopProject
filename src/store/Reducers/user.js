@@ -3,7 +3,7 @@ import {
   LOGOUT,
   LOGIN_FAILURE,
   CREATE_USER_ERROR,
-  CREATE_USER_SUCCESS,
+  // CREATE_USER_SUCCESS,
   SOCIALS_LOGIN_SUCCESS
 } from "../../constants/ActionTypes";
 
@@ -47,15 +47,15 @@ const userReducer = (state = DEFAULT_STATE, { payload, type }) => {
     case LOGIN_FAILURE:
       return { ...state, Signnup: payload };
 
-    case CREATE_USER_SUCCESS:
-      return {
-        ...state,
-        currentUser: { status: "User", user: payload.newUser, error: null },
-        Signnup: {
-          status: "Success",
-          error: null
-        }
-      };
+    // case CREATE_USER_SUCCESS:
+    //   return {
+    //     ...state,
+    //     currentUser: { status: "User", user: payload.newUser, error: null },
+    //     Signnup: {
+    //       status: "Success",
+    //       error: null
+    //     }
+    //   };
     default:
       return state;
   }

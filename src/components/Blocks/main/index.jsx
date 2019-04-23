@@ -34,7 +34,7 @@ class Main extends Component {
   componentWillUpdate(nextProps, nextState) {
     const { getfilteredProducts } = this.props;
 
-    if (nextProps.location.pathname !== this.props.location.pathname) {
+    if (nextProps.match.params.categories !== this.props.match.params.categories) {
       getfilteredProducts();
       return true;
     } else {

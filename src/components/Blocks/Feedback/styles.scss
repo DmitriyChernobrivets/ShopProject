@@ -6,17 +6,23 @@
     font-size: 20px;
   }
   &-head {
+    position: relative;
     width: 100%;
     padding-left: 15px;
     margin-bottom: 40px;
     font-weight: bold;
-    & span {
+    & div {
+      position: absolute;
+      top: -15px;
+      left: 170px;
       background-color: red;
       border-radius: 50%;
-      font-size: 24px;
-      vertical-align: top;
+      font-size: 20px;
+      padding: 5px 0;
+      text-align: center;
       color: #fff;
-      padding: 5px 12px;
+      height: 35px;
+      width: 35px;
     }
   }
   &_item {

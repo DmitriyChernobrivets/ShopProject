@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Row, Container } from "react-bootstrap";
 import HomeCard from "./HomeCard";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
@@ -26,10 +25,4 @@ Home.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
-const getState = state => {
-  return {
-    categories: state.categories
-  };
-};
-
-export default connect(getState)(Home);
+export default Home;

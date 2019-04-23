@@ -26,37 +26,39 @@ class CardInfo extends Component {
     const { addToBucket, status, history, bucketItems } = this.props;
     return (
       product && (
-        <Container>
-          <Row className="card-info_container">
-            <div className="card-info_title">
-              <h1>{product.title}</h1>
-            </div>
-            <Col xs={12} sm={12} md={6} lg={8}>
-              <Row>
-                <Col xs={6} sm={6} md={12} lg={6}>
-                  <ImagePartial product={product} />
-                </Col>
-                <Col xs={6} sm={6} md={12} lg={6} className="card-info_content">
-                  <h3 className="card-info_about">Detail</h3>
-
-                  <Details disabled description={product.description} />
-                </Col>
-              </Row>
-            </Col>
-            <Col className="card-info_buy " xs={12} sm={12} md={6} lg={4}>
-              <div>
-                <h3 className="card-info_garantee">Garantee 12 months</h3>
+        <main>
+          <Container>
+            <Row className="card-info_container">
+              <div className="card-info_title">
+                <h1>{product.title}</h1>
               </div>
-              <BuyPartial
-                product={product}
-                click={addToBucket}
-                history={history}
-                bucketItems={bucketItems}
-              />
-            </Col>
-          </Row>
-          {status === "Guest" ? <AccessNotification /> : <FeeadbackForm id={product._id} />}
-        </Container>
+              <Col xs={12} sm={12} md={6} lg={8}>
+                <Row>
+                  <Col xs={6} sm={6} md={12} lg={6}>
+                    <ImagePartial product={product} />
+                  </Col>
+                  <Col xs={6} sm={6} md={12} lg={6} className="card-info_content">
+                    <h3 className="card-info_about">Detail</h3>
+
+                    <Details disabled description={product.description} />
+                  </Col>
+                </Row>
+              </Col>
+              <Col className="card-info_buy " xs={12} sm={12} md={6} lg={4}>
+                <div>
+                  <h3 className="card-info_garantee">Garantee 12 months</h3>
+                </div>
+                <BuyPartial
+                  product={product}
+                  click={addToBucket}
+                  history={history}
+                  bucketItems={bucketItems}
+                />
+              </Col>
+            </Row>
+            {status === "Guest" ? <AccessNotification /> : <FeeadbackForm id={product._id} />}
+          </Container>
+        </main>
       )
     );
   }
