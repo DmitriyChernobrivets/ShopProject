@@ -1,12 +1,9 @@
 import React, { Component, Fragment } from "react";
 import Header from "../Blocks/Header/index";
-import Main from "../Blocks/main/index";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import CardInfo from "../Blocks/CardInfo/index";
-import Home from "../Blocks/Home/Home";
 import ErrorComponent from "../Shared/Errorpage/ErrorComponent";
-import Bucket from "../Blocks/Bucket/index";
 import { connect } from "react-redux";
+import Routes from "../../service/Router";
 import { defaultAuthorization, resetError } from "../../store/Actions/getUser";
 import { NotificationContainer } from "react-notifications";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
@@ -31,25 +28,35 @@ class App extends Component {
           render={({ location }) => (
             <Fragment>
               <Header categories={categories} />
-              {errHandler && <ErrorComponent title={errHandler} refresh={resetError} />}
+
+              {auth !== "unauthorized" ? (
+                <TransitionGroup component={null}>
+                  <CSSTransition key={location.key} classNames="fadeAnimation" timeout={500}>
+                    <Switch location={location}>
+                      {Object.values(Routes).map((route, idx) =>
+                        route.path === "/" ? (
+                          <Route
+                            key={String(idx)}
+                            exact={route.exact}
+                            path={route.path}
+                            render={() => <route.component categories={categories} />}
+                          />
+                        ) : (
+                          <Route key={String(idx)} {...route} />
+                        )
+                      )}
+                    </Switch>
+                  </CSSTransition>
+                </TransitionGroup>
+              ) : null}
+
               <NotificationContainer />
               <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
               {(preloaderAll || preloaderID) && (
                 <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.1)"} time={1400} />
               )}
-              {auth !== "unauthorized" ? (
-                <TransitionGroup component={null}>
-                  <CSSTransition key={location.key} classNames="fadeAnimation" timeout={500}>
-                    <Switch location={location}>
-                      <Route exact path="/" render={() => <Home categories={categories} />} />
-                      <Route exact path="/category/:categories" component={Main} />
-                      <Route path="/category/:categories/:id" component={CardInfo} />
-                      <Route path="/bucket" component={Bucket} />
-                      <Route path="*" component={ErrorComponent} />
-                    </Switch>
-                  </CSSTransition>
-                </TransitionGroup>
-              ) : null}
+
+              {errHandler && <ErrorComponent title={errHandler} refresh={resetError} />}
             </Fragment>
           )}
         />

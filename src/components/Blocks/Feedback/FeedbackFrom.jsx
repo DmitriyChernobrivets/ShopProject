@@ -16,36 +16,44 @@ class FeedbackForm extends Component {
     name: "",
     comments: "",
     advantages: "",
-    disadvantages: ""
+    disadvantages: "",
+    error: null
   };
   componentDidMount() {
     const { id, getFeedbackItems } = this.props;
     getFeedbackItems(id);
   }
-
+  resetState = () => {
+    this.setState({ name: "", comments: "", advantages: "", disadvantages: "" });
+  };
+  onError = () => {
+    this.setState({ error: "Incorect input" });
+  };
   sendFeedback = e => {
     e.preventDefault();
     const { _id } = this.props.product;
     const { name, comments, advantages, disadvantages } = this.state;
     const { sendFeedback } = this.props;
-    const isValid = validateInputs(this.state);
+    const { error, ...inputs } = this.state;
+    const isValid = validateInputs(inputs);
     if (isValid) {
+      this.onError();
       NotificationManager.error("Incorrect inputs, bro!! :(");
     } else {
-      this.setState({ name: "", comments: "", advantages: "", disadvantages: "" }, () =>
-        sendFeedback({ name, comments, advantages, disadvantages, product_ID: _id })
-      );
+      this.resetState();
+      sendFeedback({ name, comments, advantages, disadvantages, product_ID: _id });
     }
   };
   inputHandle = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      error: null
     });
   };
 
   render() {
-    const { name, comments, advantages, disadvantages } = this.state;
-    const { items, error } = this.props;
+    const { name, comments, advantages, disadvantages, error } = this.state;
+    const { items } = this.props;
 
     return (
       <Row className="feedback">

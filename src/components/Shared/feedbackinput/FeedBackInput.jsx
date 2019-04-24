@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
+import { Hidden } from "@material-ui/core";
 
 const FeedbackInput = props => {
   const { title, icon, inputValue, onchange, name, placeholder, isInputsValid, textarea } = props;
@@ -8,6 +9,11 @@ const FeedbackInput = props => {
       <label className={isInputsValid && "error-label"}>
         <i className={icon} />
         {title}:
+        <span
+          style={{ color: "red", paddingTop: 5, visibility: !isInputsValid ? "hidden" : "visible" }}
+        >
+          Fill all fields pls
+        </span>
       </label>
       {!textarea ? (
         <input

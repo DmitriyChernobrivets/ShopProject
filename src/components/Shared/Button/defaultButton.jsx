@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 
 const DefaultButton = props => {
+  const { classNames, title, callback } = props;
+  const className = classNames ? `default-btn ${classNames}` : "default-btn";
   return (
-    <button className="default-btn" onClick={props.callback}>
-      <span>{props.title}</span>
+    <button className={className} onClick={callback}>
+      <span>{title}</span>
     </button>
   );
 };

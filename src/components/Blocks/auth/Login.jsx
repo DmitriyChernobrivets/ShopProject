@@ -12,8 +12,8 @@ import "./styles.scss";
 
 class Login extends Component {
   state = {
-    email: "",
-    password: "",
+    email: "admin@ukr.net",
+    password: "admin",
     error: null
   };
   SocialsCallback = response => {
@@ -46,7 +46,7 @@ class Login extends Component {
   };
 
   render() {
-    const { username, password, error } = this.state;
+    const { email, password, error } = this.state;
 
     return (
       <form className="signin-form">
@@ -60,7 +60,7 @@ class Login extends Component {
           required
           name="email"
           label="Email"
-          defaultValue={username}
+          defaultValue={email}
           className="name"
           onChange={this.handleInput}
           helperText={error ? "Please fill all fields" : null}

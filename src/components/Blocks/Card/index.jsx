@@ -38,7 +38,7 @@ class Card extends Component {
     const link = categories + "/" + _id;
 
     return (
-      <Col className="product-card" xs={6} sm={6} lg={4}>
+      <Col className="product-card" xs={6} sm={6} lg={4} >
         <ImageContainer product={product} match={match} link={link} />
 
         <Title product={product} link={link} />

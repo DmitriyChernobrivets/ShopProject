@@ -2,10 +2,22 @@
   padding: 10px;
   position: relative;
   transition: 0.2s ease-in;
+  overflow: hidden;
   &:hover {
     box-shadow: 0 0 9px 5px #c9c7c7;
     transition: 0.1s ease-out;
+    overflow: visible;
+    & .details-btn {
+      opacity: 1;
+      transition: 0.2s ease-in;
+    }
   }
+  & .details-btn {
+    opacity: 0;
+    transition: 0.2s ease-in;
+    margin-bottom: 0 !important;
+  }
+
   .card-title {
     display: block;
     margin-bottom: 10px;
@@ -53,10 +65,6 @@
       background-color: red;
       color: #fff;
     }
-  }
-  &:hover .product-description {
-    z-index: 1;
-    display: block;
   }
 
   .hot-price {

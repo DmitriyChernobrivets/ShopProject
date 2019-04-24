@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-
+import DefaultButton from "../Button/defaultButton";
+import { CSSTransition, transit } from "react-css-transition";
 import "./styles.scss";
 
 class Details extends Component {
@@ -22,12 +23,20 @@ class Details extends Component {
   render() {
     const { isOpen, disabled } = this.state;
     const { description } = this.props;
-    const isActive = !isOpen
-      ? "far fa-arrow-alt-circle-down"
-      : "far fa-arrow-alt-circle-down details-acive";
+
     return (
-      <div className="product-description">
-        {isOpen ? (
+      <Fragment>
+        {!disabled && (
+          <DefaultButton title="See More" callback={this.toogleDetails} classNames="details-btn" />
+        )}
+        <CSSTransition
+          className="product-description"
+          defaultStyle={{ height: 0 }}
+          enterStyle={{ height: transit("150px", 500, "ease-in-out") }}
+          leaveStyle={{ height: transit("0", 500, "ease-in-out") }}
+          activeStyle={{ height: "150px" }}
+          active={isOpen}
+        >
           <ul className="items-container">
             {Object.keys(description).map(name => (
               <li className="product-description_text" key={name}>
@@ -36,14 +45,8 @@ class Details extends Component {
               </li>
             ))}
           </ul>
-        ) : null}
-        {!disabled && (
-          <div className="see-more" onClick={this.toogleDetails}>
-            <i className={isActive} />
-            <span>Details</span>
-          </div>
-        )}
-      </div>
+        </CSSTransition>
+      </Fragment>
     );
   }
 }
