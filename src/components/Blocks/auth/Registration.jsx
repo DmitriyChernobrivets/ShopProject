@@ -6,7 +6,7 @@ import { createUser } from "../../../store/Actions/getUser";
 import { validateInputs } from "../../../helpers/functions";
 import { NotificationManager } from "react-notifications";
 import PropTypes from "prop-types";
-import "./styles.scss";
+// import "./styles.scss";
 class Registration extends Component {
   state = {
     firstName: "",

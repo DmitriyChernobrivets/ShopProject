@@ -3,7 +3,7 @@ import Tabs from "../../Shared/Tabs/Tabs";
 import Registration from "./Registration";
 import Login from "./Login";
 import { connect } from "react-redux";
-import "./styles.scss";
+// import "./styles.scss";
 import "react-notifications/lib/notifications.css";
 
 class SignIn extends Component {

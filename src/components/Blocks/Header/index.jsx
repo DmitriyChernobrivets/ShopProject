@@ -10,7 +10,7 @@ import { slide as Hamburger } from "react-burger-menu";
 import { Modal } from "react-bootstrap";
 import Media from "react-media";
 
-// import "../../../styles/index.scss";
+// import "./styles.scss";
 
 class Header extends Component {
   state = {

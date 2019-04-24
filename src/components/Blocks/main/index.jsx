@@ -18,7 +18,7 @@ import Media from "react-media";
 import SearchInput from "../../Shared/searchInput/searchInput";
 import DefaultButton from "../../Shared/Button/defaultButton";
 import { Modal } from "react-bootstrap";
-import "./styles.scss";
+// import "./styles.scss";
 
 const { SEARCH } = options;
 class Main extends Component {

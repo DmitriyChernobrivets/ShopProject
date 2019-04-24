@@ -32,8 +32,8 @@ class Details extends Component {
         <CSSTransition
           className="product-description"
           defaultStyle={{ height: 0 }}
-          enterStyle={{ height: transit("150px", 500, "ease-in-out") }}
-          leaveStyle={{ height: transit("0", 500, "ease-in-out") }}
+          enterStyle={{ height: transit("150px", 400, "ease-in-out") }}
+          leaveStyle={{ height: transit("0", 400, "ease-in-out") }}
           activeStyle={{ height: "150px" }}
           active={isOpen}
         >

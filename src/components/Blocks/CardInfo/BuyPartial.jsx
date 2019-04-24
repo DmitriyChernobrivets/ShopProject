@@ -2,7 +2,7 @@ import React from "react";
 import ForSale from "../../Shared/forSale/forSale";
 import PropTypes from "prop-types";
 import Button from "../../Shared/Button/Button";
-import "./styles.scss";
+// import "./styles.scss";
 
 const BuyPartial = props => {
   const { price, forSale } = props.product;
@@ -16,10 +16,6 @@ const BuyPartial = props => {
         <ForSale forSale={forSale} />
       </div>
       <Button product={product} bucketItems={bucketItems} addToBucket={click} history={history} />
-      {/* <button className="card-info_buy-btn" onClick={click.bind(this, product)}>
-        <i className="fas fa-shopping-bag" />
-        <span>Add to Bucket</span>
-      </button> */}
     </div>
   );
 };

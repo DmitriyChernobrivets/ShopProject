@@ -9,7 +9,7 @@ import ImagePartial from "./ImagePartial";
 import Details from "../../Shared/Details/Details";
 import FeeadbackForm from "../Feedback/FeedbackFrom";
 import PropTypes from "prop-types";
-import "./styles.scss";
+// import "./styles.scss";
 
 class CardInfo extends Component {
   state = {

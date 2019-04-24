@@ -3,7 +3,7 @@ import UserPanel from "../auth/UserPanel";
 import SVG from "../../Shared/Svg/svg";
 import { options } from "../../Shared/Svg/options";
 import { Link } from "react-router-dom";
-import "./styles.scss";
+// import "./styles.scss";
 
 const { CABINET, BUCKET } = options;
 

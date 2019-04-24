@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-import "./styles.scss";
+// import "./styles.scss";
 
 const options = [
   { value: "cheap", label: "Start from cheap" },

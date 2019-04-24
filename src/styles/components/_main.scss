@@ -2,7 +2,7 @@
   min-height: 500px;
   padding: 20px 0;
   .sort-wrapper {
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid $dark-grey;
   }
   .default-btn {
     margin-bottom: 30px;
@@ -19,18 +19,18 @@
     cursor: pointer;
     padding: 12px 20px;
     height: 46px;
-    color: #4a92f0;
+    color: $link;
     height: 46px;
   }
   li {
     &:hover:not(.pagination_active) {
-      background-color: rgb(238, 241, 245);
+      background-color: $brightness-grey;
     }
   }
   &_active {
-    background: rgb(74, 146, 240);
+    background: $link;
   }
   &_active-link {
-    color: #fff !important;
+    color: $white !important;
   }
 }

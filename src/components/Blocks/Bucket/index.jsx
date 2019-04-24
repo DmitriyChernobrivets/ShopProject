@@ -6,7 +6,7 @@ import { updateBucket } from "../../../store/Actions/bucket";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BottomNav from "./BottomNav";
 import PropTypes from "prop-types";
-import "./styles.scss";
+// import "./styles.scss";
 
 class Bucket extends Component {
   componentWillUnmount() {

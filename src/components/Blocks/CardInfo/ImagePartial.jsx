@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import RatingStars from "../../Shared/Stars/RatingStars";
 import PropTypes from "prop-types";
-import "./styles.scss";
+// import "./styles.scss";
 
 const ImagePartial = props => {
   const { rating, hot, images } = props.product;

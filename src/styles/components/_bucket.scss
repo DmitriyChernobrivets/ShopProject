@@ -1,10 +1,10 @@
 .bucket {
   .empty-text {
-    color: red;
+    color: $red;
     margin-bottom: 30px;
   }
   h1 {
-    border-bottom: 1px solid rgb(214, 213, 213);
+    border-bottom: 1px solid $border;
   }
   &_image-container {
     max-height: 140px;
@@ -20,7 +20,7 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    border: 1px solid #b1b1b1;
+    border: 1px solid $border;
     padding: 20px;
     margin-bottom: 30px;
   }
@@ -41,15 +41,15 @@
       height: 40px;
       cursor: pointer;
       background: none;
-      border: 1px solid grey;
+      border: 1px solid $border;
       transition: 0.2s ease-out;
       &:hover {
-        border-color: red;
+        border-color: $red;
         transition: 0.2s ease-in;
       }
     }
     & div {
-      border: 1px solid grey;
+      border: 1px solid $border;
       width: 40px;
       height: 40px;
       font-size: 22px;
@@ -66,29 +66,29 @@
     border: none;
     cursor: pointer;
     &:hover svg {
-      fill: red;
+      fill: $red;
     }
   }
   &_price {
     font-size: 24px;
-    color: red;
+    color: $red;
   }
 
   &_return-link {
     font-size: 14px;
     display: block;
-    background-color: #fff;
+    background-color: $white;
     cursor: pointer;
     border: none;
     width: 70px;
     text-decoration: underline;
     &:hover {
-      color: red;
+      color: $red;
     }
   }
 }
 .total_price {
-  border-top: 1px solid rgb(214, 213, 213);
+  border-top: 1px solid $border;
   font-size: 24px;
   padding-top: 20px;
   margin-bottom: 30px;

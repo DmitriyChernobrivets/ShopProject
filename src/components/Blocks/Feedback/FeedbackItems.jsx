@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { Col, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
-import "./styles.scss";
+// import "./styles.scss";
 
 const FeedbackItems = ({ feedbacks }) => {
   return feedbacks.map(({ _id, name, created, comments, advantages, disadvantages }) => (

@@ -7,8 +7,8 @@
   width: 350px;
   border-radius: 5px;
 
-  background-color: #fff;
-  box-shadow: 0 2px 22px -2px grey;
+  background-color: $white;
+
   margin: 0 auto;
 }
 .signin_tabs {
@@ -22,7 +22,7 @@
   }
   .active-tab {
     position: relative;
-    color: red;
+    color: $red;
     &:after {
       content: "";
       position: absolute;
@@ -30,7 +30,7 @@
       width: 100%;
       bottom: -5px;
       left: 0;
-      background-color: red;
+      background-color: $red;
     }
   }
 }
@@ -39,10 +39,10 @@
   flex-direction: column;
 
   &_btn {
-    background: red !important;
+    background: $red !important;
     width: 140px;
     padding: 9px 30px !important;
-    color: #fff !important;
+    color: $white !important;
     margin-top: 40px !important;
   }
   & > div:not(:last-child) {

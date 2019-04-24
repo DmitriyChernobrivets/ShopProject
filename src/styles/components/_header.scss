@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  background: $red;
+  background: $white-grey;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,7 +13,7 @@
     transition: 0.2s linear;
     fill: rgb(73, 73, 73);
     &:hover {
-      fill: red;
+      fill: $red;
       transition: 0.2s linear;
     }
   }
@@ -42,20 +42,20 @@
         bottom: -5px;
         transform: translateY(100%);
 
-        box-shadow: 0 5px 25px -7px grey;
+        box-shadow: 0 5px 25px -7px $dark-grey;
 
         & > li {
           text-align: center;
           font-size: 14px;
           display: block;
           padding: 7px 0;
-          background-color: rgb(240, 240, 240);
+          background-color: $white-grey;
           transition: 0.1s linear;
           cursor: pointer;
 
           &:hover {
-            color: red;
-            background-color: rgb(228, 225, 225);
+            color: $red;
+            background-color: $white-grey;
             transition: 0.1s linear;
           }
           & span i {
@@ -65,7 +65,7 @@
       }
     }
     .active-link {
-      color: red;
+      color: $red;
       position: relative;
       font-weight: bold;
       &:after {
@@ -76,7 +76,7 @@
 
         width: 100%;
         height: 2px;
-        background-color: red;
+        background-color: $red;
       }
     }
     .user-bucket {
@@ -86,7 +86,7 @@
       fill: rgb(73, 73, 73);
       &:hover {
         transition: 0.2s linear;
-        fill: red;
+        fill: $red;
       }
       .bucket-count {
         position: absolute;
@@ -96,15 +96,15 @@
         font-weight: bold;
         right: -8px;
         top: -5px;
-        background-color: red;
-        color: #fff;
+        background-color: $red;
+        color: $white;
       }
     }
   }
 }
 .burder-list {
   .active-link {
-    color: red;
+    color: $red;
 
     transition: 0.2s ease-in-out;
   }
@@ -112,17 +112,17 @@
 .header-left {
   width: 40%;
   .active-link {
-    background-color: red;
+    background-color: $red;
     position: relative;
 
-    color: #fff;
+    color: $white;
     transition: 0.2s ease-in-out;
   }
   & a {
     padding: 23px;
     &:hover {
-      background-color: rgb(252, 90, 90);
-      color: #fff;
+      background-color: $red-hover;
+      color: $white;
       transition: 0.2s ease;
     }
   }
@@ -138,10 +138,10 @@
   text-decoration: underline;
 }
 .user-img {
-  background-color: Red;
+  background-color: $red;
 
   position: relative;
-  color: #fff;
+  color: $white;
   padding: 13px 12px;
   width: 50px;
   height: 50px;
@@ -149,7 +149,7 @@
   transition: 0.1s ease-out;
   &:hover {
     background-color: rgb(36, 36, 36);
-    color: #fff;
+    color: $white;
     transition: 0.1s ease-in;
     &::after {
       visibility: visible;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+// import "./styles.scss";
 import { connect } from "react-redux";
 import { increment, decrement, deleteItem } from "../../../store/Actions/bucket";
 import Svg from "../../Shared/Svg/svg";

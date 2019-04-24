@@ -1,4 +1,13 @@
-@import "./variables.scss";
-@import "./normalize.scss";
+@import "./variables";
+@import "./normalize";
 
-@import "../components/Blocks/Header/styles.scss";
+@import "./components/header";
+@import "./components/auth";
+@import "./components/bucket";
+@import "./components/card";
+@import "./components/card-info";
+@import "./components/feedback";
+@import "./components/filters";
+@import "./components/home";
+@import "./components/main";
+@import "./components/sort";

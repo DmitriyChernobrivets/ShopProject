@@ -8,7 +8,7 @@ import { firebase, uiConfig } from "../../../firebase/firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import PropTypes from "prop-types";
-import "./styles.scss";
+// import "./styles.scss";
 
 class Login extends Component {
   state = {

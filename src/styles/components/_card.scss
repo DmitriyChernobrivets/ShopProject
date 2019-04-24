@@ -26,7 +26,7 @@
   }
 
   .prdouct-image a {
-    border: 1px solid rgb(212, 211, 211);
+    border: 1px solid $border;
     cursor: pointer;
 
     min-height: 270px;
@@ -38,20 +38,20 @@
     position: relative;
     width: 100%;
     background-color: #fff;
-    color: red;
-    border: 1px solid red;
+    color: $red;
+    border: 1px solid $red;
     margin-bottom: 10px;
     &.added {
-      color: #fff;
-      background-color: red;
+      color: $white;
+      background-color: $red;
     }
     &::before {
       content: "";
       position: absolute;
-      background-image: url(../../../images/trash.svg);
+      background-image: url(../images/trash.svg);
       top: -1px;
       right: -1px;
-      border-left: 1px solid #fff;
+      border-left: 1px solid $white;
       background-size: 50%;
       background-repeat: no-repeat;
       background-position: center;
@@ -59,19 +59,19 @@
       border-radius: 0 5px 5px 0;
       width: 41px;
       height: 38px;
-      background-color: red;
+      background-color: $red;
     }
     &:hover {
-      background-color: red;
-      color: #fff;
+      background-color: $red;
+      color: $white;
     }
   }
 
   .hot-price {
     border-radius: 5px;
     padding: 5px 14px;
-    background-color: rgb(248, 4, 4);
-    color: #fff;
+    background-color: $red;
+    color: $white;
     font-weight: bold;
     position: absolute;
     left: 10px;

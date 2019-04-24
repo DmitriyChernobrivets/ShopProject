@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import "./styles.scss";
+// import "./styles.scss";
 
 const AccessNotification = () => {
   return (

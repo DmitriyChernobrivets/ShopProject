@@ -15,12 +15,12 @@
       position: absolute;
       top: -15px;
       left: 170px;
-      background-color: red;
+      background-color: $red;
       border-radius: 50%;
       font-size: 20px;
       padding: 5px 0;
       text-align: center;
-      color: #fff;
+      color: $white;
       height: 35px;
       width: 35px;
     }
@@ -30,16 +30,16 @@
       font-weight: bold;
     }
     &-plus {
-      color: rgb(115, 231, 19);
+      color: $lime;
     }
     &-minus {
-      color: rgb(255, 136, 25);
+      color: $orange;
     }
     &-date {
-      color: rgb(133, 130, 130);
+      color: $dark-grey;
     }
     width: 100%;
-    background-color: #f8f8f8;
+    background-color: $brightness-grey;
     padding: 25px;
     margin-bottom: 25px;
     & p {
@@ -54,7 +54,7 @@
   }
   &_form {
     padding: 30px 10px 10px 20px;
-    background-color: #f8f8f8;
+    background-color: $brightness-grey;
     & label {
       position: relative;
       display: inline-block;
@@ -65,7 +65,7 @@
       right: 120px;
       top: 0;
       width: 5px;
-      color: red;
+      color: $brightness-grey;
       position: absolute;
       display: block;
     }
@@ -92,13 +92,13 @@
 }
 
 .error {
-  outline: 1px solid red;
+  outline: 1px solid $red;
   border: none;
 }
 .error-label {
-  color: red;
+  color: $red;
 }
 .error-field {
-  color: red;
+  color: $red;
   font-size: 24px;
 }
