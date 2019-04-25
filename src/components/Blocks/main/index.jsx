@@ -64,7 +64,6 @@ class Main extends Component {
       getProductBySearchInput,
       getFilteredProducts
     } = this.props;
-
     const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
     const { error } = allproducts;

@@ -1,7 +1,6 @@
 import { ERROR_MSG } from "../constants/ActionTypes";
 
 const ErrorHandler = store => next => action => {
-  console.log(action.payload);
   if (action.payload && action.payload.statusText) {
     store.dispatch({ type: ERROR_MSG, payload: action.payload.statusText });
   } else {

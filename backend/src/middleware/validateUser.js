@@ -1,9 +1,13 @@
-const User = require("../mongoDB/models/Users");
+const api = require("../services/api");
 
 const validateUser = (req, res, next) => {
   const { email } = req.body;
-  User.findOne({ email })
-    .then(el => (el ? res.send({ status: "Exists", error: "User already exists" }) : next()))
+
+  api
+    .findLogedUser({ email })
+    .then(el => {
+      el ? res.send({ status: "Exists", Error: "User already exists" }) : next();
+    })
     .catch(err => res.send({ status: "Failed", Error: err.message }));
 };
 

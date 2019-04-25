@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import HeaderLeft from "./HeaderLeft";
 import HeaderRight from "./HeaderRight";
-import { connect } from "react-redux";
-import { logout } from "../../../store/Actions/getUser";
 import PropTypes from "prop-types";
 import { slide as Hamburger } from "react-burger-menu";
 import { Modal } from "react-bootstrap";
 import Media from "react-media";
 import SignInContainer from "../../../Containers/SignInContainer";
+import categories from "../../../constants/categories";
 
 class Header extends Component {
   state = {
@@ -22,9 +20,8 @@ class Header extends Component {
   handleShow = () => {
     this.setState({ show: true });
   };
-
   render() {
-    const { logout, bucketitems, categories, user, history } = this.props;
+    const { logout, bucketitems, user, history } = this.props;
 
     return (
       <header className="header">
@@ -56,26 +53,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   user: PropTypes.object.isRequired,
   bucketitems: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-const getState = state => {
-  return {
-    user: state.auth.currentUser,
-    bucketitems: state.bucket.items
-  };
-};
-
-const getDispatcher = dispatch => {
-  return {
-    logout: () => dispatch(logout())
-  };
-};
-export default withRouter(
-  connect(
-    getState,
-    getDispatcher
-  )(Header)
-);
+export default Header;

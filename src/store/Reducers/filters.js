@@ -14,7 +14,6 @@ const filterReducer = (state = DEFAULT_STATE, { type, payload }) => {
       return DEFAULT_STATE;
     case SET_FILTERS:
       return { ...state, ...payload };
-
     default:
       return state;
   }

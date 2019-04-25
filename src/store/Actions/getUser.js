@@ -1,6 +1,6 @@
 import api from "../../service/api";
 import {
-  LOGIN,
+  LOGIN_SUCCESS,
   LOGOUT,
   LOGIN_FAILURE,
   CREATE_USER_ERROR,
@@ -11,7 +11,7 @@ import { NotificationManager } from "react-notifications";
 
 const Login = payload => {
   return {
-    type: LOGIN,
+    type: LOGIN_SUCCESS,
     payload
   };
 };
@@ -53,69 +53,71 @@ const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("firebaseui::rememberedAccounts");
 
-  return dispatch =>
-    api
-      .defaultAuth()
-      .then(({ data }) => {
-        dispatch(Logout(data));
-        localStorage.setItem("token", data.token);
-      })
-      .catch(err => dispatch(LoginFailure(err.response)));
+  return async dispatch => {
+    try {
+      const { data } = await api.defaultAuth();
+      dispatch(Logout(data));
+      localStorage.setItem("token", data.token);
+    } catch (err) {
+      dispatch(LoginFailure(err.response));
+    }
+  };
 };
 
 const defaultAuthorization = () => {
   const isSocial = localStorage.getItem("firebaseui::rememberedAccounts");
   const user = JSON.parse(isSocial);
-  return dispatch => {
-    return api
-      .defaultAuth()
-      .then(({ data }) => {
-        if (isSocial) {
-          dispatch(SocialsLoginSuccess(user[0]));
-        } else {
-          dispatch(Login(data));
-        }
-        localStorage.setItem("token", data.token);
-      })
-      .catch(err => dispatch(LoginFailure(err.response)));
+
+  return async dispatch => {
+    try {
+      const { data } = await api.defaultAuth();
+      if (isSocial) {
+        dispatch(SocialsLoginSuccess(user[0]));
+      } else {
+        dispatch(Login(data));
+      }
+      localStorage.setItem("token", data.token);
+    } catch (err) {
+      dispatch(LoginFailure(err.response));
+    }
   };
 };
 
 const createUser = userData => {
-  return dispatch =>
-    api
-      .createUser(userData)
-      .then(({ data }) => {
-        if (data.error) {
-          dispatch(createUsererror(data));
+  return async dispatch => {
+    try {
+      const { data } = await api.createUser(userData);
 
-          NotificationManager.error(`${data.error}!`);
-        } else {
-          dispatch(login({ email: userData.email, password: userData.password }));
-          // dispatch(userCreateSuccess(data));
-          NotificationManager.success(`User created!`);
-        }
-      })
-      .catch(
-        err =>
-          dispatch(createUsererror(err.response)) && NotificationManager.error(`Server error bro !`)
-      );
+      if (data.Error) {
+        dispatch(createUsererror(data));
+
+        NotificationManager.error(`${data.Error}!`);
+      } else {
+        dispatch(login({ email: userData.email, password: userData.password }));
+        NotificationManager.success(`User created!`);
+      }
+    } catch (err) {
+      dispatch(createUsererror(err.response)) && NotificationManager.error(`Server error bro !`);
+    }
+  };
 };
 
 const login = userData => {
-  return dispatch =>
-    api
-      .login(userData)
-      .then(({ data }) => {
-        if (data.Error) {
-          dispatch(LoginFailure(data));
-          NotificationManager.error(`Error, ${data.Error}`);
-        } else {
-          dispatch(Login(data));
-          localStorage.setItem("token", data.token);
-        }
-      })
-      .catch(err => dispatch(LoginFailure(err.response)));
+  return async dispatch => {
+    try {
+      const { data } = await api.login(userData);
+
+      if (data.Error) {
+        dispatch(LoginFailure(data));
+        NotificationManager.error(`Error, ${data.Error}`);
+      } else {
+        dispatch(Login(data));
+        localStorage.setItem("token", data.token);
+      }
+    } catch (err) {
+      dispatch(LoginFailure(err.response));
+    }
+  };
 };
 
 export { defaultAuthorization, login, createUser, logout, SocialsLoginSuccess, resetError };

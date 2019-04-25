@@ -8,9 +8,8 @@ import DefaultButton from "../../Shared/Button/defaultButton";
 import "react-input-range/lib/css/index.css";
 
 class Filter extends Component {
-  componentWillMount() {
-    this.setState(defaultOptions[this.props.match.params.categories]);
-  }
+  state = defaultOptions[this.props.match.params.categories];
+
   componentWillUpdate(nextProps, nextState) {
     const category = nextProps.location.pathname.match(/(Mobile|Notebooks|PCs)/);
     if (nextProps.location.pathname !== this.props.location.pathname) {

@@ -12,12 +12,12 @@ const getProductId = payload => {
     payload: payload
   };
 };
-const resetByID = () => {
+const RESET = () => {
   return {
     type: RESET_STORE_BY_ID
   };
 };
-const preLoader = () => {
+const PRELOADER = () => {
   return {
     type: PRODUCT_ID_PRELOADER
   };
@@ -30,20 +30,15 @@ const onError = payload => {
   };
 };
 const fetchProductById = url => {
-  return dispatch => {
-    dispatch(resetByID()) || dispatch(preLoader());
-    api
-      .getProductById(url)
-      .then(({ data }) => {
-        if (data.status === "OK") {
-          dispatch(getProductId(data.product));
-        } else {
-          dispatch(onError(data.Error));
-        }
-      })
-      .catch(err => {
-        dispatch(onError(err.message));
-      });
+  return async dispatch => {
+    dispatch(RESET()) || dispatch(PRELOADER());
+    try {
+      const { data } = await api.getProductById(url);
+
+      !data.Error ? dispatch(getProductId(data.product)) : dispatch(onError(data.Error));
+    } catch (err) {
+      dispatch(onError(err.message));
+    }
   };
 };
 

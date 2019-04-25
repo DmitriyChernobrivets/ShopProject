@@ -20,7 +20,6 @@ const auth = (req, res) => {
     .catch(err => res.send({ status: "Failed", Error: "User not Founded" }));
 
   function onSuccess(user) {
-    console.log(user);
     if (!comparePaswords(password, user.password)) {
       return res.send({ status: "Failed", Error: "password doesn't match" });
     }

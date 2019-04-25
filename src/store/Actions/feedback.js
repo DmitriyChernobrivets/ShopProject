@@ -26,26 +26,25 @@ const onSuccess = payload => {
   };
 };
 const getFeedbackItems = id => {
-  return dispatch => {
-    api
-      .getFeedbackItems(id)
-      .then(res =>
-        res.error ? dispatch(onError(res.data.error)) : dispatch(getItems(res.data.feedback))
-      )
-      .catch(err => dispatch(onError(err.message)));
+  return async dispatch => {
+    try {
+      const { data } = await api.getFeedbackItems(id);
+
+      data.Error ? dispatch(onError(data.error)) : dispatch(getItems(data.feedback));
+    } catch (err) {
+      dispatch(onError(err.message));
+    }
   };
 };
 
 const sendFeedback = payload => {
-  return dispatch => {
-    api
-      .sendFeedback(payload)
-      .then(() => dispatch(onSuccess()) || NotificationManager.success("FEEDBACK SENDED, Yahoo!"))
-      .catch(
-        err =>
-          dispatch(onError(err.message)) &&
-          NotificationManager.error("Im busy , Try again later :(")
-      );
+  return async dispatch => {
+    try {
+      await api.sendFeedback(payload);
+      dispatch(onSuccess()) || NotificationManager.success("FEEDBACK SENDED, Yahoo!");
+    } catch (err) {
+      dispatch(onError(err.message)) && NotificationManager.error("Im busy , Try again later :(");
+    }
   };
 };
 

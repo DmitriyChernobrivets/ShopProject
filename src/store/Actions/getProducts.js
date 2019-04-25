@@ -22,7 +22,7 @@ const preLoader = () => {
     type: TURN_ON_PRELOADER
   };
 };
-const isEmpty = () => {
+const EmptyListValdiation = () => {
   return {
     type: EMPTY_PRODUCT_LIST
   };
@@ -53,22 +53,24 @@ const onError = payload => {
 const getProductBySearchInput = data => {
   const SearchQuery = { title: data.value, sort: data.sort };
   const url = window.location.pathname;
-  return dispatch => {
+
+  return async dispatch => {
     dispatch(preLoader());
-    api
-      .Search(url, SearchQuery)
-      .then(({ data }) => {
-        const { product, totalCount } = data;
-        if (data.Error) {
-          dispatch(onError(data.Error));
-        } else if (data.product.length === 0) {
-          dispatch(isEmpty());
-        } else {
-          dispatch(setCurrentFilters({ totalPageCount: totalCount }));
-          dispatch(setProducts(product));
-        }
-      })
-      .catch(err => dispatch(onError(err.message)));
+    try {
+      const { data } = await api.Search(url, SearchQuery);
+      const { product, totalCount } = data;
+
+      if (data.Error) {
+        dispatch(onError(data.Error));
+      } else if (data.product.length === 0) {
+        dispatch(EmptyListValdiation());
+      } else {
+        dispatch(setCurrentFilters({ totalPageCount: totalCount }));
+        dispatch(setProducts(product));
+      }
+    } catch (err) {
+      dispatch(onError(err.message));
+    }
   };
 };
 const getFilteredProducts = (data = DEFAULT_STATE) => {
@@ -76,23 +78,23 @@ const getFilteredProducts = (data = DEFAULT_STATE) => {
 
   const url = window.location.pathname;
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(preLoader());
-    api
-      .getProducts(url, currentfilters)
-      .then(({ data }) => {
-        const { product, totalCount } = data;
+    try {
+      const { data } = await api.getProducts(url, currentfilters);
+      const { product, totalCount } = data;
 
-        if (data.Error) {
-          dispatch(onError(data.Error));
-        } else if (data.product.length === 0) {
-          dispatch(isEmpty());
-        } else {
-          dispatch(setCurrentFilters({ ...currentfilters, totalPageCount: totalCount }));
-          dispatch(setProducts(product));
-        }
-      })
-      .catch(err => dispatch(onError(err.message)));
+      if (data.Error) {
+        dispatch(onError(data.Error));
+      } else if (data.product.length === 0) {
+        dispatch(EmptyListValdiation());
+      } else {
+        dispatch(setCurrentFilters({ ...currentfilters, totalPageCount: totalCount }));
+        dispatch(setProducts(product));
+      }
+    } catch (err) {
+      dispatch(onError(err.message));
+    }
   };
 };
 

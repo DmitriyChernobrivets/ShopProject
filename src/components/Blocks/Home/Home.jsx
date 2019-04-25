@@ -1,25 +1,17 @@
 import React from "react";
 import { Row, Container } from "react-bootstrap";
 import HomeCard from "./HomeCard";
-import PropTypes from "prop-types";
+import categories from "../../../constants/categories";
 
-const Home = props => {
-  const { categories } = props;
-  return (
-    <main>
-      <Container>
-        <Row>
-          {categories.map((card, idx) => (
-            <HomeCard key={idx} category={card} />
-          ))}
-        </Row>
-      </Container>
-    </main>
-  );
-};
-
-Home.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired
-};
-
+const Home = () => (
+  <main>
+    <Container>
+      <Row>
+        {categories.map((card, idx) => (
+          <HomeCard key={idx} category={card} />
+        ))}
+      </Row>
+    </Container>
+  </main>
+);
 export default Home;

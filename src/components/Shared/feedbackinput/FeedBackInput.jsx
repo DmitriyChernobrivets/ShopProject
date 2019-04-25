@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Hidden } from "@material-ui/core";
 
 const FeedbackInput = props => {
   const { title, icon, inputValue, onchange, name, placeholder, isInputsValid, textarea } = props;
