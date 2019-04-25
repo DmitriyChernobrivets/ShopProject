@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import DefaultButton from "../../Shared/Button/defaultButton";
-// import "./styles.scss";
 
 const BottomNav = props => {
   const { total, click } = props;

@@ -5,10 +5,10 @@
   margin-bottom: 15px;
   width: 40%;
   .review {
-    color: rgb(45, 146, 212);
+    color: $link;
   }
   i {
-    color: rgb(255, 226, 60);
+    color: $stars-color;
     font-size: 14px;
   }
   span {

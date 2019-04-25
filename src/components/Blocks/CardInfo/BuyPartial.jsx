@@ -2,7 +2,6 @@ import React from "react";
 import ForSale from "../../Shared/forSale/forSale";
 import PropTypes from "prop-types";
 import Button from "../../Shared/Button/Button";
-// import "./styles.scss";
 
 const BuyPartial = props => {
   const { price, forSale } = props.product;

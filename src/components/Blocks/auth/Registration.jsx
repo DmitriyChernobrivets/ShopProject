@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { connect } from "react-redux";
-import { createUser } from "../../../store/Actions/getUser";
 import { validateInputs } from "../../../helpers/functions";
 import { NotificationManager } from "react-notifications";
 import PropTypes from "prop-types";
-// import "./styles.scss";
 class Registration extends Component {
   state = {
     firstName: "",
@@ -120,12 +117,4 @@ Registration.propTypes = {
   createUser: PropTypes.func
 };
 
-const getDispatcher = dispatch => {
-  return {
-    createUser: val => dispatch(createUser(val))
-  };
-};
-export default connect(
-  null,
-  getDispatcher
-)(Registration);
+export default Registration;

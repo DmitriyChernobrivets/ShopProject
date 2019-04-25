@@ -5,8 +5,8 @@
   height: 0;
   z-index: 111;
   position: absolute;
-  box-shadow: 0 9px 9px 1px rgb(185, 184, 184);
-  background-color: #fff;
+  box-shadow: 0 9px 9px 1px $card-shadow-color;
+  background-color: $white;
   margin: 10px -10px 10px -10px;
 
   .items-container {
@@ -21,7 +21,7 @@
   }
   & li::before {
     content: "";
-    border: 1px solid red;
+    border: 1px solid $red;
     border-radius: 50%;
 
     height: 7px;

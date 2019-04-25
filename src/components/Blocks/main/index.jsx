@@ -6,8 +6,8 @@ import {
   resetFilters,
   resetStore
 } from "../../../store/Actions/getProducts";
-import { options } from "../../Shared/Svg/options";
-import Card from "../Card/index";
+import { options } from "../../../constants/Svg-options";
+import CardContainer from "../../../Containers/CardContainer";
 import { Col, Row, Container } from "react-bootstrap";
 import Filter from "../Filter/Filter";
 import ErrorComponent from "../../Shared/Errorpage/ErrorComponent";
@@ -18,7 +18,6 @@ import Media from "react-media";
 import SearchInput from "../../Shared/searchInput/searchInput";
 import DefaultButton from "../../Shared/Button/defaultButton";
 import { Modal } from "react-bootstrap";
-// import "./styles.scss";
 
 const { SEARCH } = options;
 class Main extends Component {
@@ -112,7 +111,7 @@ class Main extends Component {
               <Row>
                 {!error ? (
                   products.map(prod => (
-                    <Card
+                    <CardContainer
                       product={prod}
                       match={match}
                       history={history}

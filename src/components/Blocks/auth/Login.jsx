@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { validateInputs } from "../../../helpers/functions";
-import { connect } from "react-redux";
-import { login, SocialsLoginSuccess } from "../../../store/Actions/getUser";
 import { firebase, uiConfig } from "../../../firebase/firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-
 import PropTypes from "prop-types";
-// import "./styles.scss";
 
 class Login extends Component {
   state = {
@@ -88,13 +84,4 @@ Login.propTypes = {
   login: PropTypes.func
 };
 
-const getDispatcher = dispatch => {
-  return {
-    login: val => dispatch(login(val)),
-    SocialsLoginSuccess: val => dispatch(SocialsLoginSuccess(val))
-  };
-};
-export default connect(
-  null,
-  getDispatcher
-)(Login);
+export default Login;

@@ -13,15 +13,15 @@
       vertical-align: top;
       cursor: pointer;
       &:hover:before {
-        border-color: red;
+        border-color: $red;
       }
       &:before {
         content: "";
         position: absolute;
         width: 20px;
         height: 20px;
-        background-color: white;
-        border: 1px solid grey;
+        background-color: $white;
+        border: 1px solid $dark-grey;
       }
       &:after {
         content: "";
@@ -31,13 +31,13 @@
         width: 7px;
         height: 13px;
         transition: 0.2s ease-in;
-        border-right: 3px solid #fff;
-        border-bottom: 3px solid #fff;
+        border-right: 3px solid $white;
+        border-bottom: 3px solid $white;
         right: 6px;
         top: 1px;
       }
       &:checked::before {
-        background-color: rgba(224, 0, 0, 1);
+        background-color: $red;
       }
       &:checked::after {
         transition: 0.2s ease-in-out;

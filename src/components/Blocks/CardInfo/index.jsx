@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import { fetchProductById } from "../../../store/Actions/getProductById";
-import { connect } from "react-redux";
-import { addToBucket } from "../../../store/Actions/bucket";
 import AccessNotification from "./Feedback_notification";
 import BuyPartial from "./BuyPartial";
 import ImagePartial from "./ImagePartial";
 import Details from "../../Shared/Details/Details";
-import FeeadbackForm from "../Feedback/FeedbackFrom";
+import FeedbackContainer from "../../../Containers/FeedbackContainer";
 import PropTypes from "prop-types";
-// import "./styles.scss";
 
 class CardInfo extends Component {
   state = {
@@ -56,7 +52,7 @@ class CardInfo extends Component {
                 />
               </Col>
             </Row>
-            {status === "Guest" ? <AccessNotification /> : <FeeadbackForm id={product._id} />}
+            {status === "Guest" ? <AccessNotification /> : <FeedbackContainer id={product._id} />}
           </Container>
         </main>
       )
@@ -71,22 +67,4 @@ CardInfo.propTypes = {
   status: PropTypes.string.isRequired
 };
 
-const StateToProps = state => {
-  return {
-    product: state.currentProductInfo,
-    status: state.auth.currentUser.status,
-    bucketItems: state.bucket.items
-  };
-};
-
-const dispatchToProps = dispatch => {
-  return {
-    getProductById: id => dispatch(fetchProductById(id)),
-    addToBucket: value => dispatch(addToBucket(value))
-  };
-};
-
-export default connect(
-  StateToProps,
-  dispatchToProps
-)(CardInfo);
+export default CardInfo;

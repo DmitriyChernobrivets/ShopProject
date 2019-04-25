@@ -1,7 +1,7 @@
 import React from "react";
 import UserPanel from "../auth/UserPanel";
 import SVG from "../../Shared/Svg/svg";
-import { options } from "../../Shared/Svg/options";
+import { options } from "../../../constants/Svg-options";
 import { Link } from "react-router-dom";
 // import "./styles.scss";
 

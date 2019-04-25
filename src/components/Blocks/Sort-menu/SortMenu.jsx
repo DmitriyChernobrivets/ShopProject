@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import Select from "react-select";
+import { options } from "../../../constants/select-options";
 import { connect } from "react-redux";
 import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-// import "./styles.scss";
 
-const options = [
-  { value: "cheap", label: "Start from cheap" },
-  { value: "exp", label: "Start from expensive" }
-];
 class SortMenu extends Component {
   state = {
     selectedOption: null

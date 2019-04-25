@@ -4,7 +4,7 @@
   transition: 0.2s ease-in;
   overflow: hidden;
   &:hover {
-    box-shadow: 0 0 9px 5px #c9c7c7;
+    box-shadow: 0 0 9px 5px $card-shadow-color;
     transition: 0.1s ease-out;
     overflow: visible;
     & .details-btn {

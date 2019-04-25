@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./styles.scss";
 
 class Modal extends Component {
   componentWillReceiveProps(nextProps) {

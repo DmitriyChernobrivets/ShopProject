@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import FeedbackItems from "./FeedbackItems";
 import { Col, Row } from "react-bootstrap";
 import FeedbackInput from "../../Shared/feedbackinput/FeedBackInput";
-import { connect } from "react-redux";
 import { NotificationManager } from "react-notifications";
-import { getFeedbackItems, sendFeedback } from "../../../store/Actions/feedback";
 import { validateInputs } from "../../../helpers/functions";
 import PropTypes from "prop-types";
 import DefaultButton from "../../Shared/Button/defaultButton";
-// import "./styles.scss";
 import "react-notifications/lib/notifications.css";
 
 class FeedbackForm extends Component {
@@ -31,7 +28,7 @@ class FeedbackForm extends Component {
   };
   sendFeedback = e => {
     e.preventDefault();
-    const { _id } = this.props.product;
+    const { _id } = this.props.product.product;
     const { name, comments, advantages, disadvantages } = this.state;
     const { sendFeedback } = this.props;
     const { error, ...inputs } = this.state;
@@ -122,20 +119,4 @@ FeedbackForm.propTypes = {
   sendFeedback: PropTypes.func.isRequired
 };
 
-const getState = state => {
-  return {
-    items: state.feedback.items,
-    error: state.feedback.error,
-    product: state.currentProductInfo.product
-  };
-};
-const getDispatcher = dispatch => {
-  return {
-    getFeedbackItems: id => dispatch(getFeedbackItems(id)),
-    sendFeedback: payload => dispatch(sendFeedback(payload))
-  };
-};
-export default connect(
-  getState,
-  getDispatcher
-)(FeedbackForm);
+export default FeedbackForm;

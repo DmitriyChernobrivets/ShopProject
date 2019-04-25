@@ -1,8 +1,8 @@
 import { HOME, PRODUCTS_CATEGORY, PRODUCT_BY_ID, BUCKET, NOT_FOUND } from "../constants/Routes";
 import Home from "../components/Blocks/Home/Home";
 import Main from "../components/Blocks/main/index";
-import CardInfo from "../components/Blocks/CardInfo/index";
-import Bucket from "../components/Blocks/Bucket/index";
+import CardInfoContainer from "../Containers/CardInfoContainer";
+import BucketContainer from "../Containers/BucketContainer";
 import ErrorComponent from "../components/Shared/Errorpage/ErrorComponent";
 
 const Routes = {
@@ -19,12 +19,12 @@ const Routes = {
   INFO: {
     path: PRODUCT_BY_ID,
     exact: false,
-    component: CardInfo
+    component: CardInfoContainer
   },
   BUCKET: {
     path: BUCKET,
     exact: false,
-    component: Bucket
+    component: BucketContainer
   },
   NOT_FOUND: {
     path: NOT_FOUND,

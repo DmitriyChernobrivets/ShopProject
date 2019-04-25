@@ -7,7 +7,7 @@
     padding: 10px;
     margin-top: 21px;
     width: 100%;
-    border: 1px solid rgb(202, 201, 201);
+    border: 1px solid $card-shadow-color;
   }
   .search-btn {
     position: absolute;
@@ -16,12 +16,12 @@
     bottom: 0;
     border: none;
     height: 40px;
-    background-color: #000;
+    background-color: $black;
     width: 40px;
     cursor: pointer;
   }
   .search-btn svg {
-    fill: #fff;
+    fill: $white;
     cursor: pointer;
   }
 }

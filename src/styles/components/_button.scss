@@ -1,22 +1,22 @@
 .product-card-button {
   position: relative;
   width: 100%;
-  background-color: #fff;
-  color: red;
-  border: 1px solid red;
+  background-color: $white;
+  color: $red;
+  border: 1px solid $red;
   margin-bottom: 10px;
 
   &.added {
-    color: #fff;
-    background-color: red;
+    color: $white;
+    background-color: $red;
   }
   &::before {
     content: "";
     position: absolute;
-    background-image: url(../../../images/trash.svg);
+    background-image: url(../images/trash.svg);
     top: -1px;
     right: -1px;
-    border-left: 1px solid #fff;
+    border-left: 1px solid $white;
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
@@ -24,16 +24,16 @@
     border-radius: 0 5px 5px 0;
     width: 41px;
     height: 38px;
-    background-color: red;
+    background-color: $red;
   }
   &:hover {
-    background-color: red;
-    color: #fff;
+    background-color: $red;
+    color: $white;
   }
 }
 
 .default-btn {
-  background-color: #ffc600;
+  background-color: $btn-color;
   padding: 12px 22px;
   border: none;
   font-weight: bold;
@@ -42,8 +42,8 @@
 
   &:hover {
     cursor: pointer;
-    color: #fff;
-    box-shadow: 1px 1px 15px -3px #ffc600;
+    color: $white;
+    box-shadow: $btn-shadow;
     transition: 0.2s linear;
   }
 }

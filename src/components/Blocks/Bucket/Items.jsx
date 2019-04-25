@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-// import "./styles.scss";
-import { connect } from "react-redux";
-import { increment, decrement, deleteItem } from "../../../store/Actions/bucket";
 import Svg from "../../Shared/Svg/svg";
-import { options } from "../../Shared/Svg/options";
+import { options } from "../../../constants/Svg-options";
 import PropTypes from "prop-types";
 class BuketItems extends Component {
   state = {
@@ -76,15 +73,4 @@ BuketItems.propTypes = {
   decrement: PropTypes.func.isRequired
 };
 
-const setDispatchToProps = dispatch => {
-  return {
-    increment: value => dispatch(increment(value)),
-    decrement: value => dispatch(decrement(value)),
-    deleteItem: value => dispatch(deleteItem(value))
-  };
-};
-
-export default connect(
-  null,
-  setDispatchToProps
-)(BuketItems);
+export default BuketItems;

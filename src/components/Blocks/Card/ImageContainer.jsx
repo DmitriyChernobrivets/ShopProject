@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import RatingStars from "../../Shared/Stars/RatingStars";
-// import "./styles.scss";
 
 const ImageContainer = props => {
   const { hot, images, rating } = props.product;

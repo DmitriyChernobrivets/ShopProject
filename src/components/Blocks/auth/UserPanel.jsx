@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import "../Header/styles.scss";
 
 class UserPanel extends Component {
   state = {

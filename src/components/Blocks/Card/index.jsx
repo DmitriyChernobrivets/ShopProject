@@ -4,12 +4,9 @@ import Details from "../../Shared/Details/Details";
 import ImageContainer from "./ImageContainer";
 import Title from "./Title";
 import { Col } from "react-bootstrap";
-import { connect } from "react-redux";
-import { addToBucket } from "../../../store/Actions/bucket";
 import Button from "../../Shared/Button/Button";
 import PropTypes from "prop-types";
 
-// import "./styles.scss";
 class Card extends Component {
   state = {
     isAddedtoBucket: false
@@ -62,12 +59,4 @@ Card.propTypes = {
   addToBucket: PropTypes.func.isRequired
 };
 
-const dispatchToPRops = dispatch => {
-  return {
-    addToBucket: value => dispatch(addToBucket(value))
-  };
-};
-export default connect(
-  null,
-  dispatchToPRops
-)(Card);
+export default Card;

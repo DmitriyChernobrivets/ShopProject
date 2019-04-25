@@ -4,13 +4,11 @@ import HeaderLeft from "./HeaderLeft";
 import HeaderRight from "./HeaderRight";
 import { connect } from "react-redux";
 import { logout } from "../../../store/Actions/getUser";
-import SignIn from "../auth/index";
 import PropTypes from "prop-types";
 import { slide as Hamburger } from "react-burger-menu";
 import { Modal } from "react-bootstrap";
 import Media from "react-media";
-
-// import "./styles.scss";
+import SignInContainer from "../../../Containers/SignInContainer";
 
 class Header extends Component {
   state = {
@@ -43,7 +41,7 @@ class Header extends Component {
         </Media>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
-          <SignIn history={history} hideModal={this.handleClose} />
+          <SignInContainer history={history} hideModal={this.handleClose} />
         </Modal>
 
         <HeaderRight

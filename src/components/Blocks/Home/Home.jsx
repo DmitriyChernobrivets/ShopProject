@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Container } from "react-bootstrap";
 import HomeCard from "./HomeCard";
 import PropTypes from "prop-types";
-// import "./styles.scss";
 
 const Home = props => {
   const { categories } = props;

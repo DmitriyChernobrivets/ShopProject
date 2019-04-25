@@ -2,7 +2,6 @@ import React from "react";
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-// import "./styles.scss";
 
 const HomeCard = props => {
   const { category } = props;

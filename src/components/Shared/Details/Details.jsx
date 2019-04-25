@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import DefaultButton from "../Button/defaultButton";
 import { CSSTransition, transit } from "react-css-transition";
-import "./styles.scss";
 
 class Details extends Component {
   state = {

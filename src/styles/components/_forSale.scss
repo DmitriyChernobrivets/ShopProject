@@ -3,14 +3,14 @@
   font-size: 14px;
   .forSale-text {
     & .fa-check {
-      background-color: rgb(106, 201, 98);
+      background-color: $lime;
     }
     & .fa-times {
-      background-color: rgb(204, 54, 54);
+      background-color: $red;
     }
     & i {
       margin-right: 8px;
-      color: #fff;
+      color: $white;
       font-size: 9px;
       padding: 4px 5px;
       border-radius: 50%;

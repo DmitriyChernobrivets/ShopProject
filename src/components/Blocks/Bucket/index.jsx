@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import Items from "./Items";
-import { connect } from "react-redux";
-import { updateBucket } from "../../../store/Actions/bucket";
+import BucketItems from "./Items";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BottomNav from "./BottomNav";
 import PropTypes from "prop-types";
-// import "./styles.scss";
 
 class Bucket extends Component {
   componentWillUnmount() {
@@ -17,7 +14,7 @@ class Bucket extends Component {
     history.goBack();
   };
   render() {
-    const { total, items } = this.props;
+    const { total, items, increment, decrement, deleteItem } = this.props;
 
     return (
       <main>
@@ -29,7 +26,12 @@ class Bucket extends Component {
                 {items.length !== 0 ? (
                   items.map(item => (
                     <CSSTransition key={item._id} timeout={500} classNames="item">
-                      <Items item={item} />
+                      <BucketItems
+                        item={item}
+                        increment={increment}
+                        decrement={decrement}
+                        deleteItem={deleteItem}
+                      />
                     </CSSTransition>
                   ))
                 ) : (
@@ -52,18 +54,4 @@ Bucket.propTypes = {
   total: PropTypes.number.isRequired
 };
 
-const stateToProps = state => {
-  return {
-    total: state.bucket.total,
-    items: state.bucket.items
-  };
-};
-const dispatchToProps = dispatch => {
-  return {
-    updateBucket: () => dispatch(updateBucket())
-  };
-};
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(Bucket);
+export default Bucket;
