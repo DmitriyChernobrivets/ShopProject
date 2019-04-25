@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import ForSale from "../../Shared/forSale/forSale";
 import Details from "../../Shared/Details/Details";
 import ImageContainer from "./ImageContainer";
@@ -7,7 +7,7 @@ import { Col } from "react-bootstrap";
 import Button from "../../Shared/Button/Button";
 import PropTypes from "prop-types";
 
-class Card extends Component {
+class Card extends PureComponent {
   state = {
     isAddedtoBucket: false
   };

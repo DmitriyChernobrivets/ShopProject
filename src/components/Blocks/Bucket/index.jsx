@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import BucketItems from "./Items";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BottomNav from "./BottomNav";
 import PropTypes from "prop-types";
 
-class Bucket extends Component {
+class Bucket extends PureComponent {
   componentWillUnmount() {
     this.props.updateBucket();
   }

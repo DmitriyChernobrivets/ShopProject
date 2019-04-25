@@ -62,12 +62,11 @@ class Main extends Component {
       location,
       history,
       getProductBySearchInput,
-      getFilteredProducts
+      getfilteredProducts
     } = this.props;
     const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
     const { error } = allproducts;
-
     return (
       <main>
         <Container className="wrapper">
@@ -87,7 +86,7 @@ class Main extends Component {
               <Row className="sort-wrapper">
                 <SortMenu
                   currentFilters={currentFilters}
-                  getFilteredProducts={getFilteredProducts}
+                  getfilteredProducts={getfilteredProducts}
                 />
 
                 <SearchInput
@@ -123,11 +122,7 @@ class Main extends Component {
             </Col>
           </Row>
           <Modal show={this.state.isshow} onHide={this.handleClose}>
-            <Row>
-              <Col sm={{ offset: 2, span: 8 }} xs={{ offset: 2, span: 6 }}>
-                <FiltersContainer match={match} location={location} />
-              </Col>
-            </Row>
+            <FiltersContainer match={match} location={location} />
           </Modal>
         </Container>
       </main>

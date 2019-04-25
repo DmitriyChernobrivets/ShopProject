@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import Tabs from "../../Shared/Tabs/Tabs";
 import Registration from "./Registration";
 import Login from "./Login";
 import "react-notifications/lib/notifications.css";
 
-class SignIn extends Component {
+class SignIn extends PureComponent {
   state = {
     currentTabidx: 1
   };

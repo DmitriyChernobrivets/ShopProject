@@ -1,24 +1,23 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Select from "react-select";
 import { options } from "../../../constants/select-options";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 
-class SortMenu extends Component {
+class SortMenu extends PureComponent {
   state = {
     selectedOption: null
   };
 
   onChange = selectedOption => {
-    const { getFilteredProducts, currentFilters } = this.props;
+    const { getfilteredProducts, currentFilters } = this.props;
 
     this.setState({ selectedOption }, () =>
-      getFilteredProducts({ ...currentFilters, sort: selectedOption.value })
+      getfilteredProducts({ ...currentFilters, sort: selectedOption.value })
     );
   };
   render() {
     const { selectedOption } = this.state;
-
     return (
       <Col>
         <div className="sort-menu">
@@ -38,7 +37,7 @@ class SortMenu extends Component {
 
 SortMenu.propTypes = {
   currentFilters: PropTypes.object.isRequired,
-  getFilteredProducts: PropTypes.func.isRequired
+  getfilteredProducts: PropTypes.func.isRequired
 };
 
 export default SortMenu;

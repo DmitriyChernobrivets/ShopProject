@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import App from "../components/App";
 import {
@@ -9,7 +9,16 @@ import {
 } from "../Selectors/common";
 import { defaultAuthorization, resetError } from "../store/Actions/getUser";
 
-const ROOTContainer = props => <App {...props} />;
+class ROOTContainer extends Component {
+  componentDidMount() {
+    const { defaultAuthorization } = this.props;
+    defaultAuthorization();
+  }
+  render() {
+    const { auth } = this.props;
+    return auth !== "unauthorized" ? <App {...this.props} /> : null;
+  }
+}
 
 const mapStatetoProps = state => {
   return {
