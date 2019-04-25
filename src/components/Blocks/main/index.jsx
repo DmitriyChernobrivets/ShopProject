@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import {
-  getFilteredProducts,
-  getProductBySearchInput,
-  resetFilters,
-  resetStore
-} from "../../../store/Actions/getProducts";
 import { options } from "../../../constants/Svg-options";
 import CardContainer from "../../../Containers/CardContainer";
 import { Col, Row, Container } from "react-bootstrap";
-import Filter from "../Filter/Filter";
+import FiltersContainer from "../../../Containers/FiltersContainer";
 import ErrorComponent from "../../Shared/Errorpage/ErrorComponent";
 import SortMenu from "../Sort-menu/SortMenu";
 import ReactPaginate from "react-paginate";
@@ -68,7 +61,8 @@ class Main extends Component {
       bucketItems,
       location,
       history,
-      getProductBySearchInput
+      getProductBySearchInput,
+      getFilteredProducts
     } = this.props;
 
     const { products } = allproducts;
@@ -78,14 +72,6 @@ class Main extends Component {
     return (
       <main>
         <Container className="wrapper">
-          <Modal show={this.state.isshow} onHide={this.handleClose}>
-            <Row>
-              <Col sm={{ offset: 2, span: 8 }} xs={{ offset: 2, span: 6 }}>
-                <Filter match={match} location={location} />
-              </Col>
-            </Row>
-          </Modal>
-
           <Row>
             <Col>
               <Media query="(max-width: 768px)">
@@ -93,14 +79,17 @@ class Main extends Component {
                   matches ? (
                     <DefaultButton title="Filters" callback={this.handleShow} />
                   ) : (
-                    <Filter match={match} location={location} />
+                    <FiltersContainer match={match} location={location} />
                   )
                 }
               </Media>
             </Col>
             <Col md={9}>
               <Row className="sort-wrapper">
-                <SortMenu />
+                <SortMenu
+                  currentFilters={currentFilters}
+                  getFilteredProducts={getFilteredProducts}
+                />
 
                 <SearchInput
                   path={SEARCH}
@@ -134,6 +123,13 @@ class Main extends Component {
               )}
             </Col>
           </Row>
+          <Modal show={this.state.isshow} onHide={this.handleClose}>
+            <Row>
+              <Col sm={{ offset: 2, span: 8 }} xs={{ offset: 2, span: 6 }}>
+                <FiltersContainer match={match} location={location} />
+              </Col>
+            </Row>
+          </Modal>
         </Container>
       </main>
     );
@@ -148,25 +144,4 @@ Main.propTypes = {
   getfilteredProducts: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    totalPageCount: state.currentFilters.totalPageCount,
-    allproducts: state.allProducts,
-    currentFilters: state.currentFilters,
-    bucketItems: state.bucket.items
-  };
-};
-
-const mapDeispathToProps = dispatch => {
-  return {
-    getfilteredProducts: val => dispatch(getFilteredProducts(val)),
-    getProductBySearchInput: val => dispatch(getProductBySearchInput(val)),
-    resetFilters: () => dispatch(resetFilters()),
-    resetStore: () => dispatch(resetStore())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDeispathToProps
-)(Main);
+export default Main;

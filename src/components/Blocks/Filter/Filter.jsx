@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Checkbox from "../../Shared/checkbox/Checkbox";
 import { isFiltersEmpty } from "../../../helpers/functions";
 import defaultOptions from "../../../constants/filters";
-import { connect } from "react-redux";
-import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
 import InputRange from "react-input-range";
 import DefaultButton from "../../Shared/Button/defaultButton";
@@ -84,17 +82,4 @@ Filter.propTypes = {
   getFilteredProducts: PropTypes.func.isRequired
 };
 
-const getState = state => {
-  return {
-    sort: state.currentFilters.sort
-  };
-};
-const getDisptatchToProps = dispatch => {
-  return {
-    getFilteredProducts: val => dispatch(getFilteredProducts(val))
-  };
-};
-export default connect(
-  getState,
-  getDisptatchToProps
-)(Filter);
+export default Filter;

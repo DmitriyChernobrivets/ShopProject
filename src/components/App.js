@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import Header from "./Blocks/Header/index";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ErrorComponent from "./Shared/Errorpage/ErrorComponent";
-import { connect } from "react-redux";
-import Routes from "../service/Router";
-import { defaultAuthorization, resetError } from "../store/Actions/getUser";
+import Routes from "../service/Routes";
 import { NotificationContainer } from "react-notifications";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import { Circle2 as Preloader } from "react-preloaders";
@@ -14,7 +12,8 @@ class App extends Component {
     categories: ["Notebooks", "Mobile", "PCs"]
   };
   componentDidMount() {
-    this.props.defaultAuthorization();
+    const { defaultAuthorization } = this.props;
+    defaultAuthorization();
   }
 
   render() {
@@ -22,7 +21,7 @@ class App extends Component {
     const { categories } = this.state;
     return (
       <BrowserRouter>
-        <div>
+        <div className="App">
           <Header categories={categories} />
           {auth !== "unauthorized" ? (
             <Switch>
@@ -46,30 +45,10 @@ class App extends Component {
             <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.1)"} time={1400} />
           )}
           {errHandler && <ErrorComponent title={errHandler} refresh={resetError} />}
-          )}
         </div>
       </BrowserRouter>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    preloaderAll: state.allProducts.preloader,
-    preloaderID: state.currentProductInfo.loading,
-    auth: state.auth.currentUser.status,
-    errHandler: state.error
-  };
-};
-
-const getDispatcher = dispatch => {
-  return {
-    defaultAuthorization: () => dispatch(defaultAuthorization()),
-    resetError: () => dispatch(resetError())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  getDispatcher
-)(App);
+export default App;

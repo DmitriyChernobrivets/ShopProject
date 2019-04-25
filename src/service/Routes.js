@@ -1,6 +1,6 @@
 import { HOME, PRODUCTS_CATEGORY, PRODUCT_BY_ID, BUCKET, NOT_FOUND } from "../constants/Routes";
 import Home from "../components/Blocks/Home/Home";
-import Main from "../components/Blocks/main/index";
+import MainContainer from "../Containers/MainContainer";
 import CardInfoContainer from "../Containers/CardInfoContainer";
 import BucketContainer from "../Containers/BucketContainer";
 import ErrorComponent from "../components/Shared/Errorpage/ErrorComponent";
@@ -14,7 +14,7 @@ const Routes = {
   MAIN: {
     path: PRODUCTS_CATEGORY,
     exact: true,
-    component: Main
+    component: MainContainer
   },
   INFO: {
     path: PRODUCT_BY_ID,

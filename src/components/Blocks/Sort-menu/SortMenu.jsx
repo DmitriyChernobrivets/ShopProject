@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import { options } from "../../../constants/select-options";
-import { connect } from "react-redux";
-import { getFilteredProducts } from "../../../store/Actions/getProducts";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 
@@ -43,18 +41,4 @@ SortMenu.propTypes = {
   getFilteredProducts: PropTypes.func.isRequired
 };
 
-const getState = state => {
-  return {
-    currentFilters: state.currentFilters
-  };
-};
-const getdispatcher = dispatch => {
-  return {
-    getFilteredProducts: val => dispatch(getFilteredProducts(val))
-  };
-};
-
-export default connect(
-  getState,
-  getdispatcher
-)(SortMenu);
+export default SortMenu;
