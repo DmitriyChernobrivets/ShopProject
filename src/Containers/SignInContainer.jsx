@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import SignIn from "../components/Blocks/auth/index";
 import { getUser, getSignupStatus } from "../Selectors/common";
-import { createUser, login, SocialsLoginSuccess } from "../store/Actions/getUser";
+import { createUser, login, SocialsLoginSuccess } from "../store/Actions/User";
 
 const SignInContainer = props => <SignIn {...props} />;
 

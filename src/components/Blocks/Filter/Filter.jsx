@@ -21,15 +21,15 @@ class Filter extends Component {
     const isStateDefault = isFiltersEmpty(this.state);
     if (isStateDefault) return;
 
-    const { sort, getFilteredProducts, match } = this.props;
+    const { sort, getProducts, match } = this.props;
 
     this.setState(defaultOptions[match.params.categories], () => {
-      getFilteredProducts({ ...this.state, sort });
+      getProducts({ ...this.state, sort });
     });
   };
 
   onChangeAction(idx, key) {
-    const { sort, getFilteredProducts } = this.props;
+    const { sort, getProducts } = this.props;
 
     this.setState(
       prevState => {
@@ -40,11 +40,11 @@ class Filter extends Component {
           [key]: [...newData]
         };
       },
-      () => getFilteredProducts({ ...this.state, sort })
+      () => getProducts({ ...this.state, sort })
     );
   }
   onRangeChange = price =>
-    this.setState({ ...this.state, price }, () => this.props.getFilteredProducts(this.state));
+    this.setState({ ...this.state, price }, () => this.props.getProducts(this.state));
   render() {
     return (
       <div className="filter_container">
@@ -78,7 +78,7 @@ class Filter extends Component {
 
 Filter.propTypes = {
   sort: PropTypes.string.isRequired,
-  getFilteredProducts: PropTypes.func.isRequired
+  getProducts: PropTypes.func.isRequired
 };
 
 export default Filter;

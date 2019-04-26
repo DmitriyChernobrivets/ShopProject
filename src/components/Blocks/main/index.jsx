@@ -11,6 +11,7 @@ import Media from "react-media";
 import SearchInput from "../../Shared/searchInput/searchInput";
 import DefaultButton from "../../Shared/Button/defaultButton";
 import { Modal } from "react-bootstrap";
+import Cardpreloader from "../Card/Cardpreloader";
 
 const { SEARCH } = options;
 class Main extends Component {
@@ -18,16 +19,16 @@ class Main extends Component {
     isshow: false
   };
   componentDidMount() {
-    const { currentFilters, getfilteredProducts, resetStore } = this.props;
+    const { currentFilters, getProducts, resetStore } = this.props;
     resetStore();
-    getfilteredProducts(currentFilters);
+    getProducts(currentFilters);
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const { getfilteredProducts } = this.props;
+    const { getProducts } = this.props;
 
     if (nextProps.match.params.categories !== this.props.match.params.categories) {
-      getfilteredProducts();
+      getProducts();
       return true;
     } else {
       return false;
@@ -38,10 +39,10 @@ class Main extends Component {
     resetFilters();
   }
   onPageChange = ({ selected }) => {
-    const { currentFilters, getfilteredProducts } = this.props;
+    const { currentFilters, getProducts } = this.props;
     const obj = { ...currentFilters, currentPage: selected };
 
-    getfilteredProducts(obj);
+    getProducts(obj);
   };
 
   handleClose = () => {
@@ -62,11 +63,12 @@ class Main extends Component {
       location,
       history,
       getProductBySearchInput,
-      getfilteredProducts
+      getProducts
     } = this.props;
     const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
     const { error } = allproducts;
+
     return (
       <main>
         <Container className="wrapper">
@@ -84,10 +86,7 @@ class Main extends Component {
             </Col>
             <Col md={9}>
               <Row className="sort-wrapper">
-                <SortMenu
-                  currentFilters={currentFilters}
-                  getfilteredProducts={getfilteredProducts}
-                />
+                <SortMenu currentFilters={currentFilters} getProducts={getProducts} />
 
                 <SearchInput
                   path={SEARCH}
@@ -96,7 +95,13 @@ class Main extends Component {
                 />
               </Row>
               <Row>
-                {!error ? (
+                {error ? (
+                  <ErrorComponent title={error} />
+                ) : products.length === 0 ? (
+                  Array(6)
+                    .fill({})
+                    .map((el, idx) => <Cardpreloader key={idx} />)
+                ) : (
                   products.map(prod => (
                     <CardContainer
                       product={prod}
@@ -106,8 +111,6 @@ class Main extends Component {
                       bucketItems={bucketItems}
                     />
                   ))
-                ) : (
-                  <ErrorComponent title={error} />
                 )}
               </Row>
               {products.length !== 0 && (
@@ -135,7 +138,7 @@ Main.propTypes = {
   totalPageCount: PropTypes.number.isRequired,
   allproducts: PropTypes.object.isRequired,
   currentFilters: PropTypes.object.isRequired,
-  getfilteredProducts: PropTypes.func.isRequired
+  getProducts: PropTypes.func.isRequired
 };
 
 export default Main;

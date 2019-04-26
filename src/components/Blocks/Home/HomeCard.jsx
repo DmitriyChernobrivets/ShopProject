@@ -8,7 +8,7 @@ const HomeCard = props => {
   return (
     <Col xs={6} md={4} className="home-category">
       <Link to={"/category/" + category}>
-        <img src={"./images/Home/" + category + ".jpg"} alt="Homepage_img" />
+        <img src={"../../images/Home/" + category + ".jpg"} alt="Homepage_img" />
         <h3>{category}</h3>
       </Link>
     </Col>

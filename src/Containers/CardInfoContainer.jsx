@@ -1,11 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import CardInfo from "../components/Blocks/CardInfo/index";
 import { getAuthStatus, getProductById, getBucketItems } from "../Selectors/common";
 import { addToBucket } from "../store/Actions/bucket";
 import { fetchProductById } from "../store/Actions/getProductById";
 
-const SignInContainer = props => <CardInfo {...props} />;
+class SignInContainer extends Component {
+  componentDidMount() {
+    const { url } = this.props.match;
+    const { getProductById } = this.props;
+    getProductById(url);
+  }
+  render() {
+    const { product } = this.props.product;
+
+    return product ? <CardInfo {...this.props} /> : null; //
+  }
+}
 
 const mapStatetoProps = state => {
   return {

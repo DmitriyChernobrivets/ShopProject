@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import HeaderContainer from "../Containers/HeaderContainer";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ErrorComponent from "./Shared/Errorpage/ErrorComponent";
@@ -6,6 +6,7 @@ import Routes from "../service/Routes";
 import { NotificationContainer } from "react-notifications";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import { Circle2 as Preloader } from "react-preloaders";
+import LoaderID from "./Shared/Preloader/loader";
 import PropTypes from "prop-types";
 
 const App = props => {
@@ -22,10 +23,11 @@ const App = props => {
         </Switch>
 
         <NotificationContainer />
+
         <ScrollUpButton style={{ fill: "red", borderColor: "red" }} />
-        {(preloaderAll || preloaderID) && (
-          <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.1)"} time={1400} />
-        )}
+
+        {preloaderAll && <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.1)"} time={1400} />}
+        {preloaderID && <LoaderID />}
         {errHandler && <ErrorComponent title={errHandler} refresh={resetError} />}
       </div>
     </BrowserRouter>

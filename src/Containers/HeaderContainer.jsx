@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Header from "../components/Blocks/Header/index";
 import { withRouter } from "react-router-dom";
 import { getUser, getBucketItems } from "../Selectors/common";
-import { logout } from "../store/Actions/getUser";
+import { logout } from "../store/Actions/User";
 
 const HeaderContainer = props => <Header {...props} />;
 

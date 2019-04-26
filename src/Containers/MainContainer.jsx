@@ -8,7 +8,7 @@ import {
   getTotalPageCount
 } from "../Selectors/common";
 import {
-  getFilteredProducts,
+  getProducts,
   getProductBySearchInput,
   resetFilters,
   resetStore
@@ -26,7 +26,7 @@ const mapStatetoProps = state => {
 };
 const getDispatchToProps = dispatch => {
   return {
-    getfilteredProducts: val => dispatch(getFilteredProducts(val)),
+    getProducts: val => dispatch(getProducts(val)),
     getProductBySearchInput: val => dispatch(getProductBySearchInput(val)),
     resetFilters: () => dispatch(resetFilters()),
     resetStore: () => dispatch(resetStore())

@@ -73,7 +73,7 @@ const getProductBySearchInput = data => {
     }
   };
 };
-const getFilteredProducts = (data = DEFAULT_STATE) => {
+const getProducts = (data = DEFAULT_STATE) => {
   const currentfilters = transformState(data);
 
   const url = window.location.pathname;
@@ -98,4 +98,4 @@ const getFilteredProducts = (data = DEFAULT_STATE) => {
   };
 };
 
-export { getFilteredProducts, getProductBySearchInput, resetFilters, resetStore };
+export { getProducts, getProductBySearchInput, resetFilters, resetStore };

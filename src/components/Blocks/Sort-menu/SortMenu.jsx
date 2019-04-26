@@ -10,10 +10,10 @@ class SortMenu extends PureComponent {
   };
 
   onChange = selectedOption => {
-    const { getfilteredProducts, currentFilters } = this.props;
+    const { getProducts, currentFilters } = this.props;
 
     this.setState({ selectedOption }, () =>
-      getfilteredProducts({ ...currentFilters, sort: selectedOption.value })
+      getProducts({ ...currentFilters, sort: selectedOption.value })
     );
   };
   render() {
@@ -37,7 +37,7 @@ class SortMenu extends PureComponent {
 
 SortMenu.propTypes = {
   currentFilters: PropTypes.object.isRequired,
-  getfilteredProducts: PropTypes.func.isRequired
+  getProducts: PropTypes.func.isRequired
 };
 
 export default SortMenu;

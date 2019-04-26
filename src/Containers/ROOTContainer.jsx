@@ -7,7 +7,7 @@ import {
   getGlobalError,
   getAuthStatus
 } from "../Selectors/common";
-import { defaultAuthorization, resetError } from "../store/Actions/getUser";
+import { defaultAuthorization, resetError } from "../store/Actions/User";
 
 class ROOTContainer extends Component {
   componentDidMount() {
