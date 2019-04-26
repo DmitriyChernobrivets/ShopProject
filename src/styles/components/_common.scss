@@ -1,7 +1,26 @@
 .modal-dialog {
   max-width: 350px;
 }
+.Github-icon {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 123;
+  cursor: pointer;
 
+  &:hover {
+    color: unset;
+  }
+  &:hover i {
+    opacity: 1;
+    transition: 0.2s linear;
+  }
+  & > i {
+    opacity: 0.6;
+    font-size: 40px;
+    transition: 0.2s linear;
+  }
+}
 .loader-container {
   position: absolute;
   display: flex;

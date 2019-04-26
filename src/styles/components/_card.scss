@@ -80,7 +80,7 @@
 }
 .card-preloader {
   width: 100%;
-  min-height: 370px;
+  min-height: 340px;
   margin: 0 auto 15px;
 }
 .card-loader {
@@ -90,7 +90,7 @@
   position: relative;
   border-radius: 2px;
   margin-bottom: 0;
-  min-height: 370px;
+  min-height: 340px;
   overflow: hidden;
 
   &:only-child {
@@ -140,7 +140,6 @@
   }
 }
 
-// Loader animation
 @keyframes loader-animate {
   0% {
     transform: translate3d(-100%, 0, 0);

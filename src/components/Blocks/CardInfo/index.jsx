@@ -5,6 +5,7 @@ import BuyPartial from "./BuyPartial";
 import ImagePartial from "./ImagePartial";
 import Details from "../../Shared/Details/Details";
 import FeedbackContainer from "../../../Containers/FeedbackContainer";
+
 import PropTypes from "prop-types";
 
 const CardInfo = props => {

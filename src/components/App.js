@@ -29,6 +29,14 @@ const App = props => {
         {preloaderAll && <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.1)"} time={1400} />}
         {preloaderID && <LoaderID />}
         {errHandler && <ErrorComponent title={errHandler} refresh={resetError} />}
+
+        <a
+          href="https://github.com/DmitriyChernobrivets/ShopProject/tree/master/src"
+          target="_blank"
+          className="Github-icon"
+        >
+          <i className="fab fa-github-square" />
+        </a>
       </div>
     </BrowserRouter>
   );

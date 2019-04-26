@@ -4,7 +4,7 @@ import CardInfo from "../components/Blocks/CardInfo/index";
 import { getAuthStatus, getProductById, getBucketItems } from "../Selectors/common";
 import { addToBucket } from "../store/Actions/bucket";
 import { fetchProductById } from "../store/Actions/getProductById";
-
+import ErrorComponent from "../components/Shared/Errorpage/ErrorComponent";
 class SignInContainer extends Component {
   componentDidMount() {
     const { url } = this.props.match;
@@ -12,9 +12,9 @@ class SignInContainer extends Component {
     getProductById(url);
   }
   render() {
-    const { product } = this.props.product;
+    const { product, error } = this.props.product;
 
-    return product ? <CardInfo {...this.props} /> : null; //
+    return error ? <ErrorComponent title={error} /> : product ? <CardInfo {...this.props} /> : null; //
   }
 }
 
