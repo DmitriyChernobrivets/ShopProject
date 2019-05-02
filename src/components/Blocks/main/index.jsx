@@ -20,6 +20,7 @@ class Main extends Component {
   };
   componentDidMount() {
     const { currentFilters, getProducts, resetStore } = this.props;
+
     resetStore();
     getProducts(currentFilters);
   }
