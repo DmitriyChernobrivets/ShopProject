@@ -1,6 +1,6 @@
 .home-category {
   overflow: hidden;
-
+  animation: circlePulse 0.3s linear;
   & img {
     transition: 0.2s linear;
   }
@@ -36,12 +36,11 @@
 }
 @keyframes circlePulse {
   from {
-    opacity: 1;
-    transform: scale(1);
+    opacity: 0;
+    transform: translateY(200px);
   }
   to {
-    transform: scale(0.5);
-    opacity: 0.5;
-    background-color: $white;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
