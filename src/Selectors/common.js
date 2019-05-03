@@ -1,5 +1,5 @@
 const getUser = state => state.auth.currentUser;
-const getSignupStatus = state => state.auth.Signnup;
+const getSignupStatus = state => state.auth.Registration;
 
 const getTotalPrice = state => state.bucket.total;
 const getBucketItems = state => state.bucket.items;
@@ -19,7 +19,16 @@ const getAllProductPreload = state => state.allProducts.preloader;
 const getIdProductPreload = state => state.currentProductInfo.loading;
 
 const getGlobalError = state => state.error;
+const getFilters = state => {
+  return {
+    title: state.currentFilters.title,
+    memory: state.currentFilters.memory,
+    price: state.currentFilters.price
+  };
+};
+
 export {
+  getFilters,
   getGlobalError,
   getAllProductPreload,
   getIdProductPreload,

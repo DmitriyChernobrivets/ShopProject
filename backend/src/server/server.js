@@ -10,7 +10,7 @@ const morgan = require("morgan");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const mongoose = require("mongoose");
 const { mongoURI, SECRET } = require("../config/config");
-const checktoken = require("../services/checktoken");
+// const checktoken = require("../services/checktoken");
 const cors = require("cors");
 
 const server = port => {
@@ -36,7 +36,7 @@ const server = port => {
     // .use(checktoken)
 
     .use("/feedback", feedbackRouter)
-    .get("/*", (req, res) => {
+    .get("*", (req, res) => {
       res.sendFile(path.join(__dirname, "../", "public/", "index.html"));
     })
     .use(errorHandler)

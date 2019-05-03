@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import Filters from "../components/Blocks/Filter/Filter";
-import { getSort } from "../Selectors/common";
+import { getSort, getFilters } from "../Selectors/common";
 import { getProducts } from "../store/Actions/getProducts";
 
 const FiltersContainer = props => <Filters {...props} />;
 
 const mapStatetoProps = state => {
   return {
+    filters: getFilters(state),
     sort: getSort(state)
   };
 };

@@ -49,8 +49,8 @@ class Filter extends Component {
     return (
       <div className="filter_container">
         <h3>Filters</h3>
-        {Object.keys(this.state).map((el, idx) => (
-          <div className="filter_box" key={idx}>
+        {Object.keys(this.state).map(el => (
+          <div className="filter_box" key={el}>
             <h5>By {el === "memory" ? el + ", Gb" : el}</h5>
             {el === "price" ? (
               <InputRange
@@ -63,7 +63,7 @@ class Filter extends Component {
               this.state[el].map((item, idx) => (
                 <Checkbox
                   item={item}
-                  key={idx}
+                  key={item.title}
                   onChangeAction={this.onChangeAction.bind(this, idx, el)}
                 />
               ))

@@ -74,7 +74,6 @@ const getProductBySearchInput = data => {
   };
 };
 const getProducts = (data = DEFAULT_STATE) => {
-  
   const currentfilters = transformState(data);
 
   const url = window.location.pathname;

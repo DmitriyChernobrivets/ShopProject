@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderContainer from "../Containers/HeaderContainer";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import ErrorComponent from "./Shared/Errorpage/ErrorComponent";
 import Routes from "../service/Routes";
 import { NotificationContainer } from "react-notifications";
@@ -8,17 +8,17 @@ import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import { Circle2 as Preloader } from "react-preloaders";
 import LoaderID from "./Shared/Preloader/loader";
 import PropTypes from "prop-types";
-
+import { BrowserRouter as Router } from "react-router-dom";
 const App = props => {
   const { preloaderAll, preloaderID, errHandler, resetError } = props;
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
         <HeaderContainer />
 
         <Switch>
-          {Object.values(Routes).map((route, idx) => (
-            <Route key={idx} {...route} />
+          {Object.values(Routes).map(route => (
+            <Route key={route.path} {...route} />
           ))}
         </Switch>
 
@@ -29,16 +29,8 @@ const App = props => {
         {preloaderAll && <Preloader color={"red"} bgColor={"rgba(3, 3, 3, 0.1)"} time={1400} />}
         {preloaderID && <LoaderID />}
         {errHandler && <ErrorComponent title={errHandler} refresh={resetError} />}
-
-        <a
-          href="https://github.com/DmitriyChernobrivets/ShopProject/tree/master/src"
-          target="_blank"
-          className="Github-icon"
-        >
-          <i className="fab fa-github-square" />
-        </a>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 };
 App.propTypes = {

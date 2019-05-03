@@ -18,33 +18,6 @@ class Main extends Component {
   state = {
     isshow: false
   };
-  componentDidMount() {
-    const { currentFilters, getProducts, resetStore } = this.props;
-
-    resetStore();
-    getProducts(currentFilters);
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { getProducts } = this.props;
-
-    if (nextProps.match.params.categories !== this.props.match.params.categories) {
-      getProducts();
-      return true;
-    } else {
-      return false;
-    }
-  }
-  componentWillUnmount() {
-    const { resetFilters } = this.props;
-    resetFilters();
-  }
-  onPageChange = ({ selected }) => {
-    const { currentFilters, getProducts } = this.props;
-    const obj = { ...currentFilters, currentPage: selected };
-
-    getProducts(obj);
-  };
 
   handleClose = () => {
     this.setState({ isshow: false });
@@ -64,7 +37,8 @@ class Main extends Component {
       location,
       history,
       getProductBySearchInput,
-      getProducts
+      getProducts,
+      onPageChange
     } = this.props;
     const { products } = allproducts;
     const paginationCount = Math.ceil(totalPageCount / 6);
@@ -120,7 +94,7 @@ class Main extends Component {
                   activeClassName="pagination_active"
                   activeLinkClassName="pagination_active-link"
                   pageCount={paginationCount}
-                  onPageChange={this.onPageChange}
+                  onPageChange={onPageChange}
                 />
               )}
             </Col>

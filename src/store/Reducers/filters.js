@@ -4,7 +4,7 @@ export const DEFAULT_STATE = {
   title: [],
   memory: [],
   price: { min: 0, max: 150000 },
-  sort: "",
+  sort: "Not Selected",
   totalPageCount: 1
 };
 

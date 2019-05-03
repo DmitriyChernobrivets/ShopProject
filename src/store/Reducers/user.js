@@ -13,7 +13,7 @@ const DEFAULT_STATE = {
     error: null
   },
 
-  Signnup: {
+  Registration: {
     status: null,
     error: null
   }

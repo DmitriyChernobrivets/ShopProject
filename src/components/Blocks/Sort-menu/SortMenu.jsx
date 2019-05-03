@@ -9,7 +9,7 @@ class SortMenu extends PureComponent {
     selectedOption: null
   };
 
-  onChange = selectedOption => {
+  onSortChange = selectedOption => {
     const { getProducts, currentFilters } = this.props;
 
     this.setState({ selectedOption }, () =>
@@ -24,7 +24,7 @@ class SortMenu extends PureComponent {
           <h5>Sort by price: </h5>
           <Select
             className="price-select"
-            onChange={this.onChange}
+            onChange={this.onSortChange}
             placeholder="Select..."
             options={options}
             value={selectedOption}

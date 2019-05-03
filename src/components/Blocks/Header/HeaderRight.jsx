@@ -28,6 +28,15 @@ const HeaderRight = props => {
         </Link>
         {bucketitems.length !== 0 ? <div className="bucket-count">{bucketitems.length}</div> : null}
       </div>
+
+      <a
+        href="https://github.com/DmitriyChernobrivets/ShopProject/tree/master/src"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="Github-icon"
+      >
+        <i className="fab fa-github-square" />
+      </a>
     </div>
   );
 };

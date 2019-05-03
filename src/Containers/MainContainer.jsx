@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Main from "../components/Blocks/main/index";
 import {
@@ -14,7 +14,39 @@ import {
   resetStore
 } from "../store/Actions/getProducts";
 
-const MainContainer = props => <Main {...props} />;
+class MainContainer extends Component {
+  componentDidMount() {
+    const { currentFilters, getProducts, resetStore } = this.props;
+
+    resetStore();
+    getProducts(currentFilters);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { getProducts } = this.props;
+
+    if (nextProps.match.params.categories !== this.props.match.params.categories) {
+      getProducts();
+      return true;
+    } else {
+      return false;
+    }
+  }
+  componentWillUnmount() {
+    const { resetFilters } = this.props;
+    resetFilters();
+  }
+  onPageChange = ({ selected }) => {
+    const { currentFilters, getProducts } = this.props;
+    const fitlers = { ...currentFilters, currentPage: selected };
+
+    getProducts(fitlers);
+  };
+
+  render() {
+    return <Main {...this.props} onPageChange={this.onPageChange} />;
+  }
+}
 
 const mapStatetoProps = state => {
   return {
