@@ -64,7 +64,7 @@ const logout = () => {
   };
 };
 
-const defaultAuthorization = () => {
+const initUser = () => {
   const isSocial = localStorage.getItem("firebaseui::rememberedAccounts");
   const user = JSON.parse(isSocial);
 
@@ -120,4 +120,4 @@ const login = userData => {
   };
 };
 
-export { defaultAuthorization, login, createUser, logout, SocialsLoginSuccess, resetError };
+export { initUser, login, createUser, logout, SocialsLoginSuccess, resetError };

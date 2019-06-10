@@ -7,12 +7,12 @@ import {
   getGlobalError,
   getAuthStatus
 } from "../Selectors/common";
-import { defaultAuthorization, resetError } from "../store/Actions/User";
+import { initUser, resetError } from "../store/Actions/User";
 
 class ROOTContainer extends Component {
   componentDidMount() {
-    const { defaultAuthorization } = this.props;
-    defaultAuthorization();
+    const { initUser } = this.props;
+    initUser();
   }
   render() {
     const { auth } = this.props;
@@ -30,7 +30,7 @@ const mapStatetoProps = state => {
 };
 const getDispatchToProps = dispatch => {
   return {
-    defaultAuthorization: () => dispatch(defaultAuthorization()),
+    initUser: () => dispatch(initUser()),
     resetError: () => dispatch(resetError())
   };
 };

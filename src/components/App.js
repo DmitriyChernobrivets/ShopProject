@@ -9,6 +9,7 @@ import { Circle2 as Preloader } from "react-preloaders";
 import LoaderID from "./Shared/Preloader/loader";
 import PropTypes from "prop-types";
 import { BrowserRouter as Router } from "react-router-dom";
+
 const App = props => {
   const { preloaderAll, preloaderID, errHandler, resetError } = props;
   return (
@@ -37,7 +38,6 @@ App.propTypes = {
   preloaderAll: PropTypes.bool.isRequired,
   preloaderID: PropTypes.bool.isRequired,
   errHandler: PropTypes.shape({}),
-  defaultAuthorization: PropTypes.func.isRequired,
   resetError: PropTypes.func.isRequired
 };
 export default App;

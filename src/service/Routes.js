@@ -1,6 +1,5 @@
 import Loadable from "react-loadable";
 import Loader from "../components/Shared/Preloader/loader";
-
 import { HOME, PRODUCTS_CATEGORY, PRODUCT_BY_ID, BUCKET, NOT_FOUND } from "../constants/Routes";
 
 const Routes = {

@@ -4,11 +4,10 @@ const transformState = state => {
   const a = Object.keys(state).reduce((acc, el) => {
     const filters = Array.isArray(state[el]) ? state[el].filter(el => el.checked) : state[el];
 
-    if (!acc[el]) {
-      acc[el] = Array.isArray(filters) ? [...filters] : filters;
-    } else {
-      acc[el] = [...filters];
-    }
+    !acc[el]
+      ? (acc[el] = Array.isArray(filters) ? [...filters] : filters)
+      : (acc[el] = [...filters]);
+
     return acc;
   }, {});
 

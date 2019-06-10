@@ -19,9 +19,9 @@ class Filter extends Component {
   }
   resetFilters = () => {
     const isStateDefault = isFiltersEmpty(this.state);
-    if (isStateDefault) return;
-
     const { sort, getProducts, match } = this.props;
+
+    if (isStateDefault) return;
 
     this.setState(defaultOptions[match.params.categories], () => {
       getProducts({ ...this.state, sort });
@@ -45,6 +45,7 @@ class Filter extends Component {
   }
   onRangeChange = price =>
     this.setState({ ...this.state, price }, () => this.props.getProducts(this.state));
+
   render() {
     return (
       <div className="filter_container">

@@ -78,7 +78,8 @@ const getProducts = (data = DEFAULT_STATE) => {
 
   const url = window.location.pathname;
 
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const sort = getState().currentFilters.sort;
     dispatch(preLoader());
     try {
       const { data } = await api.getProducts(url, currentfilters);
