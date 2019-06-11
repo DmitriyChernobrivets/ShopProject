@@ -73,16 +73,16 @@ const getProductBySearchInput = data => {
     }
   };
 };
-const getProducts = (data = DEFAULT_STATE) => {
-  const currentfilters = transformState(data);
+const getProducts = () => {
+  // const currentfilters = transformState(data);
 
-  const url = window.location.pathname;
-
+  const defaulturl = window.location.pathname + window.location.search;
+  console.log(defaulturl);
   return async (dispatch, getState) => {
-    const sort = getState().currentFilters.sort;
+    // const sort = getState().currentFilters.sort;
     dispatch(preLoader());
     try {
-      const { data } = await api.getProducts(url, currentfilters);
+      const { data } = await api.getProducts(defaulturl);
       const { product, totalCount } = data;
 
       if (data.Error) {
@@ -90,7 +90,7 @@ const getProducts = (data = DEFAULT_STATE) => {
       } else if (data.product.length === 0) {
         dispatch(EmptyListValdiation());
       } else {
-        dispatch(setCurrentFilters({ ...currentfilters, totalPageCount: totalCount }));
+        // dispatch(setCurrentFilters({ ...currentfilters, totalPageCount: totalCount }));
         dispatch(setProducts(product));
       }
     } catch (err) {

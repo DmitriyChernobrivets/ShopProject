@@ -13,7 +13,7 @@ const api = {
       .limit(limit)
       .sort(sortValue);
 
-    const count = await Model[collection].find(queryObj).count();
+    const count = await Model[collection].find(queryObj).countDocuments();
     return { product: items, totalCount: count };
   },
   SearchProducts: async (collection, title, sort) => {

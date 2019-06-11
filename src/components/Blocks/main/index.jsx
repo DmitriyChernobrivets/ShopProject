@@ -54,7 +54,7 @@ class Main extends Component {
                   matches ? (
                     <DefaultButton title="Filters" callback={this.handleShow} />
                   ) : (
-                    <FiltersContainer match={match} location={location} />
+                    <FiltersContainer match={match} location={location} history={history} />
                   )
                 }
               </Media>

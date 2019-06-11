@@ -5,7 +5,7 @@ const Search = require("./prouductRoutes/Search");
 const getProductsById = require("./prouductRoutes/getProductByID");
 
 productRouter
-  .post("/:category", getProducts)
+  .get("/:category", getProducts)
   .post("/:category/search", Search)
   .get("/:category/:id", getProductsById);
 

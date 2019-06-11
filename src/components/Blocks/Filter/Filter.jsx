@@ -5,6 +5,7 @@ import defaultOptions from "../../../constants/filters";
 import PropTypes from "prop-types";
 import InputRange from "react-input-range";
 import DefaultButton from "../../Shared/Button/defaultButton";
+import queryString from "query-string";
 import "react-input-range/lib/css/index.css";
 
 class Filter extends Component {
@@ -27,10 +28,29 @@ class Filter extends Component {
       getProducts({ ...this.state, sort });
     });
   };
+  handleHistoryChange = () => {
+    const { price, ...checkboxes } = this.state;
+    const { location, history } = this.props;
+    let StringifiedQuery;
+    const trueCheckboxs = Object.keys(checkboxes).reduce((acc, item) => {
+      const findTrueCheckbox = checkboxes[item]
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.name);
 
-  onChangeAction(idx, key) {
-    const { sort, getProducts } = this.props;
+      if (findTrueCheckbox.length > 0) {
+        acc[item] = findTrueCheckbox;
+        return acc;
+      }
+      return acc;
+    }, {});
+    StringifiedQuery = queryString.stringify({ ...trueCheckboxs }, { arrayFormat: "comma" });
+    const seturl = location.pathname + "?" + StringifiedQuery;
+    history.push(seturl);
 
+    return seturl;
+  };
+  onChangeAction = (idx, key) => {
+    const { sort, getProducts, location } = this.props;
     this.setState(
       prevState => {
         const newData = prevState[key].map((el, index) =>
@@ -40,9 +60,13 @@ class Filter extends Component {
           [key]: [...newData]
         };
       },
-      () => getProducts({ ...this.state, sort })
+      // () => getProducts({ ...this.state, sort })
+      () => {
+        const currentLocation = this.handleHistoryChange();
+        getProducts(currentLocation);
+      }
     );
-  }
+  };
   onRangeChange = price =>
     this.setState({ ...this.state, price }, () => this.props.getProducts(this.state));
 

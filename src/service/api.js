@@ -18,7 +18,8 @@ const api = {
   login: payload => site.post("/users/auth/login", payload),
   createUser: payload => site.post("/users/create", payload),
 
-  getProducts: (url, payload) => site.post(url, payload),
+  // getProducts: (url, payload) => site.post(url, payload),
+  getProducts: url => site.get(url),
   getProductById: url => site.get(url),
   Search: (url, payload) => site.post(`${url}/search`, payload),
 
